@@ -12,4 +12,4 @@ pages:
     paths:
       - public
   only:
-    - deploy-with-gitlab-pages
+    - pages
