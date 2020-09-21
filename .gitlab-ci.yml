@@ -1,0 +1,15 @@
+image: node:latest
+pages:
+  stage: deploy
+  script:
+    - npm install -g @angular/cli
+    - npm  install
+    - ng  update
+    - npm update
+    - ng  build
+    - mv ./dist/angular-car365-front/* public
+  artifacts:
+    paths:
+      - public
+  only:
+    - deploy-with-gitlab-pages
