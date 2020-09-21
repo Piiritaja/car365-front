@@ -4,7 +4,7 @@ pages:
   script:
     - npm install -g @angular/cli
     - npm  install
-    - ng  build --prod --base-href /angular-car365-front
+    - ng  build --prod --base-href /car365-frontend/
     - mkdir public
     - mv ./dist/angular-car365-front/* public
   artifacts:
