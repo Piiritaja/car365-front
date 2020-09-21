@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-car365-front"
+    }
+  },
+  "defaultProject": "angular-car365-front",
+  "cli": {
+    "analytics": false
+  }
 }
