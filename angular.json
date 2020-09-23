@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -121,8 +122,5 @@
       }
     }
   },
-  "defaultProject": "angular-car365-front",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "angular-car365-front"
 }

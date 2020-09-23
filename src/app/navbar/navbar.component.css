@@ -1,0 +1,39 @@
+mat-toolbar {
+  min-height: 90px;
+  max-height: 100px;
+}
+
+.button {
+  font-size: 1.2em;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.button.colored:hover {
+  font-size: 1.2em;
+  padding-right: 30px;
+  padding-left: 30px;
+  color: deeppink;
+  left: .1em;
+}
+
+.button.signup:hover {
+  left: .1em;
+}
+
+div {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+a.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-left: 30px;
+  padding-right: 25px;
+}
+
+a.logoNumber {
+  color: deeppink;
+  margin-left: 2px;
+}
