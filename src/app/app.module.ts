@@ -9,12 +9,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { DummyComponent } from './dummy/dummy.component';
+import {ListingViewComponent} from './listing-view/listing-view.component';
+import {MatCardModule, MatCardTitle} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DummyComponent,
+    ListingViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { DummyComponent } from './dummy/dummy.component';
     MatSliderModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
