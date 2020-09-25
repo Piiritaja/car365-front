@@ -42,7 +42,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatOptionModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatInputModule
+    MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatListModule,
