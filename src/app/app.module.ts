@@ -17,12 +17,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 
+import {ListingViewComponent} from './listing-view/listing-view.component';
+import {MatCardModule, MatCardTitle} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DummyComponent,
+    ListingViewComponent,
     FilterComponent,
   ],
   imports: [
@@ -37,7 +42,11 @@ import { MatInputModule } from '@angular/material/input';
     MatOptionModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
 <div>
   <app-navbar></app-navbar>
 </div>
-<div>
-  <app-filter></app-filter>
-</div>
+<span>
+  <app-filter [style.float]="'left'"></app-filter>
+  <app-listing-view [style.float]="'center'"></app-listing-view>
+</span>
+
 <router-outlet></router-outlet>
