@@ -35,7 +35,6 @@ mat-card-title {
   max-width: 90%;
   min-width: 85%;
 }
-
 .listing-attributes {
   display: flex;
   flex-direction: row;
@@ -43,6 +42,7 @@ mat-card-title {
   justify-content: space-between;
   padding: 10px;
 }
+
 
 
 .listing-attributes .attribute {
@@ -74,4 +74,26 @@ mat-card-title {
   max-width: 90%;
   text-align: left;
 }
+
+mat-grid-tile {
+}
+
+mat-grid-list {
+}
+
+mat-grid-tile-header {
+  background-color: ghostwhite;
+}
+
+.additional-attribute-list {
+  min-width: 95%;
+  max-width: 95%;
+}
+
+mat-card-header {
+  text-align: center;
+  min-width: 100%;
+  border-radius: 5px;
+}
+
 

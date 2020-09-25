@@ -1,43 +1,102 @@
 <mat-card class="listing">
-  <mat-card-header class="listing-header">
+  <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'">
     <mat-card-title>BMW 320i 2.0 110kw</mat-card-title>
     <mat-card class="statusbox">Saadaval</mat-card>
   </mat-card-header>
   <div class="listing-attributes">
     <mat-card class="left-side" class="attribute">
-      <div>BMW 320i</div>
+      <mat-list>
+        <mat-list-item>
+          <p matLine>
+            <span>BMW 320i</span>
+          </p>
+        </mat-list-item>
+        <mat-divider [inset]="true"></mat-divider>
+        <mat-list-item>
+          <p matLine>
+            <span>Year: </span>
+            <span> 1995 </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
     </mat-card>
     <mat-card class="right-side" class="attribute">
-      <div>4000€</div>
-    </mat-card>
-  </div>
-  <div class="listing-attributes">
-    <mat-card class="left-side" class="attribute">
-      <div>Year:</div>
-      <div>1995</div>
-    </mat-card>
-    <mat-card class="right-side" class="attribute">
-      <div>Mileage:</div>
-      <div>269420</div>
-      km
+      <mat-list>
+        <mat-list-item>
+          <p matLine>
+            <span>4000€</span>
+          </p>
+        </mat-list-item>
+        <mat-divider [inset]="true"></mat-divider>
+        <mat-list-item>
+          <p matLine>
+            <span>Mileage: </span>
+            <span>269420 km</span>
+          </p>
+        </mat-list-item>
+      </mat-list>
     </mat-card>
   </div>
   <img mat-card-image
        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/1994-96_BMW_320i_sedan_%28Australia%29.jpg/1200px-1994-96_BMW_320i_sedan_%28Australia%29.jpg"
        alt="e36"
        class="listing-image">
+  <!--
+  below the picture
+  -->
 
-  <div class="listing-attributes">
-    <mat-card class="left-side" class="listing-info">
-      <mat-card class="small-attribute">Veoskeem: </mat-card>
-      <mat-card class="small-attribute">Käigukast: </mat-card>
-      <mat-card class="small-attribute">Mootor: </mat-card>
-      <mat-card class="small-attribute">Võimsus: </mat-card>
-      <mat-card class="small-attribute">Kütus: </mat-card>
-      <mat-card class="small-attribute">Asukoht:</mat-card>
-    </mat-card>
-    <mat-card class="right-side" class="listing-info">
-      <mat-card></mat-card>
-    </mat-card>
-  </div>
-</mat-card>
+  <mat-grid-list cols="2" rowHeight="7:1" gutterSize="10">
+    <mat-grid-tile rowspan="5">
+      <mat-card class="additional-attribute-list" [style.background]="'whitesmoke'" [style.border-radius]="'40px'">
+        <mat-list>
+          <mat-list-item>
+            <p matLine>
+              <span>Mileage: </span>
+              <span>269420 km</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span>Mileage: </span>
+              <span>269420 km</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span>Mileage: </span>
+              <span>269420 km</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span>Mileage: </span>
+              <span>269420 km</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span>Mileage: </span>
+              <span>269420 km</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span>Mileage: </span>
+              <span>269420 km</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="4">
+      <mat-grid-tile-header [style.background]="'whitesmoke'">
+        </mat-grid-tile-header>
+      <mat-card [style.background]="'whitesmoke'" class="additional-attribute-list"
+                [style.min-height]="''"> a</mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>

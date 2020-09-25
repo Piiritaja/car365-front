@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { DummyComponent } from './dummy/dummy.component';
 import {ListingViewComponent} from './listing-view/listing-view.component';
 import {MatCardModule, MatCardTitle} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {MatCardModule, MatCardTitle} from '@angular/material/card';
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
+    MatListModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
