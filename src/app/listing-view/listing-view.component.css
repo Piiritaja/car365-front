@@ -20,6 +20,7 @@ mat-card-title {
   display: flex;
   flex-direction: column;
   margin: auto;
+  padding: 5px;
 }
 
 .statusbox {
@@ -88,6 +89,8 @@ mat-grid-tile-header {
 .additional-attribute-list {
   min-width: 95%;
   max-width: 95%;
+  min-height: 100%;
+  font-size: 1.2em;
 }
 
 mat-card-header {
