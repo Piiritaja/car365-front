@@ -4,22 +4,22 @@
 <mat-card class="listing">
   <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
                    [style.box-shadow]="'0px 1px lightgrey'">
-    <mat-card-title>BMW 320i 2.0 110kw</mat-card-title>
-    <mat-card class="statusbox">Available</mat-card>
+    <mat-card-title>{{listing.title}}</mat-card-title>
+    <mat-card class="statusbox">{{listing.status}}</mat-card>
   </mat-card-header>
   <div class="listing-attributes">
     <mat-card class="left-side" class="attribute">
       <mat-list>
         <mat-list-item>
           <p matLine>
-            <span [style.font-weight]="'bold'">BMW 320i</span>
+            <span [style.font-weight]="'bold'">{{listing.brand}} {{listing.model}}</span>
           </p>
         </mat-list-item>
         <mat-divider [inset]="true"></mat-divider>
         <mat-list-item>
           <p matLine>
             <span [style.font-weight]="'bold'">Year: </span>
-            <span> 1995 </span>
+            <span> {{listing.year}} </span>
           </p>
         </mat-list-item>
       </mat-list>
@@ -28,14 +28,14 @@
       <mat-list>
         <mat-list-item>
           <p matLine>
-            <span [style.font-weight]="'bold'">4000€</span>
+            <span [style.font-weight]="'bold'">{{listing.price}}€</span>
           </p>
         </mat-list-item>
         <mat-divider [inset]="true"></mat-divider>
         <mat-list-item>
           <p matLine>
             <span [style.font-weight]="'bold'">Mileage: </span>
-            <span>269420 km</span>
+            <span>{{listing.mileage}} km</span>
           </p>
         </mat-list-item>
       </mat-list>
@@ -56,42 +56,42 @@
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Drivetrain: </span>
-              <span>rear wheel drive</span>
+              <span>{{listing.driveType}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Gearbox: </span>
-              <span>manual</span>
+              <span>{{listing.gearbox}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Engine size: </span>
-              <span>2.0l</span>
+              <span>{{listing.engineSize}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Power: </span>
-              <span>110kw</span>
+              <span>{{listing.engineSize}}kw</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Fuel type: </span>
-              <span>petrol</span>
+              <span>{{listing.fuelType}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Location: </span>
-              <span>Valga</span>
+              <span>{{listing.location}}</span>
             </p>
           </mat-list-item>
         </mat-list>
@@ -108,14 +108,15 @@
                 [style.border-radius]="'10px'">
         <span [style.font-weight]="'bold'"
         >Additional information: </span>
-        <span>good car</span>
+        <span>{{listing.description}}</span>
       </mat-card>
 
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'whitesmoke'"
                    [style.border-radius]="'10px'">
       <span [style.font-weight]="'bold'">Seller details:  </span>
-      <span>Toomas Valgast 5678900</span>
+      <span>{{listing.ownerName}} </span>
+      <span>&nbsp;{{listing.ownerNumber}}</span>
     </mat-grid-tile>
   </mat-grid-list>
 
