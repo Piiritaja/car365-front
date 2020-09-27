@@ -17,12 +17,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { ListingComponent } from './listing/listing.component';
-import {ListingViewComponent} from './listing-view/listing-view.component';
-import {MatCardModule, MatCardTitle} from '@angular/material/card';
-import {MatListModule} from '@angular/material/list';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { ListingViewComponent } from './listing-view/listing-view.component';
+import { MatCardModule, MatCardTitle} from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { LoginComponent } from './login/login.component';
-import {FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {FormGroup, ReactiveFormsModule} from '@angular/forms';
     FilterComponent,
     ListingComponent,
     LoginComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import {FormGroup, ReactiveFormsModule} from '@angular/forms';
     MatCardModule,
     MatListModule,
     MatGridListModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
