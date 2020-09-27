@@ -27,6 +27,8 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './in-memory-data.service';
+import { SignupComponent } from './signup/signup.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import {InMemoryDataService} from './in-memory-data.service';
     ListingComponent,
     LoginComponent,
     HomePageComponent,
+    SignupComponent,
   ],
   imports: [
     HttpClientModule,
@@ -57,10 +60,10 @@ import {InMemoryDataService} from './in-memory-data.service';
     MatCardModule,
     MatListModule,
     MatGridListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

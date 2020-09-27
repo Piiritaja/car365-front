@@ -4,8 +4,8 @@
     <nav>
       <a mat-button routerLink="/home" class="button colored">Home</a>
       <a mat-button routerLink="/allcars" class="button colored">All cars</a>
-      <a mat-button routerLink="/signin" class="button colored">Sign in</a>
-      <a mat-raised-button color="accent" routerLink="/signup" class="button signup">Sign up</a>
+      <a mat-button class="button colored" (click)="openSignIn()">Sign in</a>
+      <a mat-raised-button color="accent" class="button signup" (click)="openSignUp()">Sign up</a>
     </nav>
   </div>
 </mat-toolbar>
