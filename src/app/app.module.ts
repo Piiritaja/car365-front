@@ -16,11 +16,12 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-
+import { ListingComponent } from './listing/listing.component';
 import {ListingViewComponent} from './listing-view/listing-view.component';
 import {MatCardModule, MatCardTitle} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     DummyComponent,
     ListingViewComponent,
     FilterComponent,
+    ListingComponent
   ],
   imports: [
     BrowserModule,
