@@ -24,6 +24,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { LoginComponent } from './login/login.component';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
+import { SignupComponent } from './signup/signup.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     ListingComponent,
     LoginComponent,
     HomePageComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatCardModule,
     MatListModule,
     MatGridListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
