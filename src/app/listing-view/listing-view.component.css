@@ -35,6 +35,7 @@ mat-card-title {
   max-width: 90%;
   min-width: 85%;
 }
+
 .listing-attributes {
   display: flex;
   flex-direction: row;
@@ -42,7 +43,6 @@ mat-card-title {
   justify-content: space-between;
   padding: 10px;
 }
-
 
 
 .listing-attributes .attribute {
