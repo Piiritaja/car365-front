@@ -1,8 +1,16 @@
 <div>
   <app-navbar></app-navbar>
 </div>
+
 <!--div class="next">
   <app-filter></app-filter>
   <app-listing></app-listing>
 </div-->
+
+<span>
+  <app-filter [style.float]="'left'"></app-filter>
+  <app-listing-view [style.float]="'center'"></app-listing-view>
+</span>
+
+
 <router-outlet></router-outlet>

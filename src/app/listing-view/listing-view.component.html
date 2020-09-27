@@ -1,0 +1,134 @@
+<span [style.color]="'red'">The info displayed here is hardcoded.
+  No functionality to display info automatically is implemented yet.</span>
+
+<mat-card class="listing">
+  <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
+                   [style.box-shadow]="'0px 1px lightgrey'">
+    <mat-card-title>{{listing.title}}</mat-card-title>
+    <mat-card class="statusbox">{{listing.status}}</mat-card>
+  </mat-card-header>
+  <div class="listing-attributes">
+    <mat-card class="left-side" class="attribute">
+      <mat-list>
+        <mat-list-item>
+          <p matLine>
+            <span [style.font-weight]="'bold'">{{listing.brand}} {{listing.model}}</span>
+          </p>
+        </mat-list-item>
+        <mat-divider [inset]="true"></mat-divider>
+        <mat-list-item>
+          <p matLine>
+            <span [style.font-weight]="'bold'">Year: </span>
+            <span> {{listing.year}} </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+    <mat-card class="right-side" class="attribute">
+      <mat-list>
+        <mat-list-item>
+          <p matLine>
+            <span [style.font-weight]="'bold'">{{listing.price}}€</span>
+          </p>
+        </mat-list-item>
+        <mat-divider [inset]="true"></mat-divider>
+        <mat-list-item>
+          <p matLine>
+            <span [style.font-weight]="'bold'">Mileage: </span>
+            <span>{{listing.mileage}} km</span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </div>
+  <img mat-card-image
+       src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/1994-96_BMW_320i_sedan_%28Australia%29.jpg/1200px-1994-96_BMW_320i_sedan_%28Australia%29.jpg"
+       alt="e36"
+       class="listing-image">
+  <!--
+  below the picture
+  -->
+
+  <mat-grid-list cols="2" rowHeight="11:1" gutterSize="10">
+    <mat-grid-tile rowspan="5">
+      <mat-card class="additional-attribute-list" [style.background]="'whitesmoke'" [style.border-radius]="'10px'">
+        <mat-list>
+          <mat-list-item>
+            <p matLine>
+              <span [style.font-weight]="'bold'">Drivetrain: </span>
+              <span>{{listing.driveType}}</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span [style.font-weight]="'bold'">Gearbox: </span>
+              <span>{{listing.gearbox}}</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span [style.font-weight]="'bold'">Engine size: </span>
+              <span>{{listing.engineSize}}</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span [style.font-weight]="'bold'">Power: </span>
+              <span>{{listing.enginePower}}kw</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span [style.font-weight]="'bold'">Fuel type: </span>
+              <span>{{listing.fuelType}}</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span [style.font-weight]="'bold'">Location: </span>
+              <span>{{listing.location}}</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile rowspan="4" [style.border-radius]="'10px'">
+      <mat-grid-tile-header [style.background]="'whitesmoke'" [style.font-weight]="'bold'"
+                            [style.color]="'black'"
+                            [style.border-radius]="'10px'">
+        Additional information:
+      </mat-grid-tile-header>
+      <mat-card [style.background]="'whitesmoke'" class="additional-attribute-list"
+                [style.min-height]="''"
+                [style.border-radius]="'10px'">
+        <span [style.font-weight]="'bold'"
+        >Additional information: </span>
+        <span>{{listing.description}}</span>
+      </mat-card>
+
+    </mat-grid-tile>
+    <mat-grid-tile [style.background]="'whitesmoke'"
+                   [style.border-radius]="'10px'">
+      <span [style.font-weight]="'bold'">Seller details:  </span>
+      <span>{{listing.ownerName}} </span>
+      <span>&nbsp;{{listing.ownerNumber}}</span>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <!-- end of component -->
+
+  <mat-card
+  [style.min-width]="'80%'"
+  [style.min-height]="'500px'"
+  [style.padding]="'10px'"
+  [style.margin]="'10px'"
+  [style.background-color]="'gray'"
+  >
+    siin asub asukoha kaart võibolla
+  </mat-card>
+</mat-card>
