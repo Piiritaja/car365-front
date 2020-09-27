@@ -7,7 +7,7 @@ import {Listing} from './listingProperties/Listing';
   providedIn: 'root'
 })
 export class ListingService {
-  private listingUrl = 'api/listing'; // URL to web api
+  private listingUrl = 'api/listings'; // URL to web api
 
   constructor(private http: HttpClient) {
   }
