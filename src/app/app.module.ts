@@ -25,8 +25,6 @@ import {LoginComponent} from './login/login.component';
 import {FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {HomePageComponent} from './home-page/home-page.component';
 import {HttpClientModule} from '@angular/common/http';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './in-memory-data.service';
 import { SignupComponent } from './signup/signup.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
