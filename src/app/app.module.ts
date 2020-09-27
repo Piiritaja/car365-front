@@ -21,7 +21,8 @@ import {ListingViewComponent} from './listing-view/listing-view.component';
 import {MatCardModule, MatCardTitle} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import { LoginComponent } from './login/login.component';
+import {FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     DummyComponent,
     ListingViewComponent,
     FilterComponent,
-    ListingComponent
+    ListingComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCardModule,
     MatListModule,
     MatGridListModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
