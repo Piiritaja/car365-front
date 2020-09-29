@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ListingItem} from '../listingItem';
+import {ListingItemService} from '../listingItem.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-listing',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private listingItemService: ListingItemService) {
   }
 
+  listingItems: ListingItem[];
+
+  getListingItems(): void {
+    this.listingItemService.getListings().subscribe(listingItems => this.listingItems = listingItems);
+  }
+
+  logger(): void {
+    console.log('tere');
+  }
+
+  ngOnInit(): void {
+    this.getListingItems();
+  }
 }
