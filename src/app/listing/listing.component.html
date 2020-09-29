@@ -10,14 +10,16 @@
   </div>
 </mat-toolbar>
 
-<mat-drawer-container>
+
+
+<mat-drawer-container *ngFor="let listingItem of listingItems">
   <mat-drawer mode="side" opened><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/1994-96_BMW_320i_sedan_%28Australia%29.jpg/1200px-1994-96_BMW_320i_sedan_%28Australia%29.jpg" style="width:180px;height:95px" alt="Photo of a bmw">
   </mat-drawer>
   <mat-drawer-content class="info">
-    <div class="name">BMW 320i 2.0 110kw</div>
+    <div class="name">{{listingItem.title}}</div>
     <div class="price ad">
-      <span>4000€</span>
-      <span>1995</span>
+      <span>{{listingItem.price}}€</span>
+      <span>{{listingItem.location}}</span>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
