@@ -15,4 +15,8 @@ export class ListingItemService {
   getListings(): Observable<ListingItem[]> {
     return this.http.get<ListingItem[]>(this.listingUrl);
   }
+  postListing(attr: string): Observable<ListingItem> {
+    console.log(this.listingUrl + attr);
+    return this.http.get<ListingItem>(this.listingUrl + attr);
+  }
 }

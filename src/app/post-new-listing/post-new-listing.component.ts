@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-
+import {ListingItem} from '../listingItem';
+import {ListingItemService} from '../listingItem.service';
+import {Observable} from 'rxjs';
 
 export interface Brand {
   name: string;
@@ -15,7 +16,6 @@ export interface Brand {
   styleUrls: ['./post-new-listing.component.css']
 })
 export class PostNewListingComponent implements OnInit {
-
   brandControl = new FormControl();
   options: Brand[] = [
     {name: 'BMW'},
@@ -32,12 +32,13 @@ export class PostNewListingComponent implements OnInit {
   engineGroup: FormGroup;
   imageGroup: FormGroup;
   informationGroup: FormGroup;
+  listingItem: ListingItem;
 
   // tslint:disable-next-line:variable-name
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, private listingItemService: ListingItemService) {}
 
   // tslint:disable-next-line:typedef
-  ngOnInit() {
+  ngOnInit(): void {
     this.modelGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -62,11 +63,14 @@ export class PostNewListingComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.name),
         map(name => name ? this._filter(name) : this.options.slice())
       );
+    this.postListing();
   }
   displayFn(brand: Brand): string {
     return brand && brand.name ? brand.name : '';
   }
-
+  postListing(): void {
+    this.listingItemService.postListing('?description=thisisatest');
+  }
   private _filter(name: string): Brand[] {
     const filterValue = name.toLowerCase();
 
