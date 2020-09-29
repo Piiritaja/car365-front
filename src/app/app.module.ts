@@ -27,6 +27,9 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {HttpClientModule} from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { PostNewListingComponent } from './post-new-listing/post-new-listing.component';
+import {MatStep, MatStepperModule} from "@angular/material/stepper";
+import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -40,6 +43,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     LoginComponent,
     HomePageComponent,
     SignupComponent,
+    PostNewListingComponent,
   ],
   imports: [
     HttpClientModule,
@@ -60,7 +64,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatListModule,
     MatGridListModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatStepperModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
