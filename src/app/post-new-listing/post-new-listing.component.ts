@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/
 import {map, startWith} from 'rxjs/operators';
 import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Car} from '../car';
 import {CarService} from '../car.service';
 import {RetrievedCar} from '../retrievedCar';
@@ -51,6 +51,7 @@ export class PostNewListingComponent implements OnInit {
     {name: 'Toyota'},
     {name: 'Mercedes'}
   ];
+  brandsList: string[] = [];
   filteredOptions: Observable<Brand[]>;
 
   isLinear = false;
@@ -119,6 +120,7 @@ export class PostNewListingComponent implements OnInit {
       location: '',
       images: []
     };
+    this.getBrands();
     // this.postCar();
     // this.postListing();
   }
@@ -139,8 +141,18 @@ export class PostNewListingComponent implements OnInit {
 
   postCar(): void {
     console.log('in post car');
-    this.carService.saveCar(this.car).subscribe(retrieved => this.retrievedCar = retrieved);
+    this.carService.saveCar(this.car).subscribe(retrieved => {
+      this.retrievedCar = retrieved;
+      console.log(this.retrievedCar); });
 
+  }
+
+  getBrands(): void {
+    this.carService.getBrands().subscribe(brands => {
+      this.brandsList = brands;
+      console.log(this.brandsList);
+      this.brandsFinished();
+    });
   }
 
   private _filter(name: string): Brand[] {
@@ -177,6 +189,15 @@ export class PostNewListingComponent implements OnInit {
      */
   }
 
+  brandsFinished(): void {
+    for (const brand1 of this.brandsList) {
+      const newBrand: Brand = {
+        name: brand1,
+      };
+      this.options.push(newBrand);
+    }
+    console.log(this.options);
+  }
   onSubmit(event: any): void {
     // this.car.bodyType = this.
     this.car.brand = this.brandControl.value.name;
