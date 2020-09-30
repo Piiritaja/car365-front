@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ListingItem} from '../listingItem';
+import {ListingItemService} from '../listingItem.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -6,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-
-  constructor() { }
+  constructor(private listingItemService: ListingItemService) {
+  }
+  listingItems: Observable<ListingItem[]>;
+  getListingItems(): void{
+   this.listingItems = this.listingItemService.getListings();
+  }
+  logger(): void {
+    console.log('tere');
+  }
 
   ngOnInit(): void {
   }

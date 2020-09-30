@@ -22,11 +22,14 @@ import {MatCardModule, MatCardTitle} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {LoginComponent} from './login/login.component';
-import {FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomePageComponent} from './home-page/home-page.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpHeaders} from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { PostNewListingComponent } from './post-new-listing/post-new-listing.component';
+import {MatStep, MatStepperModule} from '@angular/material/stepper';
+import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -40,6 +43,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     LoginComponent,
     HomePageComponent,
     SignupComponent,
+    PostNewListingComponent,
   ],
   imports: [
     HttpClientModule,
@@ -60,7 +64,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatListModule,
     MatGridListModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatStepperModule,
+    MatAutocompleteModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
