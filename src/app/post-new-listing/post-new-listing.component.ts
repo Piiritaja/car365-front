@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
-import {ListingItem} from '../listingItem';
+import {ListingItemNoId} from '../ListingItemNoId';
 import {ListingItemService} from '../listingItem.service';
 import {Observable, of} from 'rxjs';
 import {Car} from '../car';
 import {CarService} from '../car.service';
 import {RetrievedCar} from '../retrievedCar';
-import {RetrievedListingItem} from '../retrievedListingItem';
+import {ListingItem} from '../ListingItem';
 
 export interface Brand {
   name: string;
@@ -60,9 +60,9 @@ export class PostNewListingComponent implements OnInit {
   engineGroup: FormGroup;
   imageGroup: FormGroup;
   informationGroup: FormGroup;
-  listingItem: ListingItem;
+  listingItem: ListingItemNoId;
   car: Car;
-  retrievedListingItem: RetrievedListingItem;
+  retrievedListingItem: ListingItem;
   retrievedCar: RetrievedCar;
 
   // tslint:disable-next-line:variable-name
