@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ListingItem} from '../listingItem';
+import {ListingItem} from '../ListingItem';
 import {ListingItemService} from '../listingItem.service';
 import {Observable} from 'rxjs';
 

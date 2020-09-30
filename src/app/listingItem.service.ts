@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {ListingItem} from './listingItem';
+import {ListingItem} from './ListingItem';
+import {ListingItemNoId} from './ListingItemNoId';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ListingItemService {
   getListings(): Observable<ListingItem[]> {
     return this.http.get<ListingItem[]>(this.listingUrl);
   }
-  postListing(item: ListingItem): Observable<any> {
+  postListing(item: ListingItemNoId): Observable<any> {
     const headers = { 'content-type': 'application/json'};
     const body = JSON.stringify(item);
     // console.log(body);
