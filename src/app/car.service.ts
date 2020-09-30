@@ -18,13 +18,17 @@ export class CarService {
   }
 
   saveCar(car: Car): Observable<any> {
-    const headers = { 'content-type': 'application/json'};
+    const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(car);
-    console.log(body);
+    // console.log(body);
     return this.http.post<Car>(this.url, body, {headers});
   }
 
   getCar(id: string): Observable<Car> {
     return this.http.get<Car>(this.url + '/' + id);
+  }
+
+  getBrands(): Observable<string[]> {
+    return this.http.get<string[]>(this.url + '/brands');
   }
 }
