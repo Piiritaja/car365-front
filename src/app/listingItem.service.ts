@@ -15,8 +15,10 @@ export class ListingItemService {
   getListings(): Observable<ListingItem[]> {
     return this.http.get<ListingItem[]>(this.listingUrl);
   }
-  postListing(attr: string): Observable<ListingItem> {
-    console.log(this.listingUrl + attr);
-    return this.http.get<ListingItem>(this.listingUrl + attr);
+  postListing(item: ListingItem): Observable<any> {
+    const headers = { 'content-type': 'application/json'};
+    const body = JSON.stringify(item);
+    console.log(body);
+    return this.http.post(this.listingUrl, body, {headers});
   }
 }

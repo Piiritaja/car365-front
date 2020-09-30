@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {Car} from './car';
 
 @Injectable({
@@ -16,9 +16,14 @@ export class CarService {
   getCars(): Observable<Car[]> {
     return this.http.get<Car[]>(this.url);
   }
-  postCar(car: Car): Observable<any> {
-    return this.http.post<Car>(this.url, car);
+
+  saveCar(car: Car): Observable<any> {
+    const headers = { 'content-type': 'application/json'};
+    const body = JSON.stringify(car);
+    console.log(body);
+    return this.http.post<Car>(this.url, body, {headers});
   }
+
   getCar(id: string): Observable<Car> {
     return this.http.get<Car>(this.url + '/' + id);
   }

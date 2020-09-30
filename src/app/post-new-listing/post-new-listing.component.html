@@ -4,7 +4,7 @@
   </button>-->
   <mat-vertical-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="modelGroup">
-      <form [formGroup]="modelGroup">
+      <form [formGroup]="modelGroup" >
         <ng-template matStepLabel>Model info</ng-template>
         <mat-form-field appearance="outline">
           <mat-label>Brand (Make)</mat-label>
@@ -44,7 +44,7 @@
           <mat-hint>Price in euros</mat-hint>
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperPrevious (click)="onSubmit($event)">Back</button>
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
