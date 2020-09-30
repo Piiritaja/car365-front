@@ -18,7 +18,7 @@ export class ListingItemService {
   postListing(item: ListingItem): Observable<any> {
     const headers = { 'content-type': 'application/json'};
     const body = JSON.stringify(item);
-    console.log(body);
+    // console.log(body);
     return this.http.post(this.listingUrl, body, {headers});
   }
 }

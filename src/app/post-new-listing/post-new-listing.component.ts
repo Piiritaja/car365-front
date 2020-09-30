@@ -6,7 +6,8 @@ import {ListingItemService} from '../listingItem.service';
 import {Observable} from 'rxjs';
 import {Car} from '../car';
 import {CarService} from '../car.service';
-import {RetrievedCar} from "../retrievedCar";
+import {RetrievedCar} from '../retrievedCar';
+import {RetrievedListingItem} from '../retrievedListingItem';
 
 export interface Brand {
   name: string;
@@ -20,6 +21,30 @@ export interface Brand {
 })
 export class PostNewListingComponent implements OnInit {
   brandControl = new FormControl();
+  model = new FormControl();
+  bodyType = new FormControl();
+  color = new FormControl();
+  gearboxType = new FormControl();
+  fuelType = new FormControl();
+  driveType = new FormControl();
+  enginePower = new FormControl();
+  mileage = new FormControl();
+  releaseYear = new FormControl();
+  engineSize = new FormControl();
+  description = new FormControl();
+  status = new FormControl();
+  ownerId = new FormControl();
+  price = new FormControl();
+  location = new FormControl();
+  images = new FormControl();
+  ownerName = new FormControl();
+  ownerPhone = new FormControl();
+  img1 = new FormControl();
+  img2 = new FormControl();
+  img3 = new FormControl();
+  img4 = new FormControl();
+
+
   options: Brand[] = [
     {name: 'BMW'},
     {name: 'Audi'},
@@ -37,15 +62,13 @@ export class PostNewListingComponent implements OnInit {
   informationGroup: FormGroup;
   listingItem: ListingItem;
   car: Car;
-  retrievedListingItem: ListingItem;
+  retrievedListingItem: RetrievedListingItem;
   retrievedCar: RetrievedCar;
-  brandName: string;
-  modelName: string;
-  releaseYear: number;
 
   // tslint:disable-next-line:variable-name
   constructor(private _formBuilder: FormBuilder, private listingItemService: ListingItemService,
-              private carService: CarService) {}
+              private carService: CarService) {
+  }
 
   // tslint:disable-next-line:typedef
   ngOnInit(): void {
@@ -64,7 +87,7 @@ export class PostNewListingComponent implements OnInit {
     this.imageGroup = this._formBuilder.group({
       fifthCtrl: ['', Validators.required]
     });
-    this.informationGroup = this._formBuilder.group( {
+    this.informationGroup = this._formBuilder.group({
       sixthCtrl: ['', Validators.required]
     });
     this.filteredOptions = this.brandControl.valueChanges
@@ -74,43 +97,101 @@ export class PostNewListingComponent implements OnInit {
         map(name => name ? this._filter(name) : this.options.slice())
       );
     this.car = {
-      bodyType: 'hatch',
-      brand: 'BMW',
-      model: '320i',
-      color: 'green',
-      gearboxType: 'manual',
-      fuelType: 'petrol',
-      driveType: 'rear',
-      enginePower: 110,
-      mileage: 2000,
-      releaseYear: 2000,
-      engineSize: '2.0',
+      brand: '',
+      model: '',
+      bodyType: '',
+      color: '',
+      gearboxType: '',
+      fuelType: '',
+      driveType: '',
+      enginePower: 0,
+      mileage: 0,
+      releaseYear: 0,
+      engineSize: ''
     };
-    console.log(this.ageGroup.value);
-    this.postCar();
+    this.listingItem = {
+      title: '',
+      description: '',
+      status: '',
+      owner: '',
+      listedCar: '',
+      price: 0,
+      location: '',
+      images: []
+    };
+    // this.postCar();
     // this.postListing();
   }
+
   displayFn(brand: Brand): string {
     return brand && brand.name ? brand.name : '';
   }
+
   postListing(): void {
-    this.listingItemService.postListing(this.listingItem);
+    this.postCar();
+    console.log(this.retrievedCar);
+    console.log(JSON.stringify(this.retrievedCar));
+    // console.log('this is the id' + this.retrievedCar.id);
+    this.configListing();
+    this.listingItemService.postListing(this.listingItem)
+      .subscribe(listingItem => this.retrievedListingItem = listingItem);
   }
+
   postCar(): void {
     console.log('in post car');
-    this.carService.saveCar(this.car).subscribe(car => this.retrievedCar = car);
+    this.carService.saveCar(this.car).subscribe(retrieved => this.retrievedCar = retrieved);
 
   }
-   private _filter(name: string): Brand[] {
+
+  private _filter(name: string): Brand[] {
     const filterValue = name.toLowerCase();
 
     return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  onSubmit(event: any): void {
-    console.log(this.ageGroup.value);
+  configListing(): void {
+    this.listingItem.title = this.car.brand +
+      ' ' + this.car.model +
+      ' ' + this.car.engineSize +
+      ' ' + this.car.mileage +
+      ' kw';
+    this.listingItem.description = this.description.value;
+    this.listingItem.status = 'Available';
+    this.listingItem.owner = '';
+    this.listingItem.listedCar = 'dummyID';
+    this.listingItem.price = this.price.value;
+    this.listingItem.location = '';
+    this.listingItem.images = [this.img1.value, this.img2.value, this.img3.value, this.img4.value];
+    /*
+    export interface ListingItem {
+  id: string;
+  title: string;
+  description: string;
+  status: string;
+  owner: string;
+  listedCar: string;
+  price: number;
+  location: string;
+  images: string[];
+}
+     */
   }
 
+  onSubmit(event: any): void {
+    // this.car.bodyType = this.
+    this.car.brand = this.brandControl.value.name;
+    this.car.model = this.model.value;
+    this.car.bodyType = this.bodyType.value;
+    this.car.color = this.color.value;
+    this.car.gearboxType = this.gearboxType.value;
+    this.car.fuelType = this.fuelType.value;
+    this.car.driveType = this.driveType.value;
+    this.car.enginePower = this.enginePower.value;
+    this.car.mileage = this.mileage.value;
+    this.car.releaseYear = this.releaseYear.value;
+    this.car.engineSize = this.engineSize.value;
+    // console.log(JSON.stringify(this.car));
+  }
 
 
 }
