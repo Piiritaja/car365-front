@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {ListingItem} from './ListingItem';
 import {ListingItemNoId} from './ListingItemNoId';
+import {ListingItem} from './listingItem';
 
 @Injectable({
   providedIn: 'root'

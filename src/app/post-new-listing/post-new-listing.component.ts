@@ -7,7 +7,7 @@ import {Observable, of} from 'rxjs';
 import {Car} from '../car';
 import {CarService} from '../car.service';
 import {RetrievedCar} from '../retrievedCar';
-import {ListingItem} from '../ListingItem';
+import {ListingItem} from '../listingItem';
 
 export interface Brand {
   name: string;

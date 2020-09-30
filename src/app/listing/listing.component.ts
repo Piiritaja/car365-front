@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ListingItem} from '../ListingItem';
 import {ListingItemService} from '../listingItem.service';
 import {Observable} from 'rxjs';
+import {ListingItem} from '../listingItem';
 
 @Component({
   selector: 'app-listing',
