@@ -36,7 +36,6 @@ export class PostNewListingComponent implements OnInit {
   ownerId = new FormControl();
   price = new FormControl();
   location = new FormControl();
-  images = new FormControl();
   ownerName = new FormControl();
   ownerPhone = new FormControl();
   img1 = new FormControl();
@@ -130,23 +129,16 @@ export class PostNewListingComponent implements OnInit {
   }
 
   postListing(): void {
-    this.postCar();
-    console.log(this.retrievedCar);
-    console.log(JSON.stringify(this.retrievedCar));
-    // console.log('this is the id' + this.retrievedCar.id);
-    this.configListing();
-    this.listingItemService.postListing(this.listingItem)
-      .subscribe(listingItem => this.retrievedListingItem = listingItem);
+    this.carService.saveCar(this.car).subscribe(retrieved => {
+      this.retrievedCar = retrieved;
+      this.configListing();
+      this.listingItemService.postListing(this.listingItem)
+        .subscribe(listingItem => this.retrievedListingItem = listingItem); });
   }
 
   postCar(): void {
-    console.log('in post car');
-    this.carService.saveCar(this.car).subscribe(retrieved => {
-      this.retrievedCar = retrieved;
-      console.log(this.retrievedCar); });
 
   }
-
   getBrands(): void {
     this.carService.getBrands().subscribe(brands => {
       this.brandsList = brands;
@@ -170,9 +162,9 @@ export class PostNewListingComponent implements OnInit {
     this.listingItem.description = this.description.value;
     this.listingItem.status = 'Available';
     this.listingItem.owner = '';
-    this.listingItem.listedCar = 'dummyID';
+    this.listingItem.listedCar = this.retrievedCar.id;
     this.listingItem.price = this.price.value;
-    this.listingItem.location = '';
+    this.listingItem.location = this.location.value;
     this.listingItem.images = [this.img1.value, this.img2.value, this.img3.value, this.img4.value];
     /*
     export interface ListingItem {

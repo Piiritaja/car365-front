@@ -25,6 +25,11 @@
           <input required matInput placeholder="Ex. HatchBack" [formControl]="bodyType">
           <mat-hint>Ex. Sedan</mat-hint>
         </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Color</mat-label>
+          <input required matInput placeholder="Ex. HatchBack" [formControl]="color">
+          <mat-hint>Ex. green</mat-hint>
+        </mat-form-field>
         <div>
           <button (click)="onSubmit($event)" mat-button matStepperNext>Next</button>
         </div>
@@ -131,6 +136,12 @@
           <mat-label>Sellers phone number</mat-label>
           <input [formControl]="ownerPhone" matInput required placeholder="Ex. 5678912">
           <mat-hint>Phone number of the seller</mat-hint>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Location</mat-label>
+          <input [formControl]="location" matInput required placeholder="Ex. Tallinn">
+          <mat-hint>Location</mat-hint>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious (click)="onSubmit($event)">Back</button>
