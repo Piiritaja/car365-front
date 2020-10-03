@@ -16,7 +16,6 @@ export class CarService {
   getCars(): Observable<Car[]> {
     return this.http.get<Car[]>(this.url);
   }
-
   saveCar(car: Car): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(car);
