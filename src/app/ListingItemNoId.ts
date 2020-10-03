@@ -1,5 +1,4 @@
-export interface ListingItem {
-  id: string;
+export interface ListingItemNoId {
   title: string;
   description: string;
   status: string;

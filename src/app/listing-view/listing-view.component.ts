@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Listing} from "../listingProperties/Listing";
+import {Listing} from '../listingProperties/Listing';
 
 @Component({
   selector: 'app-listing-view',
