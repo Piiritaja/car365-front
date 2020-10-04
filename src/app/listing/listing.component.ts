@@ -16,6 +16,7 @@ export class ListingComponent implements OnInit {
 
   getListingItems(): void {
     this.listingItemService.getListings().subscribe(listingItems => this.listingItems = listingItems);
+    console.log(this.listingItems);
   }
 
   logger(): void {

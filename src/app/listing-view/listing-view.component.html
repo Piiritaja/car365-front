@@ -1,141 +1,141 @@
-<span [style.color]="'red'">The info displayed here is hardcoded.
-  No functionality to display info automatically is implemented yet.</span>
+<ng-container *ngIf="car">
+  <mat-card class="listing">
 
-<mat-card class="listing">
-  <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
-                   [style.box-shadow]="'0px 1px lightgrey'">
-    <mat-card-title>{{listingMock.title}}</mat-card-title>
-    <mat-card class="statusbox">{{listingMock.status}}</mat-card>
-  </mat-card-header>
-  <div class="listing-attributes">
-    <mat-card class="left-side" class="attribute">
-      <mat-list>
-        <mat-list-item>
-          <p matLine>
-            <span [style.font-weight]="'bold'">{{listingMock.brand}} {{listingMock.model}}</span>
-          </p>
-        </mat-list-item>
-        <mat-divider [inset]="true"></mat-divider>
-        <mat-list-item>
-          <p matLine>
-            <span [style.font-weight]="'bold'">Year: </span>
-            <span> {{listingMock.year}} </span>
-          </p>
-        </mat-list-item>
-      </mat-list>
-    </mat-card>
-    <mat-card class="right-side" class="attribute">
-      <mat-list>
-        <mat-list-item>
-          <p matLine>
-            <span [style.font-weight]="'bold'">{{listingMock.price}}€</span>
-          </p>
-        </mat-list-item>
-        <mat-divider [inset]="true"></mat-divider>
-        <mat-list-item>
-          <p matLine>
-            <span [style.font-weight]="'bold'">Mileage: </span>
-            <span>{{listingMock.mileage}} km</span>
-          </p>
-        </mat-list-item>
-      </mat-list>
-    </mat-card>
-  </div>
-  <img mat-card-image
-       src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/1994-96_BMW_320i_sedan_%28Australia%29.jpg/1200px-1994-96_BMW_320i_sedan_%28Australia%29.jpg"
-       alt="e36"
-       class="listing-image">
-  <!--
-  below the picture
-  -->
-
-  <mat-grid-list cols="2" rowHeight="11:1" gutterSize="10">
-    <mat-grid-tile rowspan="5">
-      <mat-card class="additional-attribute-list" [style.background]="'whitesmoke'" [style.border-radius]="'10px'">
+    <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
+                     [style.box-shadow]="'0px 1px lightgrey'">
+      <mat-card-title>{{listing.title}}</mat-card-title>
+      <mat-card class="statusbox">{{listing.status}}</mat-card>
+    </mat-card-header>
+    <div class="listing-attributes">
+      <mat-card class="left-side" class="attribute">
         <mat-list>
           <mat-list-item>
             <p matLine>
-              <span [style.font-weight]="'bold'">Color: </span>
-              <span>{{listingMock.color}}</span>
+              <span [style.font-weight]="'bold'">{{car.brand}} {{car.model}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
-              <span [style.font-weight]="'bold'">Drivetrain: </span>
-              <span>{{listingMock.driveType}}</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Gearbox: </span>
-              <span>{{listingMock.gearbox}}</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Engine size: </span>
-              <span>{{listingMock.engineSize}}</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Power: </span>
-              <span>{{listingMock.enginePower}}kw</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Fuel type: </span>
-              <span>{{listingMock.fuelType}}</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Location: </span>
-              <span>{{listingMock.location}}</span>
+              <span [style.font-weight]="'bold'">Year: </span>
+              <span> {{car.releaseYear}} </span>
             </p>
           </mat-list-item>
         </mat-list>
       </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile rowspan="4" [style.border-radius]="'10px'">
-      <mat-grid-tile-header [style.background]="'whitesmoke'" [style.font-weight]="'bold'"
-                            [style.color]="'black'"
-                            [style.border-radius]="'10px'">
-        Additional information:
-      </mat-grid-tile-header>
-      <mat-card [style.background]="'whitesmoke'" class="additional-attribute-list"
-                [style.min-height]="''"
-                [style.border-radius]="'10px'">
+      <mat-card class="right-side" class="attribute">
+        <mat-list>
+          <mat-list-item>
+            <p matLine>
+              <span [style.font-weight]="'bold'">{{listing.price}}€</span>
+            </p>
+          </mat-list-item>
+          <mat-divider [inset]="true"></mat-divider>
+          <mat-list-item>
+            <p matLine>
+              <span [style.font-weight]="'bold'">Mileage: </span>
+              <span>{{car.mileage}} km</span>
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+    <img mat-card-image
+         src="{{listing.images[0]}}"
+         alt="e36"
+         class="listing-image">
+    <!--
+    below the picture
+    -->
+
+    <mat-grid-list cols="2" rowHeight="11:1" gutterSize="10">
+      <mat-grid-tile rowspan="5">
+        <mat-card class="additional-attribute-list" [style.background]="'whitesmoke'" [style.border-radius]="'10px'">
+          <mat-list>
+            <mat-list-item>
+              <p matLine>
+                <span [style.font-weight]="'bold'">Color: </span>
+                <span>{{car.color}}</span>
+              </p>
+            </mat-list-item>
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-list-item>
+              <p matLine>
+                <span [style.font-weight]="'bold'">Drivetrain: </span>
+                <span>{{car.driveType}}</span>
+              </p>
+            </mat-list-item>
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-list-item>
+              <p matLine>
+                <span [style.font-weight]="'bold'">Gearbox: </span>
+                <span>{{car.gearboxType}}</span>
+              </p>
+            </mat-list-item>
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-list-item>
+              <p matLine>
+                <span [style.font-weight]="'bold'">Engine size: </span>
+                <span>{{car.engineSize}}</span>
+              </p>
+            </mat-list-item>
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-list-item>
+              <p matLine>
+                <span [style.font-weight]="'bold'">Power: </span>
+                <span>{{car.enginePower}}kw</span>
+              </p>
+            </mat-list-item>
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-list-item>
+              <p matLine>
+                <span [style.font-weight]="'bold'">Fuel type: </span>
+                <span>{{car.fuelType}}</span>
+              </p>
+            </mat-list-item>
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-list-item>
+              <p matLine>
+                <span [style.font-weight]="'bold'">Location: </span>
+                <span>{{listing.location}}</span>
+              </p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="4" [style.border-radius]="'10px'">
+        <mat-grid-tile-header [style.background]="'whitesmoke'" [style.font-weight]="'bold'"
+                              [style.color]="'black'"
+                              [style.border-radius]="'10px'">
+          Additional information:
+        </mat-grid-tile-header>
+        <mat-card [style.background]="'whitesmoke'" class="additional-attribute-list"
+                  [style.min-height]="''"
+                  [style.border-radius]="'10px'">
         <span [style.font-weight]="'bold'"
         >Additional information: </span>
-        <span>{{listingMock.description}}</span>
-      </mat-card>
+          <span>{{listing.description}}</span>
+        </mat-card>
 
-    </mat-grid-tile>
-    <mat-grid-tile [style.background]="'whitesmoke'"
-                   [style.border-radius]="'10px'">
-      <span [style.font-weight]="'bold'">Seller details:  </span>
-      <span>{{listingMock.ownerName}} </span>
-      <span>&nbsp;{{listingMock.ownerNumber}}</span>
-    </mat-grid-tile>
-  </mat-grid-list>
+      </mat-grid-tile>
+      <mat-grid-tile [style.background]="'whitesmoke'"
+                     [style.border-radius]="'10px'">
+        <span [style.font-weight]="'bold'">Seller details:  </span>
+        <span>{{listingMock.ownerName}} </span>
+        <span>&nbsp;{{listingMock.ownerNumber}}</span>
+      </mat-grid-tile>
+    </mat-grid-list>
 
-  <!-- end of component -->
+    <!-- end of component -->
 
-  <mat-card
-  [style.min-width]="'80%'"
-  [style.min-height]="'500px'"
-  [style.padding]="'10px'"
-  [style.margin]="'10px'"
-  [style.background-color]="'gray'"
-  >
-    siin asub asukoha kaart võibolla
+    <mat-card
+      [style.min-width]="'80%'"
+      [style.min-height]="'500px'"
+      [style.padding]="'10px'"
+      [style.margin]="'10px'"
+      [style.background-color]="'gray'"
+    >
+      siin asub asukoha kaart võibolla
+    </mat-card>
   </mat-card>
-</mat-card>
+</ng-container>
