@@ -22,4 +22,7 @@ export class ListingItemService {
     // console.log(body);
     return this.http.post(this.listingUrl, body, {headers});
   }
+  getListing(id): Observable<ListingItem>{
+    return this.http.get<ListingItem>(this.listingUrl + '/' + id);
+  }
 }

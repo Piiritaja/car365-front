@@ -4,22 +4,22 @@
 <mat-card class="listing">
   <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
                    [style.box-shadow]="'0px 1px lightgrey'">
-    <mat-card-title>{{listing.title}}</mat-card-title>
-    <mat-card class="statusbox">{{listing.status}}</mat-card>
+    <mat-card-title>{{listingMock.title}}</mat-card-title>
+    <mat-card class="statusbox">{{listingMock.status}}</mat-card>
   </mat-card-header>
   <div class="listing-attributes">
     <mat-card class="left-side" class="attribute">
       <mat-list>
         <mat-list-item>
           <p matLine>
-            <span [style.font-weight]="'bold'">{{listing.brand}} {{listing.model}}</span>
+            <span [style.font-weight]="'bold'">{{listingMock.brand}} {{listingMock.model}}</span>
           </p>
         </mat-list-item>
         <mat-divider [inset]="true"></mat-divider>
         <mat-list-item>
           <p matLine>
             <span [style.font-weight]="'bold'">Year: </span>
-            <span> {{listing.year}} </span>
+            <span> {{listingMock.year}} </span>
           </p>
         </mat-list-item>
       </mat-list>
@@ -28,14 +28,14 @@
       <mat-list>
         <mat-list-item>
           <p matLine>
-            <span [style.font-weight]="'bold'">{{listing.price}}€</span>
+            <span [style.font-weight]="'bold'">{{listingMock.price}}€</span>
           </p>
         </mat-list-item>
         <mat-divider [inset]="true"></mat-divider>
         <mat-list-item>
           <p matLine>
             <span [style.font-weight]="'bold'">Mileage: </span>
-            <span>{{listing.mileage}} km</span>
+            <span>{{listingMock.mileage}} km</span>
           </p>
         </mat-list-item>
       </mat-list>
@@ -56,49 +56,49 @@
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Color: </span>
-              <span>{{listing.color}}</span>
+              <span>{{listingMock.color}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Drivetrain: </span>
-              <span>{{listing.driveType}}</span>
+              <span>{{listingMock.driveType}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Gearbox: </span>
-              <span>{{listing.gearbox}}</span>
+              <span>{{listingMock.gearbox}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Engine size: </span>
-              <span>{{listing.engineSize}}</span>
+              <span>{{listingMock.engineSize}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Power: </span>
-              <span>{{listing.enginePower}}kw</span>
+              <span>{{listingMock.enginePower}}kw</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Fuel type: </span>
-              <span>{{listing.fuelType}}</span>
+              <span>{{listingMock.fuelType}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Location: </span>
-              <span>{{listing.location}}</span>
+              <span>{{listingMock.location}}</span>
             </p>
           </mat-list-item>
         </mat-list>
@@ -115,15 +115,15 @@
                 [style.border-radius]="'10px'">
         <span [style.font-weight]="'bold'"
         >Additional information: </span>
-        <span>{{listing.description}}</span>
+        <span>{{listingMock.description}}</span>
       </mat-card>
 
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'whitesmoke'"
                    [style.border-radius]="'10px'">
       <span [style.font-weight]="'bold'">Seller details:  </span>
-      <span>{{listing.ownerName}} </span>
-      <span>&nbsp;{{listing.ownerNumber}}</span>
+      <span>{{listingMock.ownerName}} </span>
+      <span>&nbsp;{{listingMock.ownerNumber}}</span>
     </mat-grid-tile>
   </mat-grid-list>
 
