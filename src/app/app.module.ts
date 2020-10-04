@@ -30,7 +30,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PostNewListingComponent } from './post-new-listing/post-new-listing.component';
 import {MatStep, MatStepperModule} from '@angular/material/stepper';
 import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import {ProfilePageComponent} from "./profile-page/profile-page.component";
+import { ProfilePageDisplayAreaComponent } from './profile-page-display-area/profile-page-display-area.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,8 @@ import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomp
     HomePageComponent,
     SignupComponent,
     PostNewListingComponent,
+    ProfilePageComponent,
+    ProfilePageDisplayAreaComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,15 @@
+<div style="display: inline-flex" [ngSwitch]="">
+  <div class="profile-menubar">
+    <div>
+      <a mat-button class="profile-menubar-button" (click)="btnClick(1)">My listings</a></div>
+    <div>
+      <a mat-button class="profile-menubar-button" (click)="btnClick(2)">My favorites</a></div>
+    <div>
+      <a mat-button class="profile-menubar-button" (click)="btnClick(3)">My settings</a>
+    </div>
+  </div>
+  <app-profile-page-display-area></app-profile-page-display-area>
+</div>
+
+
+
