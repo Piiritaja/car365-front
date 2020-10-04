@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Listing} from '../listingProperties/Listing';
+import {ListingItem} from '../listingItem';
+import {ListingItemService} from '../listingItem.service';
 
 @Component({
   selector: 'app-listing-view',
