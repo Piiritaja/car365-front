@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Listing} from '../listingProperties/Listing';
 import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-listing-view',
@@ -9,7 +10,7 @@ import {ListingItemService} from '../listingItem.service';
   styleUrls: ['./listing-view.component.css']
 })
 export class ListingViewComponent implements OnInit {
-  listing: Listing = {
+  listingMock: Listing = {
     id: '1',
     title: 'Bmw 320i 2.0 110kw',
     description: 'this is additional inf',
@@ -31,11 +32,20 @@ export class ListingViewComponent implements OnInit {
     ownerName: 'Toomas Valgast',
     ownerNumber: '5694200'
   };
+  listing: Listing;
 
-  constructor() {
+  constructor(
+    private route: ActivatedRoute,
+    private listingItemService: ListingItemService
+  ) {
   }
 
   ngOnInit(): void {
+    this.getListing();
+  }
+
+  getListing(): void {
+    const id = this.route.snapshot.paramMap.get('id');
   }
 
 }
