@@ -30,7 +30,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PostNewListingComponent } from './post-new-listing/post-new-listing.component';
 import {MatStep, MatStepperModule} from '@angular/material/stepper';
 import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import {ProfilePageComponent} from './profile-page/profile-page.component';
+import {ProfilePageFavoritesComponent} from './profile-page-favorites/profile-page-favorites.component';
+import {ProfilePageListingsComponent} from './profile-page-listings/profile-page-listings.component';
+import {ProfilePageSettingsComponent} from './profile-page-settings/profile-page-settings.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,10 @@ import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomp
     HomePageComponent,
     SignupComponent,
     PostNewListingComponent,
+    ProfilePageComponent,
+    ProfilePageListingsComponent,
+    ProfilePageFavoritesComponent,
+    ProfilePageSettingsComponent
   ],
   imports: [
     HttpClientModule,
