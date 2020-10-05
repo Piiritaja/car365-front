@@ -1,18 +1,18 @@
-<div style="display: inline-flex" [ngSwitch]="">
+<div style="display: inline-flex">
   <div class="profile-menubar">
     <div>
-      <a mat-button class="profile-menubar-button" (click)="btnClick(1)">My listings</a></div>
+      <a mat-button class="profile-menubar-button" (click)="btnClick(1)">My listings</a>
+    </div>
     <div>
-      <a mat-button class="profile-menubar-button" (click)="btnClick(2)">My favorites</a></div>
+      <a mat-button class="profile-menubar-button" (click)="btnClick(2)">My favorites</a>
+    </div>
     <div>
       <a mat-button class="profile-menubar-button" (click)="btnClick(3)">My settings</a>
     </div>
-    <p> Tekst </p>
-    <p>{{getBtnComponent()}}</p>
   </div>
-  <a *ngIf="componentId == 1">nr 1</a>
-  <a *ngIf="componentId == 2">nr 2</a>
-  <a *ngIf="componentId == 3">nr 3</a>
+  <a *ngIf="getBtnComponent() == 1">nr 1</a>
+  <a *ngIf="getBtnComponent() == 2">nr 2</a>
+  <a *ngIf="getBtnComponent() == 3">nr 3</a>
 </div>
 
 

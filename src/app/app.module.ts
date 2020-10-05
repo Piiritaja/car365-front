@@ -30,7 +30,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PostNewListingComponent } from './post-new-listing/post-new-listing.component';
 import {MatStep, MatStepperModule} from '@angular/material/stepper';
 import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
-import {ProfilePageComponent} from "./profile-page/profile-page.component";
+import {ProfilePageComponent} from './profile-page/profile-page.component';
 import { ProfilePageListingsComponent } from './profile-page-listings/profile-page-listings.component';
 import { ProfilePageFavoritesComponent } from './profile-page-favorites/profile-page-favorites.component';
 import { ProfilePageSettingsComponent } from './profile-page-settings/profile-page-settings.component';
@@ -50,7 +50,7 @@ import { ProfilePageSettingsComponent } from './profile-page-settings/profile-pa
     ProfilePageComponent,
     ProfilePageListingsComponent,
     ProfilePageFavoritesComponent,
-    ProfilePageSettingsComponent,
+    ProfilePageSettingsComponent
   ],
   imports: [
     HttpClientModule,
