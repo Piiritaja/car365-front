@@ -1,1 +1,31 @@
-<p style="margin: 50px">Your settings</p>
+<p style="margin: 20px">Your settings</p>
+<div id="passwordSection">
+  <mat-form-field class="input">
+    <label>
+      <input [(ngModel)]="firstPassword" matInput placeholder="Enter New Password"
+             [type]="showPass ? 'text' : 'password'">
+    </label>
+    <mat-icon matSuffix (mouseenter)="showPass = true" (mouseleave)="showPass = false">
+      {{showPass ? 'visibility' : 'visibility_off'}}
+    </mat-icon>
+  </mat-form-field>
+  <mat-form-field class="input">
+    <label>
+      <input [(ngModel)]="secondPassword" matInput placeholder="Re-Enter New Password" [type]="'password'">
+    </label>
+  </mat-form-field>
+  <button mat-raised-button class="change"
+          [disabled]="firstPassword != secondPassword || firstPassword.length < 6">Change password
+  </button>
+</div>
+<div>
+  <mat-form-field class="mail input">
+    <label>
+      <input [(ngModel)]="newMail" [formControl]="mailAddress" pattern="[a-zA-Z]{1}[a-zA-Z0-9.]{1,}@+\w{3,}\.+\w{2,3}"
+             matInput placeholder="Enter New Mail">
+    </label>
+  </mat-form-field>
+  <button mat-raised-button class="change"
+          [disabled]="mailAddress.invalid || newMail == ''">Change mail address
+  </button>
+</div>

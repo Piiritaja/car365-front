@@ -18,22 +18,23 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {ListingComponent} from './listing/listing.component';
 import {ListingViewComponent} from './listing-view/listing-view.component';
-import {MatCardModule, MatCardTitle} from '@angular/material/card';
+import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {LoginComponent} from './login/login.component';
-import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomePageComponent} from './home-page/home-page.component';
-import {HttpClientModule, HttpHeaders} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PostNewListingComponent } from './post-new-listing/post-new-listing.component';
-import {MatStep, MatStepperModule} from '@angular/material/stepper';
-import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {ProfilePageComponent} from './profile-page/profile-page.component';
 import { ProfilePageListingsComponent } from './profile-page-listings/profile-page-listings.component';
 import { ProfilePageFavoritesComponent } from './profile-page-favorites/profile-page-favorites.component';
 import { ProfilePageSettingsComponent } from './profile-page-settings/profile-page-settings.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -52,30 +53,31 @@ import { ProfilePageSettingsComponent } from './profile-page-settings/profile-pa
     ProfilePageFavoritesComponent,
     ProfilePageSettingsComponent
   ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-    MatSliderModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatListModule,
-    MatGridListModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatStepperModule,
-    MatAutocompleteModule,
-    FormsModule,
-  ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        AppRoutingModule,
+        MatSliderModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatFormFieldModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
+        MatListModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatStepperModule,
+        MatAutocompleteModule,
+        FormsModule,
+        MatIconModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
