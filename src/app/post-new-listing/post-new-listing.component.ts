@@ -133,12 +133,14 @@ export class PostNewListingComponent implements OnInit {
       this.retrievedCar = retrieved;
       this.configListing();
       this.listingItemService.postListing(this.listingItem)
-        .subscribe(listingItem => this.retrievedListingItem = listingItem); });
+        .subscribe(listingItem => this.retrievedListingItem = listingItem);
+    });
   }
 
   postCar(): void {
 
   }
+
   getBrands(): void {
     this.carService.getBrands().subscribe(brands => {
       this.brandsList = brands;
@@ -156,8 +158,7 @@ export class PostNewListingComponent implements OnInit {
   configListing(): void {
     this.listingItem.title = this.car.brand +
       ' ' + this.car.model +
-      ' ' + this.car.engineSize +
-      ' ' + this.car.mileage +
+      ' ' + this.car.enginePower +
       ' kw';
     this.listingItem.description = this.description.value;
     this.listingItem.status = 'Available';
@@ -190,6 +191,7 @@ export class PostNewListingComponent implements OnInit {
     }
     console.log(this.options);
   }
+
   onSubmit(event: any): void {
     // this.car.bodyType = this.
     this.car.brand = this.brandControl.value.name;
