@@ -3,55 +3,56 @@
     <mat-label>Body type</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option value="sedan">Sedan</mat-option>
-      <mat-option value="hatchback">Hatchback</mat-option>
-      <mat-option value="coupe">Coupe</mat-option>
+      <mat-option *ngFor="let carItem of carItems" value>{{carItem.bodyType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Make</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option value="audi">Audi</mat-option>
-      <mat-option value="bmw">BMW</mat-option>
-      <mat-option value="fiat">Fiat</mat-option>
-      <mat-option value="volvo">Volvo</mat-option>
+      <mat-option *ngFor="let carItem of carItems" value>{{carItem.brand}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Model</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option value="a6">A6</mat-option>
-      <mat-option value="a8">A8</mat-option>
+      <mat-option *ngFor="let carItem of carItems" value>{{carItem.model}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Fuel</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option value="diesel">diesel</mat-option>
+      <mat-option *ngFor="let carItem of carItems" value>{{carItem.fuelType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Transmission</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option value="manual">manual</mat-option>
+      <mat-option *ngFor="let carItem of carItems" value>{{carItem.gearboxType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Drivetrain</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option value="rear">rear-wheel drive</mat-option>
+      <mat-option *ngFor="let carItem of carItems" value>{{carItem.driveType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Location</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option value="tallinn">Tallinn</mat-option>
+      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.location}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Color</mat-label>
+    <mat-select>
+      <mat-option>all</mat-option>
+      <mat-option *ngFor="let carItem of carItems" value>{{carItem.color}}</mat-option>
     </mat-select>
   </mat-form-field>
   <span>
