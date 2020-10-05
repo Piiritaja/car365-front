@@ -25,4 +25,8 @@ export class ListingItemService {
   getListing(id): Observable<ListingItem>{
     return this.http.get<ListingItem>(this.listingUrl + '/' + id);
   }
+
+  getListingByOwner(owner): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl + '/owner?owner=' + owner);
+  }
 }

@@ -13,16 +13,13 @@ export class ProfilePageListingsComponent implements OnInit {
 
   listingItems: ListingItem[];
 
-  getListingItems(): void {
-    this.listingItemService.getListings().subscribe(listingItems => this.listingItems = listingItems);
+  getListingsByOwner(owner): void {
+    this.listingItemService.getListingByOwner(owner).subscribe(listingItems => this.listingItems = listingItems);
     console.log(this.listingItems);
   }
 
-  logger(): void {
-    console.log('tere');
-  }
-
   ngOnInit(): void {
-    this.getListingItems();
+    /// TODO this.getListingsByOwner(owner.getId())
+    this.getListingsByOwner('owner_id');
   }
 }

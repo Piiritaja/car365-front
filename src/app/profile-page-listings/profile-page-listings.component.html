@@ -1,5 +1,5 @@
-<mat-drawer-container *ngFor="let listingItem of listingItems" routerLink="/listings/{{listingItem.id}}">
-  <mat-drawer mode="side" opened><img src="{{listingItem.images[0]}}" style="width:180px;height:95px" alt="Photo of a bmw">
+<mat-drawer-container *ngFor="let listingItem of listingItems" routerLink="/listings/owner?owner={{listingItem.owner}}">
+  <mat-drawer mode="side" opened><img src="{{listingItem.images[0]}}" style="width:180px;height:95px"  alt="Listing">
   </mat-drawer>
   <mat-drawer-content class="info">
     <div class="name">{{listingItem.title}}</div>
