@@ -31,7 +31,9 @@ import { PostNewListingComponent } from './post-new-listing/post-new-listing.com
 import {MatStep, MatStepperModule} from '@angular/material/stepper';
 import {MatAutocomplete, MatAutocompleteModule} from '@angular/material/autocomplete';
 import {ProfilePageComponent} from "./profile-page/profile-page.component";
-import { ProfilePageDisplayAreaComponent } from './profile-page-display-area/profile-page-display-area.component';
+import { ProfilePageListingsComponent } from './profile-page-listings/profile-page-listings.component';
+import { ProfilePageFavoritesComponent } from './profile-page-favorites/profile-page-favorites.component';
+import { ProfilePageSettingsComponent } from './profile-page-settings/profile-page-settings.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ProfilePageDisplayAreaComponent } from './profile-page-display-area/pro
     SignupComponent,
     PostNewListingComponent,
     ProfilePageComponent,
-    ProfilePageDisplayAreaComponent,
+    ProfilePageListingsComponent,
+    ProfilePageFavoritesComponent,
+    ProfilePageSettingsComponent,
   ],
   imports: [
     HttpClientModule,

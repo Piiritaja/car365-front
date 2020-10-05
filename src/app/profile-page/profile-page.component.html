@@ -7,8 +7,12 @@
     <div>
       <a mat-button class="profile-menubar-button" (click)="btnClick(3)">My settings</a>
     </div>
+    <p> Tekst </p>
+    <p>{{getBtnComponent()}}</p>
   </div>
-  <app-profile-page-display-area></app-profile-page-display-area>
+  <a *ngIf="componentId == 1">nr 1</a>
+  <a *ngIf="componentId == 2">nr 2</a>
+  <a *ngIf="componentId == 3">nr 3</a>
 </div>
 
 
