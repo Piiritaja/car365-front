@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
 import {ListingItemNoId} from '../ListingItemNoId';
 import {ListingItemService} from '../listingItem.service';
-import {Observable, of} from 'rxjs';
-import {Car} from '../car';
-import {CarService} from '../car.service';
-import {RetrievedCar} from '../retrievedCar';
+import {Observable} from 'rxjs';
 import {ListingItem} from '../listingItem';
 
 export interface Brand {
@@ -43,7 +40,6 @@ export class PostNewListingComponent implements OnInit {
   img3 = new FormControl();
   img4 = new FormControl();
 
-
   options: Brand[] = [
     {name: 'BMW'},
     {name: 'Audi'},
@@ -61,33 +57,28 @@ export class PostNewListingComponent implements OnInit {
   imageGroup: FormGroup;
   informationGroup: FormGroup;
   listingItem: ListingItemNoId;
-  car: Car;
   retrievedListingItem: ListingItem;
-  retrievedCar: RetrievedCar;
 
-  // tslint:disable-next-line:variable-name
-  constructor(private _formBuilder: FormBuilder, private listingItemService: ListingItemService,
-              private carService: CarService) {
+  constructor(private formBuilder: FormBuilder, private listingItemService: ListingItemService) {
   }
 
-  // tslint:disable-next-line:typedef
   ngOnInit(): void {
-    this.modelGroup = this._formBuilder.group({
+    this.modelGroup = this.formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
-    this.ageGroup = this._formBuilder.group({
+    this.ageGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    this.drivetrainGroup = this._formBuilder.group({
+    this.drivetrainGroup = this.formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
-    this.engineGroup = this._formBuilder.group({
+    this.engineGroup = this.formBuilder.group({
       fourthCtrl: ['', Validators.required]
     });
-    this.imageGroup = this._formBuilder.group({
+    this.imageGroup = this.formBuilder.group({
       fifthCtrl: ['', Validators.required]
     });
-    this.informationGroup = this._formBuilder.group({
+    this.informationGroup = this.formBuilder.group({
       sixthCtrl: ['', Validators.required]
     });
     this.filteredOptions = this.brandControl.valueChanges
@@ -96,7 +87,15 @@ export class PostNewListingComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.name),
         map(name => name ? this._filter(name) : this.options.slice())
       );
-    this.car = {
+
+    this.listingItem = {
+      title: '',
+      description: '',
+      status: '',
+      owner: '',
+      price: 0,
+      location: '',
+      images: [],
       brand: '',
       model: '',
       bodyType: '',
@@ -109,18 +108,7 @@ export class PostNewListingComponent implements OnInit {
       releaseYear: 0,
       engineSize: ''
     };
-    this.listingItem = {
-      title: '',
-      description: '',
-      status: '',
-      owner: '',
-      listedCar: '',
-      price: 0,
-      location: '',
-      images: []
-    };
     this.getBrands();
-    // this.postCar();
     // this.postListing();
   }
 
@@ -129,20 +117,13 @@ export class PostNewListingComponent implements OnInit {
   }
 
   postListing(): void {
-    this.carService.saveCar(this.car).subscribe(retrieved => {
-      this.retrievedCar = retrieved;
       this.configListing();
       this.listingItemService.postListing(this.listingItem)
         .subscribe(listingItem => this.retrievedListingItem = listingItem);
-    });
-  }
-
-  postCar(): void {
-
   }
 
   getBrands(): void {
-    this.carService.getBrands().subscribe(brands => {
+    this.listingItemService.getBrands().subscribe(brands => {
       this.brandsList = brands;
       console.log(this.brandsList);
       this.brandsFinished();
@@ -156,14 +137,13 @@ export class PostNewListingComponent implements OnInit {
   }
 
   configListing(): void {
-    this.listingItem.title = this.car.brand +
-      ' ' + this.car.model +
-      ' ' + this.car.enginePower +
+    this.listingItem.title = this.listingItem.brand +
+      ' ' + this.listingItem.model +
+      ' ' + this.listingItem.enginePower +
       ' kw';
     this.listingItem.description = this.description.value;
     this.listingItem.status = 'Available';
     this.listingItem.owner = '';
-    this.listingItem.listedCar = this.retrievedCar.id;
     this.listingItem.price = this.price.value;
     this.listingItem.location = this.location.value;
     this.listingItem.images = [this.img1.value, this.img2.value, this.img3.value, this.img4.value];
@@ -174,7 +154,6 @@ export class PostNewListingComponent implements OnInit {
   description: string;
   status: string;
   owner: string;
-  listedCar: string;
   price: number;
   location: string;
   images: string[];
@@ -197,19 +176,18 @@ export class PostNewListingComponent implements OnInit {
   }
 
   onSubmit(event: any): void {
-    // this.car.bodyType = this.
-    this.car.brand = this.brandControl.value.name;
-    this.car.model = this.model.value;
-    this.car.bodyType = this.bodyType.value;
-    this.car.color = this.color.value;
-    this.car.gearboxType = this.gearboxType.value;
-    this.car.fuelType = this.fuelType.value;
-    this.car.driveType = this.driveType.value;
-    this.car.enginePower = this.enginePower.value;
-    this.car.mileage = this.mileage.value;
-    this.car.releaseYear = this.releaseYear.value;
-    this.car.engineSize = this.engineSize.value;
-    // console.log(JSON.stringify(this.car));
+    this.listingItem.brand = this.brandControl.value.name;
+    this.listingItem.model = this.model.value;
+    this.listingItem.bodyType = this.bodyType.value;
+    this.listingItem.color = this.color.value;
+    this.listingItem.gearboxType = this.gearboxType.value;
+    this.listingItem.fuelType = this.fuelType.value;
+    this.listingItem.driveType = this.driveType.value;
+    this.listingItem.enginePower = this.enginePower.value;
+    this.listingItem.mileage = this.mileage.value;
+    this.listingItem.releaseYear = this.releaseYear.value;
+    this.listingItem.engineSize = this.engineSize.value;
+    // console.log(JSON.stringify(this.listingItem));
   }
 
 
