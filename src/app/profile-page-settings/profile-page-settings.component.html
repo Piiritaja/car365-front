@@ -1,31 +1,56 @@
-<p style="margin: 20px">Your settings</p>
-<div id="passwordSection">
+<!--Password section-->
+<div>
   <mat-form-field class="input">
     <label>
-      <input [(ngModel)]="firstPassword" matInput placeholder="Enter New Password"
+      <input [(ngModel)]="firstPassword" matInput placeholder="New password"
              [type]="showPass ? 'text' : 'password'">
     </label>
-    <mat-icon matSuffix (mouseenter)="showPass = true" (mouseleave)="showPass = false">
+    <mat-icon matSuffix (mousedown)="showPass = true" (mouseleave)="showPass = false">
       {{showPass ? 'visibility' : 'visibility_off'}}
     </mat-icon>
   </mat-form-field>
   <mat-form-field class="input">
     <label>
-      <input [(ngModel)]="secondPassword" matInput placeholder="Re-Enter New Password" [type]="'password'">
+      <input [(ngModel)]="secondPassword" matInput placeholder="Confirm new password" [type]="'password'">
     </label>
   </mat-form-field>
-  <button mat-raised-button class="change"
-          [disabled]="firstPassword != secondPassword || firstPassword.length < 6">Change password
+  <button mat-raised-button class="change" [disabled]="isValidPasswordChange(firstPassword, secondPassword)"
+          (click)="changePassword(firstPassword)">Change password
   </button>
 </div>
+<!--Mail section-->
 <div>
-  <mat-form-field class="mail input">
+  <mat-form-field class="input">
     <label>
-      <input [(ngModel)]="newMail" [formControl]="mailAddress" pattern="[a-zA-Z]{1}[a-zA-Z0-9.]{1,}@+\w{3,}\.+\w{2,3}"
-             matInput placeholder="Enter New Mail">
+      <input [(ngModel)]="newMail" [formControl]="mailForm" pattern="\w+(\w|.)*@+\w{2,}\.+[a-zA-Z]{2,3}"
+             matInput placeholder="New e-mail address">
     </label>
   </mat-form-field>
-  <button mat-raised-button class="change"
-          [disabled]="mailAddress.invalid || newMail == ''">Change mail address
+  <button mat-raised-button class="change" [disabled]="isValidMailChange(newMail)" (click)="changeMail(newMail)">
+    Change mail address
+  </button>
+</div>
+<!--Phone section-->
+<div>
+  <mat-form-field class="input">
+    <label>
+      <input [type]="'text'" [(ngModel)]="newPhone"
+             matInput placeholder="New tel number">
+    </label>
+  </mat-form-field>
+  <button mat-raised-button class="change" [disabled]="isValidPhoneChange(newPhone)" (click)="changePhone(newPhone)">
+    Change phone number
+  </button>
+</div>
+<!--Name section-->
+<div>
+  <mat-form-field class="input">
+    <label>
+      <input [(ngModel)]="newName" [formControl]="nameForm" pattern="[a-zA-Z]{1}(\w|\.|-){2,19}"
+             matInput placeholder="New username">
+    </label>
+  </mat-form-field>
+  <button mat-raised-button class="change" [disabled]="isValidNameChange(newName)" (click)="changeName(newName)">
+    Change password
   </button>
 </div>

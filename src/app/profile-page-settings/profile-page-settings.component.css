@@ -1,8 +1,3 @@
-#passwordSection {
-  display: inline-flex;
-  align-items: center;
-}
-
 mat-form-field.input {
   margin: 20px;
   width: 200px;
@@ -23,7 +18,7 @@ button.change:hover {
 }
 
 button.change:disabled {
-  opacity: 25%;
+  opacity: 50%;
   background: whitesmoke;
 }
 
