@@ -27,6 +27,6 @@ export class ListingItemService {
   }
 
   getBrands(): Observable<string[]> {
-    return this.http.get<string[]>('api/cars/brands');
+    return this.http.get<string[]>(this.listingUrl + '/brands');
   }
 }
