@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
 
 @Component({
@@ -11,13 +10,17 @@ import {ListingItemService} from '../listingItem.service';
 export class FilterComponent implements OnInit {
   constructor(private listingItemService: ListingItemService) { }
 
-  listingItems: ListingItem[];
+  listingParams: any[] = [];
 
-  getListingItems(): void {
-    this.listingItemService.getListings().subscribe(listingItems => this.listingItems = listingItems);
+  getParamStrings(): void {
+    this.listingItemService.getParams()
+      .subscribe(
+        data => {
+      this.listingParams = data;
+    });
   }
 
   ngOnInit(): void {
-    this.getListingItems();
+    this.getParamStrings();
   }
 }

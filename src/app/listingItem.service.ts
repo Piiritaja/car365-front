@@ -29,4 +29,8 @@ export class ListingItemService {
   getBrands(): Observable<string[]> {
     return this.http.get<string[]>(this.listingUrl + '/brands');
   }
+
+  getParams(): Observable<any> {
+    return this.http.get(this.listingUrl + '/params');
+  }
 }
