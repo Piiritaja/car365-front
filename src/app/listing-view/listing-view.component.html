@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<ng-container *ngIf="car">
+<ng-container>
   <mat-card class="listing">
 
     <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
@@ -8,23 +8,23 @@
       <mat-card class="statusbox">{{listing.status}}</mat-card>
     </mat-card-header>
     <div class="listing-attributes">
-      <mat-card class="left-side" class="attribute">
+      <mat-card class="left-side attribute">
         <mat-list>
           <mat-list-item>
             <p matLine>
-              <span [style.font-weight]="'bold'">{{car.brand}} {{car.model}}</span>
+              <span [style.font-weight]="'bold'">{{listing.brand}} {{listing.model}}</span>
             </p>
           </mat-list-item>
           <mat-divider [inset]="true"></mat-divider>
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Year: </span>
-              <span> {{car.releaseYear}} </span>
+              <span> {{listing.releaseYear}} </span>
             </p>
           </mat-list-item>
         </mat-list>
       </mat-card>
-      <mat-card class="right-side" class="attribute">
+      <mat-card class="right-side attribute">
         <mat-list>
           <mat-list-item>
             <p matLine>
@@ -35,7 +35,7 @@
           <mat-list-item>
             <p matLine>
               <span [style.font-weight]="'bold'">Mileage: </span>
-              <span>{{car.mileage}} km</span>
+              <span>{{listing.mileage}} km</span>
             </p>
           </mat-list-item>
         </mat-list>
@@ -56,42 +56,42 @@
             <mat-list-item>
               <p matLine>
                 <span [style.font-weight]="'bold'">Color: </span>
-                <span>{{car.color}}</span>
+                <span>{{listing.color}}</span>
               </p>
             </mat-list-item>
             <mat-divider [inset]="true"></mat-divider>
             <mat-list-item>
               <p matLine>
                 <span [style.font-weight]="'bold'">Drivetrain: </span>
-                <span>{{car.driveType}}</span>
+                <span>{{listing.driveType}}</span>
               </p>
             </mat-list-item>
             <mat-divider [inset]="true"></mat-divider>
             <mat-list-item>
               <p matLine>
                 <span [style.font-weight]="'bold'">Gearbox: </span>
-                <span>{{car.gearboxType}}</span>
+                <span>{{listing.gearboxType}}</span>
               </p>
             </mat-list-item>
             <mat-divider [inset]="true"></mat-divider>
             <mat-list-item>
               <p matLine>
                 <span [style.font-weight]="'bold'">Engine size: </span>
-                <span>{{car.engineSize}}</span>
+                <span>{{listing.engineSize}}</span>
               </p>
             </mat-list-item>
             <mat-divider [inset]="true"></mat-divider>
             <mat-list-item>
               <p matLine>
                 <span [style.font-weight]="'bold'">Power: </span>
-                <span>{{car.enginePower}}kw</span>
+                <span>{{listing.enginePower}}kw</span>
               </p>
             </mat-list-item>
             <mat-divider [inset]="true"></mat-divider>
             <mat-list-item>
               <p matLine>
                 <span [style.font-weight]="'bold'">Fuel type: </span>
-                <span>{{car.fuelType}}</span>
+                <span>{{listing.fuelType}}</span>
               </p>
             </mat-list-item>
             <mat-divider [inset]="true"></mat-divider>
