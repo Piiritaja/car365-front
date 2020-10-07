@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CarService} from '../car.service';
-import {Car} from '../car';
 import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
 
@@ -11,22 +9,15 @@ import {ListingItemService} from '../listingItem.service';
 })
 
 export class FilterComponent implements OnInit {
-  constructor( private carService: CarService, private listingItemService: ListingItemService) { }
-
-  carItems: Car[];
+  constructor(private listingItemService: ListingItemService) { }
 
   listingItems: ListingItem[];
-
-  getCarItems(): void {
-    this.carService.getCars().subscribe(carItems => this.carItems = carItems);
-  }
 
   getListingItems(): void {
     this.listingItemService.getListings().subscribe(listingItems => this.listingItems = listingItems);
   }
 
   ngOnInit(): void {
-    this.getCarItems();
     this.getListingItems();
   }
 }
