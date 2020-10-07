@@ -3,56 +3,56 @@
     <mat-label>Body type</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.bodyType}}</mat-option>
+      <mat-option *ngFor="let bodyType of listingParams['bodyType'] | removeDuplicates" value>{{bodyType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Make</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.brand}}</mat-option>
+      <mat-option *ngFor="let brand of listingParams['brand'] | removeDuplicates" value>{{brand}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Model</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.model}}</mat-option>
+      <mat-option *ngFor="let model of listingParams['model'] | removeDuplicates" value>{{model}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Fuel</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.fuelType}}</mat-option>
+      <mat-option *ngFor="let fuel of listingParams['fuel'] | removeDuplicates" value>{{fuel}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Transmission</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.gearboxType}}</mat-option>
+      <mat-option *ngFor="let gearBoxType of listingParams['gearBoxType'] | removeDuplicates" value>{{gearBoxType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Drivetrain</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.driveType}}</mat-option>
+      <mat-option *ngFor="let driveType of listingParams['driveType'] | removeDuplicates" value>{{driveType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Location</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.location}}</mat-option>
+      <mat-option *ngFor="let location of listingParams['location'] | removeDuplicates" value>{{location}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Color</mat-label>
     <mat-select>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let listingItem of listingItems" value>{{listingItem.color}}</mat-option>
+      <mat-option *ngFor="let color of listingParams['color'] | removeDuplicates" value>{{color}}</mat-option>
     </mat-select>
   </mat-form-field>
   <span>

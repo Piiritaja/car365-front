@@ -19,6 +19,12 @@ mat-drawer-container {
   margin-bottom: 10px;
 }
 
+mat-drawer-container:hover {
+  left: .1em;
+  cursor: pointer;
+  color: deeppink;
+}
+
 mat-drawer-content {
   align-items: center;
   background-color: lightgray;

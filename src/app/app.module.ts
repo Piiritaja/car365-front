@@ -30,6 +30,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PostNewListingComponent } from './post-new-listing/post-new-listing.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { RemoveDuplicatesPipe } from './removeDuplicates.pipe';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     HomePageComponent,
     SignupComponent,
     PostNewListingComponent,
+    RemoveDuplicatesPipe
   ],
   imports: [
     HttpClientModule,
