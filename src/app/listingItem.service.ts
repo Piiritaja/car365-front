@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {ListingItemNoId} from './ListingItemNoId';
 import {ListingItem} from './listingItem';
 
@@ -24,6 +24,10 @@ export class ListingItemService {
   }
   getListing(id): Observable<ListingItem>{
     return this.http.get<ListingItem>(this.listingUrl + '/' + id);
+  }
+
+  getBrands(): Observable<string[]> {
+    return this.http.get<string[]>(this.listingUrl + '/brands');
   }
 
   getListingByOwner(owner): Observable<ListingItem[]> {

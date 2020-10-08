@@ -5,7 +5,6 @@ export interface Listing {
   status: string;
   price: number;
   location: string;
-  carId: string;
   bodyType: string;
   brand: string;
   model: string;
