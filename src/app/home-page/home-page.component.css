@@ -2,11 +2,18 @@ div {
   margin-bottom: 10px;
 }
 
+span {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+h1 {
+  color: deeppink;
+  font-weight: bold;
+}
+
 .next {
   display: flex;
   flex-direction: row;
-}
-
-app-listing {
-  margin-left: 10px;
 }

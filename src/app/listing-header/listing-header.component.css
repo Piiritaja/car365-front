@@ -1,0 +1,23 @@
+mat-toolbar {
+  margin-bottom: 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+span {
+  padding-left: 1rem;
+  padding-right: 10px;
+  font-size: medium;
+}
+
+.make {
+  margin-left: 260px;
+}
+
+.price {
+  margin-right: 30px;
+}

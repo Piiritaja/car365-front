@@ -31,6 +31,9 @@ import { PostNewListingComponent } from './post-new-listing/post-new-listing.com
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { RemoveDuplicatesPipe } from './removeDuplicates.pipe';
+import { SearchListingsComponent } from './search-listings/search-listings.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { ListingHeaderComponent } from './listing-header/listing-header.component';
 
 
 @NgModule({
@@ -45,7 +48,9 @@ import { RemoveDuplicatesPipe } from './removeDuplicates.pipe';
     HomePageComponent,
     SignupComponent,
     PostNewListingComponent,
-    RemoveDuplicatesPipe
+    RemoveDuplicatesPipe,
+    SearchListingsComponent,
+    ListingHeaderComponent
   ],
   imports: [
     HttpClientModule,
@@ -70,6 +75,7 @@ import { RemoveDuplicatesPipe } from './removeDuplicates.pipe';
     MatStepperModule,
     MatAutocompleteModule,
     FormsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

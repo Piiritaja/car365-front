@@ -4,5 +4,11 @@
 
 <div class="next">
   <app-filter></app-filter>
-  <app-listing></app-listing>
+  <span>
+    <h1>
+      Recently added cars
+    </h1>
+    <app-listing-header></app-listing-header>
+    <app-listing *ngFor="let listingItem of listingItems" [listingItem]="listingItem"></app-listing>
+  </span>
 </div>

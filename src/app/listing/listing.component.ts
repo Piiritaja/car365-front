@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {ListingItemService} from '../listingItem.service';
+import {Component, OnInit, Input} from '@angular/core';
 import {ListingItem} from '../listingItem';
 
 @Component({
@@ -8,13 +7,11 @@ import {ListingItem} from '../listingItem';
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
-  constructor(private listingItemService: ListingItemService) {
-  }
 
-  listingItems: ListingItem[];
+  // tslint:disable-next-line:no-input-rename
+  @Input('listingItem') listingItem: ListingItem;
 
-  getListingItems(): void {
-    this.listingItemService.getListings().subscribe(listingItems => this.listingItems = listingItems);
+  constructor() {
   }
 
   logger(): void {
@@ -22,6 +19,5 @@ export class ListingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getListingItems();
   }
 }
