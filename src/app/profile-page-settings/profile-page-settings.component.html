@@ -1,4 +1,5 @@
 <!--Password section-->
+<h1 style="margin: 20px">Your settings</h1>
 <div>
   <mat-form-field class="input">
     <label>
@@ -15,11 +16,15 @@
     </label>
   </mat-form-field>
   <button mat-raised-button class="change" [disabled]="isValidPasswordChange(firstPassword, secondPassword)"
-          (click)="changePassword(firstPassword)">Change password
+          (click)="changePassword(firstPassword)">Change
   </button>
 </div>
 <!--Mail section-->
 <div>
+  <div>
+    <mat-label class="current">Your e-mail:</mat-label>
+    <mat-label class="current"><strong>{{owner.mail}}</strong></mat-label>
+  </div>
   <mat-form-field class="input">
     <label>
       <input [(ngModel)]="newMail" [formControl]="mailForm" pattern="\w+(\w|.)*@+\w{2,}\.+[a-zA-Z]{2,3}"
@@ -27,11 +32,15 @@
     </label>
   </mat-form-field>
   <button mat-raised-button class="change" [disabled]="isValidMailChange(newMail)" (click)="changeMail(newMail)">
-    Change mail address
+    Change
   </button>
 </div>
 <!--Phone section-->
 <div>
+  <div>
+    <mat-label class="current">Your tel nr:</mat-label>
+    <mat-label class="current"><strong>{{owner.phone}}</strong></mat-label>
+  </div>
   <mat-form-field class="input">
     <label>
       <input [type]="'text'" [(ngModel)]="newPhone"
@@ -39,11 +48,15 @@
     </label>
   </mat-form-field>
   <button mat-raised-button class="change" [disabled]="isValidPhoneChange(newPhone)" (click)="changePhone(newPhone)">
-    Change phone number
+    Change
   </button>
 </div>
 <!--Name section-->
 <div>
+  <div>
+    <mat-label class="current">Your username:</mat-label>
+    <mat-label class="current"><strong>{{owner.name}}</strong></mat-label>
+  </div>
   <mat-form-field class="input">
     <label>
       <input [(ngModel)]="newName" [formControl]="nameForm" pattern="[a-zA-Z]{1}(\w|\.|-){2,19}"
@@ -51,6 +64,6 @@
     </label>
   </mat-form-field>
   <button mat-raised-button class="change" [disabled]="isValidNameChange(newName)" (click)="changeName(newName)">
-    Change password
+    Change
   </button>
 </div>

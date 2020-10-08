@@ -1,4 +1,4 @@
-mat-form-field.input {
+mat-form-field.input, mat-label.current {
   margin: 20px;
   width: 200px;
 }
