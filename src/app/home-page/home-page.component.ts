@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {ListingItemService} from '../listingItem.service';
+import {ListingItem} from '../listingItem';
 
 
 @Component({
@@ -7,7 +9,17 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  ngOnInit(): void {
-  }
 
+  constructor(private listingItemService: ListingItemService) { }
+
+  listingItems: ListingItem[];
+
+  getListingItems(): void {
+    this.listingItemService.getLatestListings().subscribe(data => {
+      this.listingItems = data;
+    });
+  }
+  ngOnInit(): void {
+    this.getListingItems();
+  }
 }

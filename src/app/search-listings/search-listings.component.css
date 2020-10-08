@@ -1,0 +1,56 @@
+div {
+  margin-bottom: 10px;
+}
+
+span {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.next {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-left: 0;
+}
+
+.nextButton {
+  background-color: deeppink;
+  width: 100px;
+  color: white;
+  height: 40px;
+}
+
+.previousButton {
+  background-color: deeppink;
+  width: 100px;
+  color: white;
+  height: 40px;
+}
+
+.nextButton:hover {
+  left: .1em;
+  color: #3F51B5;
+}
+
+.previousButton:hover {
+  left: .1em;
+  color: #3F51B5;
+}
+
+h1, h4 {
+  color: #3F51B5;
+  font-weight: bold;
+}
+
+.headings {
+  display: block;
+  text-align: center;
+}
+

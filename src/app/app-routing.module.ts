@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {PostNewListingComponent} from './post-new-listing/post-new-listing.component';
 import {ListingComponent} from './listing/listing.component';
 import {ListingViewComponent} from './listing-view/listing-view.component';
+import {SearchListingsComponent} from './search-listings/search-listings.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'allcars', component: DummyComponent},
   {path: 'post', component: PostNewListingComponent},
   {path: 'listings', component: ListingComponent},
-  {path: 'listings/:id', component: ListingViewComponent}
+  {path: 'listings/:id', component: ListingViewComponent},
+  {path: 'search', component: SearchListingsComponent}
   ];
 
 @NgModule({
