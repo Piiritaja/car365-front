@@ -1,89 +1,96 @@
 <div class="container mat-elevation-z6">
   <mat-form-field>
     <mat-label>Body type</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]='selectedBodyType'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let bodyType of listingParams['bodyType'] | removeDuplicates" value>{{bodyType}}</mat-option>
+      <mat-option *ngFor="let bodyType of listingParams['bodyType'] | removeDuplicates"
+                  value='{{bodyType}}'>{{bodyType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Make</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]='selectedMake'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let brand of listingParams['brand'] | removeDuplicates" value>{{brand}}</mat-option>
+      <mat-option *ngFor="let brand of listingParams['brand'] | removeDuplicates"
+                  value="{{brand}}">{{brand}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Model</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]='selectedModel'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let model of listingParams['model'] | removeDuplicates" value>{{model}}</mat-option>
+      <mat-option *ngFor="let model of listingParams['model'] | removeDuplicates"
+                  value="{{model}}">{{model}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Fuel</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]='selectedFuel'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let fuel of listingParams['fuel'] | removeDuplicates" value>{{fuel}}</mat-option>
+      <mat-option *ngFor="let fuel of listingParams['fuel'] | removeDuplicates" value='{{fuel}}'>{{fuel}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Transmission</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]='selectedGearBoxType'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let gearBoxType of listingParams['gearBoxType'] | removeDuplicates" value>{{gearBoxType}}</mat-option>
+      <mat-option *ngFor="let gearBoxType of listingParams['gearBoxType'] | removeDuplicates"
+                  value='{{gearBoxType}}'>{{gearBoxType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Drivetrain</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]='selectedDriveType'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let driveType of listingParams['driveType'] | removeDuplicates" value>{{driveType}}</mat-option>
+      <mat-option *ngFor="let driveType of listingParams['driveType'] | removeDuplicates"
+                  value='{{driveType}}'>{{driveType}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Location</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]='selectedLocation'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let location of listingParams['location'] | removeDuplicates" value>{{location}}</mat-option>
+      <mat-option *ngFor="let location of listingParams['location'] | removeDuplicates"
+                  value='{{location}}'>{{location}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Color</mat-label>
-    <mat-select>
-      <mat-option>all</mat-option>
-      <mat-option *ngFor="let color of listingParams['color'] | removeDuplicates" value>{{color}}</mat-option>
+    <mat-select [(ngModel)]='selectedColor'>
+      <mat-option value="all">all</mat-option>
+      <mat-option *ngFor="let color of listingParams['color'] | removeDuplicates"
+                  value='{{color}}'>{{color}}</mat-option>
     </mat-select>
   </mat-form-field>
   <span>
     <mat-form-field style="width:80px">
       <mat-label>Price from</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]='selectedPriceStart'>
     </mat-form-field>
     <mat-form-field style="width:80px">
       <mat-label>Price to</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]='selectedPriceEnd'>
     </mat-form-field>
   </span>
   <span>
     <mat-form-field style="width:80px">
       <mat-label>Year from</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]='selectedYearStart'>
     </mat-form-field>
     <mat-form-field style="width:80px">
       <mat-label>Year to</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]='selectedYearEnd'>
     </mat-form-field>
   </span>
   <span>
     <mat-form-field style="width:80px">
       <mat-label>Power from</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]='selectedPowerStart'>
     </mat-form-field>
     <mat-form-field style="width:80px">
       <mat-label>Power to</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]='selectedPowerEnd'>
     </mat-form-field>
   </span>
-  <button mat-raised-button routerLink="/search" ><a>Search</a></button>
+  <button mat-raised-button (click)="saveSelectedParams()" routerLink="/search"><a>Search</a></button>
 </div>
