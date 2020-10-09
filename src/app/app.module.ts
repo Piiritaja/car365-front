@@ -34,6 +34,7 @@ import { RemoveDuplicatesPipe } from './removeDuplicates.pipe';
 import { SearchListingsComponent } from './search-listings/search-listings.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListingHeaderComponent } from './listing-header/listing-header.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
@@ -53,32 +54,33 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     SearchListingsComponent,
     ListingHeaderComponent
   ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-    MatSliderModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatListModule,
-    MatGridListModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatStepperModule,
-    MatAutocompleteModule,
-    FormsModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule
-  ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        AppRoutingModule,
+        MatSliderModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatFormFieldModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
+        MatListModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatStepperModule,
+        MatAutocompleteModule,
+        FormsModule,
+        MatPaginatorModule,
+        MatDialogModule,
+        MatProgressSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
