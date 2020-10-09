@@ -30,10 +30,51 @@ mat-card-title {
 }
 
 .listing-image {
-  margin: auto;
+  margin: 0 auto;
   padding: 10px;
-  max-width: 90%;
-  min-width: 85%;
+  min-width: 400px;
+  min-height: 400px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 10px auto;
+}
+
+.next-button {
+  margin-left: 5px;
+  background-color: deeppink;
+  color: white;
+}
+
+.previous-button {
+  margin-right: 5px;
+  background-color: deeppink;
+  color: white;
+}
+
+.next-button:hover {
+  left: .1em;
+  color: #3F51B5;
+}
+
+.previous-button:hover {
+  left: .1em;
+  color: #3F51B5;
+}
+
+.images-buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-weight: bold;
+  color: #3F51B5;
 }
 
 .listing-attributes {
