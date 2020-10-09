@@ -4,11 +4,10 @@
 
 <div class="next">
   <app-filter></app-filter>
-  <span>
-    <h1>
-      Recently added cars
-    </h1>
+  <div class="container">
+    <h1>Recently added cars</h1>
+    <a mat-raised-button color="accent" class="button">Post a new listing</a>
     <app-listing-header></app-listing-header>
     <app-listing *ngFor="let listingItem of listingItems" [listingItem]="listingItem"></app-listing>
-  </span>
+  </div>
 </div>
