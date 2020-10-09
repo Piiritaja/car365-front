@@ -34,6 +34,7 @@ import { RemoveDuplicatesPipe } from './removeDuplicates.pipe';
 import { SearchListingsComponent } from './search-listings/search-listings.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListingHeaderComponent } from './listing-header/listing-header.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { ListingHeaderComponent } from './listing-header/listing-header.componen
     MatStepperModule,
     MatAutocompleteModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
