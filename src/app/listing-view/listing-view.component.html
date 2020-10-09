@@ -1,10 +1,21 @@
 <ng-container>
   <mat-card class="listing">
-
     <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
                      [style.box-shadow]="'0px 1px lightgrey'">
       <mat-card-title>{{listing.title}}</mat-card-title>
-      <mat-card class="statusbox">{{listing.status}}</mat-card>
+      <mat-card class="statusbox" [ngStyle]="{'backgroundColor': backgroundColor}">
+        {{listing.status}}</mat-card>
+      <div>
+        <button mat-icon-button aria-label="Menu button"
+                [matMenuTriggerFor]="menu">
+          <mat-icon>settings</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="changeStatus()"><mat-icon>check_circle</mat-icon>Change status</button>
+            <button mat-menu-item (click)="editListing()"><mat-icon>edit</mat-icon>Edit</button>
+            <button mat-menu-item (click)="openDialog()"><mat-icon>delete</mat-icon>Delete</button>
+          </mat-menu>
+        </button>
+      </div>
     </mat-card-header>
     <div class="listing-attributes">
       <mat-card class="left-side attribute">
@@ -42,7 +53,7 @@
     </div>
     <img mat-card-image
          src="{{listing.images[0]}}"
-         alt="e36"
+         alt="listing_image_0"
          class="listing-image">
     <!--
     below the picture
@@ -104,11 +115,6 @@
         </mat-card>
       </mat-grid-tile>
       <mat-grid-tile rowspan="4" [style.border-radius]="'10px'">
-        <mat-grid-tile-header [style.background]="'whitesmoke'" [style.font-weight]="'bold'"
-                              [style.color]="'black'"
-                              [style.border-radius]="'10px'">
-          Additional information:
-        </mat-grid-tile-header>
         <mat-card [style.background]="'whitesmoke'" class="additional-attribute-list"
                   [style.min-height]="''"
                   [style.border-radius]="'10px'">
@@ -127,15 +133,5 @@
     </mat-grid-list>
 
     <!-- end of component -->
-
-    <mat-card
-      [style.min-width]="'80%'"
-      [style.min-height]="'500px'"
-      [style.padding]="'10px'"
-      [style.margin]="'10px'"
-      [style.background-color]="'gray'"
-    >
-      siin asub asukoha kaart võibolla
-    </mat-card>
   </mat-card>
 </ng-container>

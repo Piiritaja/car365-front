@@ -2,13 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import {Listing} from '../listingProperties/Listing';
 import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {EditService} from '../edit.service';
+import {MatDialog} from "@angular/material/dialog";
+import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+
+export interface DialogData {
+  id: string;
+}
 
 @Component({
   selector: 'app-listing-view',
   templateUrl: './listing-view.component.html',
   styleUrls: ['./listing-view.component.css']
 })
+
 export class ListingViewComponent implements OnInit {
   listingMock: Listing = {
     id: '1',
@@ -32,10 +40,14 @@ export class ListingViewComponent implements OnInit {
     ownerNumber: '5694200'
   };
   listing: ListingItem;
+  backgroundColor = 'lightgreen';
 
   constructor(
     private route: ActivatedRoute,
     private listingItemService: ListingItemService,
+    private router: Router,
+    private editService: EditService,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -49,9 +61,36 @@ export class ListingViewComponent implements OnInit {
     return this.listing;
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {data: {id: this.listing.id}});
+    this.editService.addItem(this.listing);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   // tslint:disable-next-line:typedef
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  changeStatus(): void {
+    if (this.listing.status.toLowerCase() === 'available') {
+      this.listing.status = 'Reserved';
+      this.backgroundColor = '#ff9f2d';
+    } else if (this.listing.status.toLowerCase() === 'reserved') {
+      this.listing.status = 'Sold';
+      this.backgroundColor = '#ff344f';
+    } else {
+      this.listing.status = 'Available';
+      this.backgroundColor = 'lightgreen';
+    }
+    this.listingItemService.putListing(this.listing, this.listing.id).subscribe(listing => this.listing);
+  }
+
+  editListing(): void {
+    this.editService.addItem(this.listing);
+    this.router.navigate(['listings/edit/' + this.listing.id]);
   }
 
 }
