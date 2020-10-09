@@ -2,13 +2,18 @@ div {
   margin-bottom: 10px;
 }
 
-span {
+.container {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
 }
-
+.info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 h1 {
+  margin: 5px;
   color: deeppink;
   font-weight: bold;
 }
@@ -16,4 +21,18 @@ h1 {
 .next {
   display: flex;
   flex-direction: row;
+}
+
+.button {
+  font-size: 1.2em;
+  align-self: flex-end;
+  margin: 5px;
+}
+
+.button.colored:hover {
+  font-size: 1.2em;
+  padding-right: 30px;
+  padding-left: 30px;
+  color: deeppink;
+  left: .1em;
 }
