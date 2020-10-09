@@ -36,6 +36,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListingHeaderComponent } from './listing-header/listing-header.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AllCarsComponent } from './all-cars/all-cars.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     PostNewListingComponent,
     RemoveDuplicatesPipe,
     SearchListingsComponent,
-    ListingHeaderComponent
+    ListingHeaderComponent,
+    AllCarsComponent
   ],
     imports: [
         HttpClientModule,
