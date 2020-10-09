@@ -38,7 +38,7 @@ export class ListingItemService {
       'priceRange'];
     for (const key of keys) {
       const value = sessionStorage.getItem(key);
-      if (value !== null && !value.includes('undefined')) {
+      if (value !== null && !value.includes('undefined') && value !== 'all') {
         filterString += '&' + key + '=' + value;
       }
     }
