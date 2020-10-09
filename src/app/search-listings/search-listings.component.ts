@@ -21,6 +21,7 @@ export class SearchListingsComponent implements OnInit {
     this.listingItemService.getFilter().subscribe(data => {
       this.listingItems = data;
       this.numberOfCars = this.listingItems.length;
+      this.ngOnInit();
     });
   }
 
