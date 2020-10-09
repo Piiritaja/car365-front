@@ -28,11 +28,3 @@ h1 {
   align-self: flex-end;
   margin: 5px;
 }
-
-.button.colored:hover {
-  font-size: 1.2em;
-  padding-right: 30px;
-  padding-left: 30px;
-  color: deeppink;
-  left: .1em;
-}
