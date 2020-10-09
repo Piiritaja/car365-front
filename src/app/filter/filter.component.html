@@ -8,8 +8,8 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Make</mat-label>
-    <mat-select [(ngModel)]='selectedMake'>
+    <mat-label>Brand</mat-label>
+    <mat-select [(ngModel)]='selectedBrand'>
       <mat-option>all</mat-option>
       <mat-option *ngFor="let brand of listingParams['brand'] | removeDuplicates"
                   value="{{brand}}">{{brand}}</mat-option>

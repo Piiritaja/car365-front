@@ -17,7 +17,7 @@ export class FilterComponent implements OnInit {
   selectedGearBoxType: any;
   selectedFuel: any;
   selectedModel: any;
-  selectedMake: any;
+  selectedBrand: any;
   selectedBodyType: any;
   selectedYearStart: string;
   selectedYearEnd: string;
@@ -39,13 +39,13 @@ export class FilterComponent implements OnInit {
     sessionStorage.setItem('location', this.selectedLocation);
     sessionStorage.setItem('driveType', this.selectedDriveType);
     sessionStorage.setItem('gearBoxType', this.selectedGearBoxType);
-    sessionStorage.setItem('fuel', this.selectedFuel);
+    sessionStorage.setItem('fuelType', this.selectedFuel);
     sessionStorage.setItem('model', this.selectedModel);
-    sessionStorage.setItem('make', this.selectedMake);
+    sessionStorage.setItem('brand', this.selectedBrand);
     sessionStorage.setItem('bodyType', this.selectedBodyType);
-    sessionStorage.setItem('yearRange', this.selectedYearStart + ' ' + this.selectedYearEnd);
-    sessionStorage.setItem('powerRange', this.selectedPowerStart + ' ' + this.selectedPowerEnd);
-    sessionStorage.setItem('priceRange', this.selectedPriceEnd + ' ' + this.selectedPriceStart);
+    sessionStorage.setItem('yearRange', this.selectedYearStart + '-' + this.selectedYearEnd);
+    sessionStorage.setItem('powerRange', this.selectedPowerStart + '-' + this.selectedPowerEnd);
+    sessionStorage.setItem('priceRange', this.selectedPriceStart + '-' + this.selectedPriceEnd);
   }
 
   ngOnInit(): void {

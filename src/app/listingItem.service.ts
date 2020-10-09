@@ -13,18 +13,14 @@ export class ListingItemService {
   constructor(private http: HttpClient) {
   }
 
-  getListings(): Observable<ListingItem[]> {
-    return this.http.get<ListingItem[]>(this.listingUrl);
-  }
-
   postListing(item: ListingItemNoId): Observable<any> {
-    const headers = { 'content-type': 'application/json'};
+    const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(item);
     // console.log(body);
     return this.http.post(this.listingUrl, body, {headers});
   }
 
-  getListing(id): Observable<ListingItem>{
+  getListing(id): Observable<ListingItem> {
     return this.http.get<ListingItem>(this.listingUrl + '/' + id);
   }
 
@@ -37,7 +33,16 @@ export class ListingItemService {
   }
 
   getFilter(): Observable<ListingItem[]> {
-    return this.http.get<ListingItem[]>(this.listingUrl + '/filter');
+    let filterString = '';
+    const keys = ['color', 'location', 'driveType', 'gearboxType', 'fuelType', 'model', 'brand', 'bodyType', 'yearRange', 'powerRange',
+      'priceRange'];
+    for (const key of keys) {
+      const value = sessionStorage.getItem(key);
+      if (value !== null && !value.includes('undefined')) {
+        filterString += '&' + key + '=' + value;
+      }
+    }
+    return this.http.get<ListingItem[]>(this.listingUrl + '/filter?' + filterString);
   }
 
   getLatestListings(): Observable<ListingItem[]> {
