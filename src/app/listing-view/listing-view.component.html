@@ -1,5 +1,6 @@
 <ng-container>
   <mat-card class="listing">
+
     <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
                      [style.box-shadow]="'0px 1px lightgrey'">
       <mat-card-title>{{listing.title}}</mat-card-title>
@@ -51,10 +52,14 @@
         </mat-list>
       </mat-card>
     </div>
-    <img mat-card-image
-         src="{{listing.images[0]}}"
-         alt="listing_image_0"
-         class="listing-image">
+    <div class="images-buttons">
+      <img *ngFor="let image of listing.images | slice:start:end" src="{{image}}" alt="e36" class="listing-image">
+      <h1>{{nrOfImages}} Pictures </h1>
+      <span class="buttons">
+        <button mat-raised-button (click)="nextPicture()" class="next-button">></button>
+        <button mat-raised-button (click)="previousPicture()" class="previous-button"><</button>
+      </span>
+    </div>
     <!--
     below the picture
     -->

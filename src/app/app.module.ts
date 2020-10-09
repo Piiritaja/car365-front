@@ -40,6 +40,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { EditListingComponent } from './edit-listing/edit-listing.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { AllCarsComponent } from './all-cars/all-cars.component';
 
 
 @NgModule({
@@ -59,6 +60,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     ListingHeaderComponent,
     EditListingComponent,
     DeleteDialogComponent
+    ListingHeaderComponent,
+    AllCarsComponent
   ],
   imports: [
     HttpClientModule,
@@ -93,5 +96,4 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
