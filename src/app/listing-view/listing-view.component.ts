@@ -4,8 +4,8 @@ import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditService} from '../edit.service';
-import {MatDialog} from "@angular/material/dialog";
-import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {MatDialog} from '@angular/material/dialog';
+import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 
 export interface DialogData {
   id: string;
@@ -84,7 +84,6 @@ export class ListingViewComponent implements OnInit {
     if (this.end < this.nrOfImages) {
       this.end += 1;
       this.start += 1;
-      console.log(this.start);
     } else if (this.end === this.nrOfImages) {
       this.start = 0;
       this.end = 1;
