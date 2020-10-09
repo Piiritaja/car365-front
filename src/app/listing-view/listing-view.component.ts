@@ -2,7 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Listing} from '../listingProperties/Listing';
 import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {EditService} from '../edit.service';
+import {MatDialog} from "@angular/material/dialog";
+import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+
+export interface DialogData {
+  id: string;
+}
 
 @Component({
   selector: 'app-listing-view',
@@ -32,6 +39,7 @@ export class ListingViewComponent implements OnInit {
     ownerNumber: '5694200'
   };
   listing: ListingItem;
+  backgroundColor = 'lightgreen';
   start = 0;
   end = 1;
   nrOfImages: number;
@@ -39,6 +47,9 @@ export class ListingViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private listingItemService: ListingItemService,
+    private router: Router,
+    private editService: EditService,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -51,8 +62,17 @@ export class ListingViewComponent implements OnInit {
     this.listingItemService.getListing(id).subscribe(listing => {
       this.listing = listing;
       this.nrOfImages = this.listing.images.length;
+      this.updateStatusColor();
     });
     return this.listing;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {data: {id: this.listing.id}});
+    this.editService.addItem(this.listing);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   // tslint:disable-next-line:typedef
@@ -80,4 +100,32 @@ export class ListingViewComponent implements OnInit {
       this.start = this.nrOfImages - 1;
     }
   }
+
+  updateStatusColor(): void {
+    if (this.listing.status.toLowerCase() === 'available') {
+      this.backgroundColor = 'lightgreen';
+    } else if (this.listing.status.toLowerCase() === 'reserved') {
+      this.backgroundColor = '#ff9f2d';
+    } else {
+      this.backgroundColor = '#fa0c0c';
+    }
+  }
+
+  changeStatus(): void {
+    if (this.listing.status.toLowerCase() === 'available') {
+      this.listing.status = 'Reserved';
+    } else if (this.listing.status.toLowerCase() === 'reserved') {
+      this.listing.status = 'Sold';
+    } else {
+      this.listing.status = 'Available';
+    }
+    this.updateStatusColor();
+    this.listingItemService.putListing(this.listing, this.listing.id).subscribe(listing => this.listing);
+  }
+
+  editListing(): void {
+    this.editService.addItem(this.listing);
+    this.router.navigate(['listings/edit/' + this.listing.id]);
+  }
+
 }

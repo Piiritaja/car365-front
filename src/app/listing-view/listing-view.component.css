@@ -18,6 +18,7 @@ mat-card-title {
 .listing-header {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: auto;
   padding: 5px;
 }
@@ -26,7 +27,7 @@ mat-card-title {
   margin: auto;
   border: solid black 1px;
   padding: 5px;
-  background-color: lightgreen;
+  background-color: #ff9f2d;
 }
 
 .listing-image {

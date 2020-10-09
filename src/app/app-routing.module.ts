@@ -6,6 +6,7 @@ import {ListingComponent} from './listing/listing.component';
 import {ListingViewComponent} from './listing-view/listing-view.component';
 import {SearchListingsComponent} from './search-listings/search-listings.component';
 import {AllCarsComponent} from './all-cars/all-cars.component';
+import {EditListingComponent} from './edit-listing/edit-listing.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'listings', component: ListingComponent},
   {path: 'listings/:id', component: ListingViewComponent},
   {path: 'search', component: SearchListingsComponent},
+  {path: 'listings/edit/:id', component: EditListingComponent}
   ];
 
 @NgModule({
