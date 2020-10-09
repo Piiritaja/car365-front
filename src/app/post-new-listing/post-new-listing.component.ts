@@ -5,16 +5,13 @@ import {ListingItemNoId} from '../ListingItemNoId';
 import {ListingItemService} from '../listingItem.service';
 import {Observable} from 'rxjs';
 import {ListingItem} from '../listingItem';
-
-export interface Brand {
-  name: string;
-}
-
+import {NewListingValidator} from './new-listing-validator';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-new-listing',
   templateUrl: './post-new-listing.component.html',
-  styleUrls: ['./post-new-listing.component.css']
+  styleUrls: ['./post-new-listing.component.css'],
 })
 export class PostNewListingComponent implements OnInit {
   brandControl = new FormControl();
@@ -40,14 +37,9 @@ export class PostNewListingComponent implements OnInit {
   img3 = new FormControl();
   img4 = new FormControl();
 
-  options: Brand[] = [
-    {name: 'BMW'},
-    {name: 'Audi'},
-    {name: 'Toyota'},
-    {name: 'Mercedes'}
-  ];
+  options: string[] = ['BMW', 'Audi', 'Mercedes', 'Toyota'];
   brandsList: string[] = [];
-  filteredOptions: Observable<Brand[]>;
+  filteredOptions: Observable<string[]>;
 
   isLinear = false;
   modelGroup: FormGroup;
@@ -58,11 +50,17 @@ export class PostNewListingComponent implements OnInit {
   informationGroup: FormGroup;
   listingItem: ListingItemNoId;
   retrievedListingItem: ListingItem;
+  listingValidator = new NewListingValidator();
+  invalidInputs = false;
+  posting = false;
 
-  constructor(private formBuilder: FormBuilder, private listingItemService: ListingItemService) {
+  constructor(private formBuilder: FormBuilder, private listingItemService: ListingItemService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getBrands();
     this.modelGroup = this.formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -108,18 +106,15 @@ export class PostNewListingComponent implements OnInit {
       releaseYear: 0,
       engineSize: ''
     };
-    this.getBrands();
-    // this.postListing();
-  }
-
-  displayFn(brand: Brand): string {
-    return brand && brand.name ? brand.name : '';
   }
 
   postListing(): void {
-      this.configListing();
-      this.listingItemService.postListing(this.listingItem)
-        .subscribe(listingItem => this.retrievedListingItem = listingItem);
+    // console.log(this.listingItem);
+    this.listingItemService.postListing(this.listingItem)
+      .subscribe(listingItem => {
+        this.retrievedListingItem = listingItem;
+        this.router.navigate(['/listings/' + this.retrievedListingItem.id]);
+      });
   }
 
   getBrands(): void {
@@ -130,64 +125,60 @@ export class PostNewListingComponent implements OnInit {
     });
   }
 
-  private _filter(name: string): Brand[] {
+  private _filter(name: string): string[] {
     const filterValue = name.toLowerCase();
-
-    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  configListing(): void {
-    this.listingItem.title = this.listingItem.brand +
-      ' ' + this.listingItem.model +
-      ' ' + this.listingItem.enginePower +
-      ' kw';
-    this.listingItem.description = this.description.value;
-    this.listingItem.status = 'Available';
-    this.listingItem.owner = '';
-    this.listingItem.price = this.price.value;
-    this.listingItem.location = this.location.value;
-    this.listingItem.images = [this.img1.value, this.img2.value, this.img3.value, this.img4.value];
-    /*
-    export interface ListingItem {
-  id: string;
-  title: string;
-  description: string;
-  status: string;
-  owner: string;
-  price: number;
-  location: string;
-  images: string[];
-}
-     */
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
   brandsFinished(): void {
     const brandSet = new Set(this.brandsList);
-    const examples = ['BMW', 'Toyota', 'Audi', 'Mercedes'];
     for (const brand1 of brandSet) {
-      if (!(examples.includes(brand1))) {
-        const newBrand: Brand = {
-          name: brand1,
-        };
-        this.options.push(newBrand);
+      if (!(this.options.includes(brand1))) {
+        this.options.push(brand1);
       }
     }
     console.log(this.options);
   }
 
-  onSubmit(event: any): void {
-    this.listingItem.brand = this.brandControl.value.name;
-    this.listingItem.model = this.model.value;
-    this.listingItem.bodyType = this.bodyType.value;
-    this.listingItem.color = this.color.value;
-    this.listingItem.gearboxType = this.gearboxType.value;
-    this.listingItem.fuelType = this.fuelType.value;
-    this.listingItem.driveType = this.driveType.value;
-    this.listingItem.enginePower = this.enginePower.value;
-    this.listingItem.mileage = this.mileage.value;
-    this.listingItem.releaseYear = this.releaseYear.value;
-    this.listingItem.engineSize = this.engineSize.value;
-    // console.log(JSON.stringify(this.listingItem));
+  updateBrand(): void {
+    this.listingItem.brand = this.brandControl.value;
+  }
+
+  onSubmit(): void {
+    try {
+      this.listingItem.brand = this.brandControl.value;
+      this.listingItem.model = this.model.value;
+      this.listingItem.bodyType = this.bodyType.value;
+      this.listingItem.color = this.color.value;
+      this.listingItem.gearboxType = this.gearboxType.value;
+      this.listingItem.fuelType = this.fuelType.value;
+      this.listingItem.driveType = this.driveType.value;
+      this.listingItem.enginePower = this.enginePower.value;
+      this.listingItem.mileage = this.mileage.value;
+      this.listingItem.releaseYear = this.releaseYear.value;
+      this.listingItem.engineSize = this.engineSize.value;
+      this.listingItem.title = this.listingItem.brand +
+        ' ' + this.listingItem.model +
+        ' ' + this.listingItem.enginePower +
+        ' kw';
+      this.listingItem.description = this.description.value;
+      this.listingItem.status = 'Available';
+      this.listingItem.owner = '';
+      this.listingItem.price = this.price.value;
+      this.listingItem.location = this.location.value;
+      this.listingItem.images = [this.img1.value, this.img2.value, this.img3.value, this.img4.value];
+    } catch (e) {
+      this.invalidInputs = true;
+    }
+    if (this.listingValidator.validateListing(this.listingItem)) {
+      this.posting = true;
+      this.invalidInputs = false;
+      this.postListing();
+    } else {
+      console.log('invalid', this.listingItem);
+      this.invalidInputs = true;
+      this.posting = false;
+    }
   }
 
 

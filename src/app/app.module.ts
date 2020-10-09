@@ -35,6 +35,7 @@ import { SearchListingsComponent } from './search-listings/search-listings.compo
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListingHeaderComponent } from './listing-header/listing-header.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatAutocompleteModule,
         FormsModule,
         MatPaginatorModule,
-        MatDialogModule
+        MatDialogModule,
+        MatProgressSpinnerModule
     ],
   providers: [],
   bootstrap: [AppComponent]
