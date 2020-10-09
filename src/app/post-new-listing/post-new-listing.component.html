@@ -4,14 +4,14 @@
   </button>-->
   <mat-vertical-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="modelGroup">
-      <form [formGroup]="modelGroup" (submit)="onSubmit($event)">
+      <form [formGroup]="modelGroup">
         <ng-template matStepLabel>Model info</ng-template>
         <mat-form-field appearance="outline">
           <mat-label>Brand (Make)</mat-label>
-          <input (submit)="onSubmit($event)" type="text" matInput [formControl]="brandControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <input required (submit)="updateBrand()" type="text" matInput [formControl]="brandControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option.name}}
+              {{option}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
@@ -31,12 +31,12 @@
           <mat-hint>Ex. green</mat-hint>
         </mat-form-field>
         <div>
-          <button (click)="onSubmit($event)" mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
     <mat-step [stepControl]="ageGroup">
-      <form [formGroup]="ageGroup" (click)="onSubmit($event)">
+      <form [formGroup]="ageGroup">
         <ng-template matStepLabel>Age and Price</ng-template>
         <mat-form-field appearance="outline">
           <mat-label>Release year</mat-label>
@@ -54,8 +54,8 @@
           <mat-hint>Price in euros</mat-hint>
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious (click)="onSubmit($event)">Back</button>
-          <button mat-button matStepperNext (click)="onSubmit($event)">Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -81,8 +81,8 @@
           </mat-select>
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious (click)="onSubmit($event)">Back</button>
-          <button mat-button matStepperNext (click)="onSubmit($event)">Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -114,8 +114,8 @@
           <mat-hint>Ex 2.0</mat-hint>
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious (click)="onSubmit($event)">Back</button>
-          <button mat-button matStepperNext (click)="onSubmit($event)">Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -144,8 +144,8 @@
           <mat-hint>Location</mat-hint>
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious (click)="onSubmit($event)">Back</button>
-          <button mat-button matStepperNext (click)="onSubmit($event)">Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -173,8 +173,10 @@
           <mat-hint>Direct URL to the image</mat-hint>
         </mat-form-field>
         <mat-card-actions>
-          <button mat-button matStepperPrevious (click)="onSubmit($event)">Back</button>
-          <button mat-button (click)="postListing(); onSubmit($event)">Save and publish</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="onSubmit(); updateBrand()">Save and publish</button>
+          <div *ngIf="invalidInputs" [style.color]="'red'">Some required fields are empty or invalid</div>
+          <mat-spinner *ngIf="posting"></mat-spinner>
         </mat-card-actions>
       </form>
     </mat-step>
