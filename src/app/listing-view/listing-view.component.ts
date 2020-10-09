@@ -32,6 +32,9 @@ export class ListingViewComponent implements OnInit {
     ownerNumber: '5694200'
   };
   listing: ListingItem;
+  start = 0;
+  end = 1;
+  nrOfImages: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +48,10 @@ export class ListingViewComponent implements OnInit {
 
   getListing(): ListingItem {
     const id = this.route.snapshot.paramMap.get('id');
-    this.listingItemService.getListing(id).subscribe(listing => this.listing = listing);
+    this.listingItemService.getListing(id).subscribe(listing => {
+      this.listing = listing;
+      this.nrOfImages = this.listing.images.length;
+    });
     return this.listing;
   }
 
@@ -54,4 +60,24 @@ export class ListingViewComponent implements OnInit {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  nextPicture(): void {
+    if (this.end < this.nrOfImages) {
+      this.end += 1;
+      this.start += 1;
+      console.log(this.start);
+    } else if (this.end === this.nrOfImages) {
+      this.start = 0;
+      this.end = 1;
+    }
+  }
+
+  previousPicture(): void {
+    if (this.start !== 0) {
+      this.start -= 1;
+      this.end -= 1;
+    } else {
+      this.end = this.nrOfImages;
+      this.start = this.nrOfImages - 1;
+    }
+  }
 }

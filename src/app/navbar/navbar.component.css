@@ -1,6 +1,7 @@
 mat-toolbar {
   min-height: 90px;
   max-height: 100px;
+  margin-bottom: 10px;
 }
 
 .button {
