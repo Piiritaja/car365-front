@@ -62,6 +62,7 @@ export class ListingViewComponent implements OnInit {
     this.listingItemService.getListing(id).subscribe(listing => {
       this.listing = listing;
       this.nrOfImages = this.listing.images.length;
+      this.updateStatusColor();
     });
     return this.listing;
   }
@@ -99,17 +100,26 @@ export class ListingViewComponent implements OnInit {
       this.start = this.nrOfImages - 1;
     }
   }
+
+  updateStatusColor(): void {
+    if (this.listing.status.toLowerCase() === 'available') {
+      this.backgroundColor = 'lightgreen';
+    } else if (this.listing.status.toLowerCase() === 'reserved') {
+      this.backgroundColor = '#ff9f2d';
+    } else {
+      this.backgroundColor = '#fa0c0c';
+    }
+  }
+
   changeStatus(): void {
     if (this.listing.status.toLowerCase() === 'available') {
       this.listing.status = 'Reserved';
-      this.backgroundColor = '#ff9f2d';
     } else if (this.listing.status.toLowerCase() === 'reserved') {
       this.listing.status = 'Sold';
-      this.backgroundColor = '#ff344f';
     } else {
       this.listing.status = 'Available';
-      this.backgroundColor = 'lightgreen';
     }
+    this.updateStatusColor();
     this.listingItemService.putListing(this.listing, this.listing.id).subscribe(listing => this.listing);
   }
 

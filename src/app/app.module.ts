@@ -8,7 +8,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-import {DummyComponent} from './dummy/dummy.component';
 import {FilterComponent} from './filter/filter.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -47,7 +46,6 @@ import { AllCarsComponent } from './all-cars/all-cars.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    DummyComponent,
     ListingViewComponent,
     FilterComponent,
     ListingComponent,
@@ -59,7 +57,7 @@ import { AllCarsComponent } from './all-cars/all-cars.component';
     SearchListingsComponent,
     ListingHeaderComponent,
     EditListingComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
     ListingHeaderComponent,
     AllCarsComponent
   ],
