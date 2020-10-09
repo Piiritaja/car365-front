@@ -20,11 +20,13 @@ mat-drawer-container:hover {
   color: deeppink;
   border: solid deeppink;
   border-radius: 5px;
+  transition: 0.1s;
 }
 
 mat-drawer-content {
   align-items: center;
   background-color: lightgray;
+
 }
 
 mat-drawer {
