@@ -2,11 +2,14 @@
   <app-filter [style.float]="'left'"></app-filter>
   <app-listing-view [style.float]="'center'"></app-listing-view>
 </span-->
-
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<mat-toolbar>
-  <h2>E-mail: car365@gmail.com</h2>
-  <h2>Facebook: car365</h2>
-  <h2>Phone: 6 700 000</h2>
-</mat-toolbar>
+<div id="page-container">
+  <div id="content-wrap">
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+  </div>
+  <mat-toolbar>
+    <h2>E-mail: car365@gmail.com</h2>
+    <h2>Facebook: car365</h2>
+    <h2>Phone: 6 700 000</h2>
+  </mat-toolbar>
+</div>
