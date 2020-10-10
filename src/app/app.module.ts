@@ -44,6 +44,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {EditListingComponent} from './edit-listing/edit-listing.component';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {AllCarsComponent} from './all-cars/all-cars.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import {AllCarsComponent} from './all-cars/all-cars.component';
     ProfilePageSettingsComponent,
     EditListingComponent,
     DeleteDialogComponent,
-    AllCarsComponent
+    AllCarsComponent,
+    FooterComponent
   ],
   imports: [
     HttpClientModule,

@@ -5,7 +5,7 @@
 
 .profile-menubar {
   background: #3F51B5;
-  height: 50em;
+  height: 200px;
   margin-bottom: 10px;
   width: 15em;
   display: flex;
@@ -15,6 +15,10 @@
 .profile-menubar-button {
   width: 90%;
   margin: 5%;
+}
+
+app-profile-page-listings {
+  margin-left: 10px;
 }
 
 
