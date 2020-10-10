@@ -35,6 +35,13 @@ import { ProfilePageListingsComponent } from './profile-page-listings/profile-pa
 import { ProfilePageFavoritesComponent } from './profile-page-favorites/profile-page-favorites.component';
 import { ProfilePageSettingsComponent } from './profile-page-settings/profile-page-settings.component';
 import {MatIconModule} from '@angular/material/icon';
+import { RemoveDuplicatesPipe } from './removeDuplicates.pipe';
+import { SearchListingsComponent } from './search-listings/search-listings.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { ListingHeaderComponent } from './listing-header/listing-header.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -51,33 +58,39 @@ import {MatIconModule} from '@angular/material/icon';
     ProfilePageComponent,
     ProfilePageListingsComponent,
     ProfilePageFavoritesComponent,
-    ProfilePageSettingsComponent
+    ProfilePageSettingsComponent,
+    RemoveDuplicatesPipe,
+    SearchListingsComponent,
+    ListingHeaderComponent
   ],
-    imports: [
-        HttpClientModule,
-        BrowserModule,
-        AppRoutingModule,
-        MatSliderModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatFormFieldModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatDatepickerModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCardModule,
-        MatListModule,
-        MatGridListModule,
-        ReactiveFormsModule,
-        MatCheckboxModule,
-        MatStepperModule,
-        MatAutocompleteModule,
-        FormsModule,
-        MatIconModule,
-    ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    MatSliderModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatGridListModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatStepperModule,
+    MatAutocompleteModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatIconModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

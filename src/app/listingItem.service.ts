@@ -16,12 +16,14 @@ export class ListingItemService {
   getListings(): Observable<ListingItem[]> {
     return this.http.get<ListingItem[]>(this.listingUrl);
   }
+
   postListing(item: ListingItemNoId): Observable<any> {
     const headers = { 'content-type': 'application/json'};
     const body = JSON.stringify(item);
     // console.log(body);
     return this.http.post(this.listingUrl, body, {headers});
   }
+
   getListing(id): Observable<ListingItem>{
     return this.http.get<ListingItem>(this.listingUrl + '/' + id);
   }
@@ -30,7 +32,15 @@ export class ListingItemService {
     return this.http.get<string[]>(this.listingUrl + '/brands');
   }
 
-  getListingByOwner(owner): Observable<ListingItem[]> {
-    return this.http.get<ListingItem[]>(this.listingUrl + '/owner?owner=' + owner);
+  getParams(): Observable<any> {
+    return this.http.get(this.listingUrl + '/params');
+  }
+
+  getFilter(): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl + '/filter');
+  }
+
+  getLatestListings(): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl + '/count');
   }
 }
