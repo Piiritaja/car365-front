@@ -13,11 +13,25 @@ export class ListingItemService {
   constructor(private http: HttpClient) {
   }
 
+  getListings(): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl);
+  }
+
   postListing(item: ListingItemNoId): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(item);
     // console.log(body);
     return this.http.post(this.listingUrl, body, {headers});
+  }
+
+  putListing(item: ListingItem, id: string): Observable<any> {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify(item);
+    return this.http.put(this.listingUrl + '/' + id, body, {headers});
+  }
+
+  deleteListing(id: string): void {
+    this.http.delete(this.listingUrl + '/' + id).subscribe(response => console.log(response));
   }
 
   getListing(id): Observable<ListingItem> {

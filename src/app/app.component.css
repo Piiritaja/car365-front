@@ -1,0 +1,7 @@
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: #3F51B5;
+  color: white;
+}

@@ -1,14 +1,12 @@
 <mat-card class="page">
-  <!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-  </button>-->
   <mat-vertical-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="modelGroup">
       <form [formGroup]="modelGroup">
         <ng-template matStepLabel>Model info</ng-template>
         <mat-form-field appearance="outline">
           <mat-label>Brand (Make)</mat-label>
-          <input required (submit)="updateBrand()" type="text" matInput [formControl]="brandControl" [matAutocomplete]="auto">
+          <input required (submit)="updateBrand()" type="text" matInput [formControl]="brandControl"
+                 [matAutocomplete]="auto" maxlength="30">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -17,12 +15,12 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Model name</mat-label>
-          <input required matInput placeholder="Ex. Corolla" [formControl]="model" >
+          <input required matInput placeholder="Ex. Corolla" [formControl]="model" maxlength="30">
           <mat-hint>Ex. Corolla</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Body Type</mat-label>
-          <input required matInput placeholder="Ex. HatchBack" [formControl]="bodyType">
+          <input required matInput placeholder="Ex. HatchBack" [formControl]="bodyType" maxlength="15">
           <mat-hint>Ex. Sedan</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -65,19 +63,20 @@
         <mat-form-field appearance="outline">
           <mat-label>Drivetype</mat-label>
           <mat-select required [formControl]="driveType">
-            <mat-option value="rwd">Rear-Wheel drive</mat-option>
-            <mat-option value="fwd">Front-Wheel drive</mat-option>
-            <mat-option value="awd">All-Wheel drive</mat-option>
-            <mat-option value="fwd">Four-Wheel drive</mat-option>
+            <mat-option value="Rear-Wheel">Rear-Wheel drive</mat-option>
+            <mat-option value="Front-Wheel">Front-Wheel drive</mat-option>
+            <mat-option value="All-Wheel">All-Wheel drive</mat-option>
+            <mat-option value="Four-Wheel">Four-Wheel drive</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Gearbox</mat-label>
           <mat-select required [formControl]="gearboxType">
-            <mat-option value="manual">Manual</mat-option>
-            <mat-option value="auto">Automatic</mat-option>
-            <mat-option value="semi-auto">Semi-Automatic</mat-option>
-            <mat-option value="dual-clutch">Dual clutch Automatic</mat-option>
+            <mat-option value="Manual">Manual</mat-option>
+            <mat-option value="Automatic">Automatic</mat-option>
+            <mat-option value="Semi-Automatic">Semi-Automatic</mat-option>
+            <mat-option value="Dual-Clutch">Dual clutch Automatic</mat-option>
+            <mat-option value="CVS">CVS</mat-option>
           </mat-select>
         </mat-form-field>
         <div>
@@ -123,13 +122,8 @@
       <form [formGroup]="informationGroup">
         <ng-template matStepLabel>Additional information</ng-template>
         <mat-form-field appearance="outline">
-          <mat-label>Listing description</mat-label>
-          <textarea [formControl]="description" matInput matTextareaAutosize="true"></textarea>
-          <mat-hint>Additional information and description of the listing</mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
           <mat-label>Sellers name</mat-label>
-          <input [formControl]="ownerName" matInput required placeholder="Ex. Thomas">
+          <input [formControl]="ownerName" matInput required placeholder="Ex. Thomas" maxlength="15">
           <mat-hint>Name of the seller</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -140,8 +134,13 @@
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Location</mat-label>
-          <input [formControl]="location" matInput required placeholder="Ex. Tallinn">
+          <input [formControl]="location" matInput required placeholder="Ex. Tallinn" maxlength="30">
           <mat-hint>Location</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Listing description</mat-label>
+          <textarea [formControl]="description" matInput rows="10" cols="30" maxlength="255"></textarea>
+          <mat-hint>Additional information and description of the listing</mat-hint>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>

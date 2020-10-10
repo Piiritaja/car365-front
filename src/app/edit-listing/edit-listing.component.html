@@ -1,0 +1,86 @@
+<!--
+hind, pildid, asukoht, kirjeldus
+-->
+
+<mat-grid-list cols="5" rowHeight="1000px">
+  <mat-grid-tile class="leftTile">
+    <mat-list [style.width]="'100%'" [style.height]="'100%'">
+      <mat-list-item><span class="parameter">Brand:</span> {{listing.brand}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">Model:</span> {{listing.model}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">Year:</span>{{listing.releaseYear}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">Mileage:</span> {{listing.mileage}} km</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">Color:</span> {{listing.color}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">DriveType:</span> {{listing.driveType}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">Gearbox:</span> {{listing.gearboxType}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">Engine power:</span> {{listing.enginePower}} kw</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">Engine size:</span> {{listing.engineSize}} l</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span class="parameter">Fuel type:</span> {{listing.fuelType}}</mat-list-item>
+      <mat-divider></mat-divider>
+
+    </mat-list>
+  </mat-grid-tile>
+  <form [formGroup]="formGroup">
+    <mat-grid-tile colspan="4">
+      <mat-card class="page">
+        <mat-card-header>
+          <mat-card-title>Edit listing</mat-card-title>
+        </mat-card-header>
+        <mat-form-field appearance="outline" class="smallField">
+          <mat-label>Price (€)</mat-label>
+          <input [formControl]="price" matInput required type="number" placeholder="Ex. 10123">
+          <mat-hint>Price in euros</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="smallField">
+          <mat-label>Location</mat-label>
+          <input [formControl]="location" matInput maxlength="35" required placeholder="Ex. Tallinn">
+          <mat-hint>Location</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="smallField">
+          <mat-label>Listing description</mat-label>
+          <textarea [formControl]="description" matInput maxlength="255" rows="5" cols="50"></textarea>
+          <mat-hint>Additional information and description of the listing</mat-hint>
+        </mat-form-field>
+
+
+        <mat-card>
+          <mat-form-field appearance="outline" [style.min-width]="'80%'">
+            <mat-label>Image URL</mat-label>
+            <input [formControl]="img1" matInput required type="url" placeholder="Ex. images.com/image.jpg">
+            <mat-hint>Direct URL to the image</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" [style.min-width]="'80%'">
+            <mat-label>Image URL</mat-label>
+            <input [formControl]="img2" matInput type="url" placeholder="Ex. images.com/image.jpg">
+            <mat-hint>Direct URL to the image</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" [style.min-width]="'80%'">
+            <mat-label>Image URL</mat-label>
+            <input [formControl]="img3" matInput type="url" placeholder="Ex. images.com/image.jpg">
+            <mat-hint>Direct URL to the image</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" [style.min-width]="'80%'">
+            <mat-label>Image URL</mat-label>
+            <input [formControl]="img4" matInput type="url" placeholder="Ex. images.com/image.jpg">
+            <mat-hint>Direct URL to the image</mat-hint>
+          </mat-form-field>
+          <mat-action-list>
+            <button mat-button (click)="onSubmit()" [style.background]="'whitesmoke'">Save</button>
+            <div *ngIf="invalidInputs" [style.color]="'red'">Some required fields are empty or invalid</div>
+          </mat-action-list>
+        </mat-card>
+
+      </mat-card>
+    </mat-grid-tile>
+  </form>
+</mat-grid-list>
