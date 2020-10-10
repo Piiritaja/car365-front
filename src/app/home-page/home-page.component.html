@@ -1,6 +1,6 @@
 <div class="next">
   <app-filter></app-filter>
-  <div class="container">
+  <div *ngIf="listingItems" class="container">
     <div class="info">
       <h1>Recently added cars</h1>
       <a routerLink="/post" mat-raised-button color="accent" class="button post">Post a listing</a>
