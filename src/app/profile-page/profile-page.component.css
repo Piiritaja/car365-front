@@ -1,10 +1,20 @@
+.profile-page {
+  display: flex;
+  flex-direction: row;
+}
+
 .profile-menubar {
   background: #3F51B5;
+  height: 50em;
+  margin-bottom: 10px;
   width: 15em;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-menubar-button {
   width: 90%;
   margin: 5%;
 }
+
 

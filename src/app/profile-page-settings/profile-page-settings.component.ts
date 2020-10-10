@@ -8,7 +8,7 @@ import {FormControl} from '@angular/forms';
 })
 export class ProfilePageSettingsComponent implements OnInit {
 
-  owner: any;
+  owner = {email: 'juku@taltech.ee', password: 'parool', phone: '54541010', name: 'JukuViljandist'};
   showPass = false;
   firstPassword = '';
   secondPassword = '';
