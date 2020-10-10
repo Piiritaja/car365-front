@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ListingItemService} from '../listingItem.service';
 import {ListingItem} from '../listingItem';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-listings',
@@ -9,7 +10,16 @@ import {ListingItem} from '../listingItem';
 })
 export class SearchListingsComponent implements OnInit {
 
-  constructor(private listingItemService: ListingItemService) { }
+  constructor(private listingItemService: ListingItemService, private router: Router) {
+    // tslint:disable-next-line:only-arrow-functions
+    this.router.routeReuseStrategy.shouldReuseRoute = function(): boolean {return false; };
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.router.navigated = false;
+      }
+    });
+  }
+
 
   listingItems: ListingItem[];
   numberOfCars: number;
@@ -46,5 +56,6 @@ export class SearchListingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListingItems();
+    console.log('Started search Page....');
   }
 }

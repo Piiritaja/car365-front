@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DummyComponent } from './dummy/dummy.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {ProfilePageComponent} from './profile-page/profile-page.component';
+import {HomePageComponent} from './home-page/home-page.component';
 import {PostNewListingComponent} from './post-new-listing/post-new-listing.component';
 import {ListingComponent} from './listing/listing.component';
 import {ListingViewComponent} from './listing-view/listing-view.component';
