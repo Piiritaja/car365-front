@@ -6,12 +6,14 @@ import {PostNewListingComponent} from './post-new-listing/post-new-listing.compo
 import {ListingComponent} from './listing/listing.component';
 import {ListingViewComponent} from './listing-view/listing-view.component';
 import {SearchListingsComponent} from './search-listings/search-listings.component';
+import {ProfilePageComponent} from './profile-page/profile-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent},
-  { path: 'home', component: HomePageComponent},
-  { path: 'allcars', component: DummyComponent},
+  {path: '', component: HomePageComponent},
+  {path: 'home', component: HomePageComponent},
+  {path: 'allcars', component: DummyComponent},
   {path: 'post', component: PostNewListingComponent},
+  {path: 'profile', component: ProfilePageComponent},
   {path: 'listings', component: ListingComponent},
   {path: 'listings/:id', component: ListingViewComponent},
   {path: 'search', component: SearchListingsComponent}
