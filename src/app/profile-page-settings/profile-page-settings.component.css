@@ -1,0 +1,25 @@
+mat-form-field.input, mat-label.current {
+  margin: 20px;
+  width: 200px;
+}
+
+mat-form-field.mail {
+  width: 440px;
+}
+
+button.change{
+  height: 40px;
+  background: deeppink;
+  color: white;
+}
+
+button.change:hover {
+  background: #eb147f;
+}
+
+button.change:disabled {
+  opacity: 50%;
+  background: whitesmoke;
+}
+
+

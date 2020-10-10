@@ -8,13 +8,13 @@
         </label>
       </mat-form-field>
       <mat-form-field>
-          <input matInput placeholder="password">
+          <input type="password" matInput placeholder="password">
       </mat-form-field>
       <span>
         <a mat-raised-button color="primary">login</a>
         <strong>
           <mat-label>No account?</mat-label>
-          <a mat-raised-button routerLink="/signup" color="accent">Sign up</a>
+          <a mat-raised-button (click)="openSignUp()" mat-dialog-close color="accent">Sign up</a>
         </strong>
       </span>
     </mat-card-content>

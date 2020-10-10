@@ -1,0 +1,19 @@
+.page {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+button {
+  border: 1px solid #e5e5e5;
+  padding: 5px;
+  margin: 5px;
+}
+
+mat-form-field {
+  padding: 5px;
+}

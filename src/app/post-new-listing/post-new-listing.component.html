@@ -1,0 +1,183 @@
+<mat-card class="page">
+  <mat-vertical-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="modelGroup">
+      <form [formGroup]="modelGroup">
+        <ng-template matStepLabel>Model info</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Brand (Make)</mat-label>
+          <input required (submit)="updateBrand()" type="text" matInput [formControl]="brandControl"
+                 [matAutocomplete]="auto" maxlength="30">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Model name</mat-label>
+          <input required matInput placeholder="Ex. Corolla" [formControl]="model" maxlength="30">
+          <mat-hint>Ex. Corolla</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Body Type</mat-label>
+          <input required matInput placeholder="Ex. HatchBack" [formControl]="bodyType" maxlength="15">
+          <mat-hint>Ex. Sedan</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Color</mat-label>
+          <input required matInput placeholder="Ex. HatchBack" [formControl]="color">
+          <mat-hint>Ex. green</mat-hint>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="ageGroup">
+      <form [formGroup]="ageGroup">
+        <ng-template matStepLabel>Age and Price</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Release year</mat-label>
+          <input matInput required type="number" placeholder="Ex. 2005" [formControl]="releaseYear">
+          <mat-hint>Ex. 2005</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Mileage (km)</mat-label>
+          <input [formControl]="mileage" matInput required type="number" placeholder="Ex. 12000">
+          <mat-hint>Mileage in kilometers</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Price (€)</mat-label>
+          <input [formControl]="price" matInput required type="number" placeholder="Ex. 10123">
+          <mat-hint>Price in euros</mat-hint>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="drivetrainGroup">
+      <form [formGroup]="drivetrainGroup">
+        <ng-template matStepLabel>Drivetrain</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Drivetype</mat-label>
+          <mat-select required [formControl]="driveType">
+            <mat-option value="Rear-Wheel">Rear-Wheel drive</mat-option>
+            <mat-option value="Front-Wheel">Front-Wheel drive</mat-option>
+            <mat-option value="All-Wheel">All-Wheel drive</mat-option>
+            <mat-option value="Four-Wheel">Four-Wheel drive</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Gearbox</mat-label>
+          <mat-select required [formControl]="gearboxType">
+            <mat-option value="Manual">Manual</mat-option>
+            <mat-option value="Automatic">Automatic</mat-option>
+            <mat-option value="Semi-Automatic">Semi-Automatic</mat-option>
+            <mat-option value="Dual-Clutch">Dual clutch Automatic</mat-option>
+            <mat-option value="CVS">CVS</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="engineGroup">
+      <form [formGroup]="engineGroup">
+        <ng-template matStepLabel>Engine</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Fuel Type</mat-label>
+          <mat-select required [formControl]="fuelType">
+            <mat-option value="petrol">Petrol</mat-option>
+            <mat-option value="diesel">Diesel</mat-option>
+            <mat-option value="electric">Electric</mat-option>
+            <mat-option value="hybrid">Hybrid</mat-option>
+            <mat-option value="lpg-cng">LPG or CNG</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>
+            Power (kw)
+          </mat-label>
+          <input [formControl]="enginePower" matInput required type="number" placeholder="Ex. 110">
+          <mat-hint>Engine power in kilowatts</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>
+            Engine size (l)
+          </mat-label>
+          <input  [formControl]="engineSize" matInput required type="number" placeholder="Ex. 2.0">
+          <mat-hint>Ex 2.0</mat-hint>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="informationGroup">
+      <form [formGroup]="informationGroup">
+        <ng-template matStepLabel>Additional information</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Sellers name</mat-label>
+          <input [formControl]="ownerName" matInput required placeholder="Ex. Thomas" maxlength="15">
+          <mat-hint>Name of the seller</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Sellers phone number</mat-label>
+          <input [formControl]="ownerPhone" matInput required placeholder="Ex. 5678912">
+          <mat-hint>Phone number of the seller</mat-hint>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Location</mat-label>
+          <input [formControl]="location" matInput required placeholder="Ex. Tallinn" maxlength="30">
+          <mat-hint>Location</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Listing description</mat-label>
+          <textarea [formControl]="description" matInput rows="10" cols="30" maxlength="255"></textarea>
+          <mat-hint>Additional information and description of the listing</mat-hint>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="imageGroup">
+      <form [formGroup]="imageGroup">
+        <ng-template matStepLabel>Images</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Image URL</mat-label>
+          <input [formControl]="img1" matInput required type="url" placeholder="Ex. images.com/image.jpg">
+          <mat-hint>Direct URL to the image</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Image URL</mat-label>
+          <input [formControl]="img2" matInput type="url" placeholder="Ex. images.com/image.jpg">
+          <mat-hint>Direct URL to the image</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Image URL</mat-label>
+          <input [formControl]="img3" matInput type="url" placeholder="Ex. images.com/image.jpg">
+          <mat-hint>Direct URL to the image</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Image URL</mat-label>
+          <input [formControl]="img4" matInput type="url" placeholder="Ex. images.com/image.jpg">
+          <mat-hint>Direct URL to the image</mat-hint>
+        </mat-form-field>
+        <mat-card-actions>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="onSubmit(); updateBrand()">Save and publish</button>
+          <div *ngIf="invalidInputs" [style.color]="'red'">Some required fields are empty or invalid</div>
+          <mat-spinner *ngIf="posting"></mat-spinner>
+        </mat-card-actions>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+</mat-card>

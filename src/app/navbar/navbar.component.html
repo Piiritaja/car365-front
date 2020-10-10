@@ -3,9 +3,28 @@
     <a mat-button routerLink="/home" class="logo">Car<a class="logoNumber">365</a></a>
     <nav>
       <a mat-button routerLink="/home" class="button colored">Home</a>
-      <a mat-button routerLink="/allcars" class="button colored">All cars</a>
+      <a mat-button routerLink="/allCars" class="button colored">All cars</a>
       <a mat-button class="button colored" (click)="openSignIn()">Sign in</a>
       <a mat-raised-button color="accent" class="button signup" (click)="openSignUp()">Sign up</a>
     </nav>
+  </div>
+  <div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="icon">directions_car</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon class="icon">face</mat-icon>
+        <span routerLink="/profile">My Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="icon">settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="icon">power_settings_new</mat-icon>
+        <span>Log Out</span>
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>

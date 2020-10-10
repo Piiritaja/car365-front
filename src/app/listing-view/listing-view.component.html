@@ -1,134 +1,90 @@
-<span [style.color]="'red'">The info displayed here is hardcoded.
-  No functionality to display info automatically is implemented yet.</span>
+<ng-container class="listing">
 
-<mat-card class="listing">
   <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
                    [style.box-shadow]="'0px 1px lightgrey'">
     <mat-card-title>{{listing.title}}</mat-card-title>
-    <mat-card class="statusbox">{{listing.status}}</mat-card>
+    <mat-card class="statusbox" [ngStyle]="{'backgroundColor': backgroundColor}">
+      {{listing.status}}</mat-card>
+    <div>
+      <button mat-icon-button aria-label="Menu button"
+              [matMenuTriggerFor]="menu">
+        <mat-icon>settings</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="changeStatus()">
+            <mat-icon>check_circle</mat-icon>
+            Change status
+          </button>
+          <button mat-menu-item (click)="editListing()">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+          <button mat-menu-item (click)="openDialog()">
+            <mat-icon>delete</mat-icon>
+            Delete
+          </button>
+        </mat-menu>
+      </button>
+    </div>
   </mat-card-header>
-  <div class="listing-attributes">
-    <mat-card class="left-side" class="attribute">
-      <mat-list>
-        <mat-list-item>
-          <p matLine>
-            <span [style.font-weight]="'bold'">{{listing.brand}} {{listing.model}}</span>
-          </p>
-        </mat-list-item>
-        <mat-divider [inset]="true"></mat-divider>
-        <mat-list-item>
-          <p matLine>
-            <span [style.font-weight]="'bold'">Year: </span>
-            <span> {{listing.year}} </span>
-          </p>
-        </mat-list-item>
-      </mat-list>
-    </mat-card>
-    <mat-card class="right-side" class="attribute">
-      <mat-list>
-        <mat-list-item>
-          <p matLine>
-            <span [style.font-weight]="'bold'">{{listing.price}}€</span>
-          </p>
-        </mat-list-item>
-        <mat-divider [inset]="true"></mat-divider>
-        <mat-list-item>
-          <p matLine>
-            <span [style.font-weight]="'bold'">Mileage: </span>
-            <span>{{listing.mileage}} km</span>
-          </p>
-        </mat-list-item>
-      </mat-list>
-    </mat-card>
-  </div>
-  <img mat-card-image
-       src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/1994-96_BMW_320i_sedan_%28Australia%29.jpg/1200px-1994-96_BMW_320i_sedan_%28Australia%29.jpg"
-       alt="e36"
-       class="listing-image">
-  <!--
-  below the picture
-  -->
 
-  <mat-grid-list cols="2" rowHeight="11:1" gutterSize="10">
-    <mat-grid-tile rowspan="5">
-      <mat-card class="additional-attribute-list" [style.background]="'whitesmoke'" [style.border-radius]="'10px'">
-        <mat-list>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Drivetrain: </span>
-              <span>{{listing.driveType}}</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Gearbox: </span>
-              <span>{{listing.gearbox}}</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Engine size: </span>
-              <span>{{listing.engineSize}}</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Power: </span>
-              <span>{{listing.enginePower}}kw</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Fuel type: </span>
-              <span>{{listing.fuelType}}</span>
-            </p>
-          </mat-list-item>
-          <mat-divider [inset]="true"></mat-divider>
-          <mat-list-item>
-            <p matLine>
-              <span [style.font-weight]="'bold'">Location: </span>
-              <span>{{listing.location}}</span>
-            </p>
-          </mat-list-item>
-        </mat-list>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile rowspan="4" [style.border-radius]="'10px'">
-      <mat-grid-tile-header [style.background]="'whitesmoke'" [style.font-weight]="'bold'"
-                            [style.color]="'black'"
-                            [style.border-radius]="'10px'">
-        Additional information:
-      </mat-grid-tile-header>
-      <mat-card [style.background]="'whitesmoke'" class="additional-attribute-list"
-                [style.min-height]="''"
-                [style.border-radius]="'10px'">
-        <span [style.font-weight]="'bold'"
-        >Additional information: </span>
-        <span>{{listing.description}}</span>
-      </mat-card>
+  <mat-grid-list cols="4" rowHeight="950px">
+    <mat-grid-tile class="leftTile">
+      <mat-list [style.width]="'100%'" [style.height]="'100%'">
+        <mat-list-item><span class="parameter">Brand: &nbsp;</span> {{listing.brand}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Model: &nbsp;</span> {{listing.model}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Year: &nbsp;</span>{{listing.releaseYear}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Mileage: &nbsp;</span> {{listing.mileage}} km</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Engine size: &nbsp;</span> {{listing.engineSize}} l</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Engine power: &nbsp;</span> {{listing.enginePower}} kw</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Fuel type: &nbsp;</span> {{listing.fuelType}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Color: &nbsp;</span> {{listing.color}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">DriveType: &nbsp;</span> {{listing.driveType}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Gearbox: &nbsp;</span> {{listing.gearboxType}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Body type: &nbsp;</span> {{listing.bodyType}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Location: &nbsp;</span> {{listing.location}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Price: &nbsp;</span> {{listing.price}} €</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><span class="parameter">Seller: &nbsp;</span> {{listingMock.ownerName}}
+          {{listingMock.ownerNumber}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-card class="descriptionBox">
+          <mat-card-title>
+            Additional Information:
+          </mat-card-title>
+          <mat-card-content>
+            {{listing.description}}
+          </mat-card-content>
+        </mat-card>
 
+          <!-- price -->
+
+      </mat-list>
     </mat-grid-tile>
-    <mat-grid-tile [style.background]="'whitesmoke'"
-                   [style.border-radius]="'10px'">
-      <span [style.font-weight]="'bold'">Seller details:  </span>
-      <span>{{listing.ownerName}} </span>
-      <span>&nbsp;{{listing.ownerNumber}}</span>
+
+    <mat-grid-tile colspan="3">
+      <mat-card class="page">
+        <div class="images-buttons">
+          <img *ngFor="let image of listing.images | slice:start:end" src="{{image}}" alt="e36" class="listing-image">
+          <h1>{{nrOfImages}} Pictures </h1>
+          <span class="buttons">
+        <button mat-raised-button (click)="nextPicture()" class="next-button">></button>
+        <button mat-raised-button (click)="previousPicture()" class="previous-button"><</button>
+      </span>
+        </div>
+
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
-
-  <!-- end of component -->
-
-  <mat-card
-  [style.min-width]="'80%'"
-  [style.min-height]="'500px'"
-  [style.padding]="'10px'"
-  [style.margin]="'10px'"
-  [style.background-color]="'gray'"
-  >
-    siin asub asukoha kaart võibolla
-  </mat-card>
-</mat-card>
+</ng-container>

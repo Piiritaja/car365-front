@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {ListingItem} from '../listingItem';
 
 @Component({
   selector: 'app-listing',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListingComponent implements OnInit {
 
-  constructor() { }
+  // tslint:disable-next-line:no-input-rename
+  @Input('listingItem') listingItem: ListingItem;
+
+  constructor() {
+  }
+
+  logger(): void {
+    console.log('tere');
+  }
 
   ngOnInit(): void {
   }
-
 }

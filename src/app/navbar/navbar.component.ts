@@ -11,12 +11,12 @@ import { LoginComponent } from '../login/login.component';
 export class NavbarComponent implements OnInit {
 
   constructor(public signIn: MatDialog, public signUp: MatDialog) {}
-  // tslint:disable-next-line:typedef
-  openSignUp() {
+
+  openSignUp(): void {
     this.signUp.open(SignupComponent);
   }
-  // tslint:disable-next-line:typedef
-  openSignIn() {
+
+  openSignIn(): void {
     this.signIn.open(LoginComponent);
   }
   ngOnInit(): void {
