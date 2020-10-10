@@ -35,8 +35,8 @@ export class ListingViewComponent implements OnInit {
     engineSize: '2.0',
     mileage: 269420,
     year: 1996,
-    ownerName: 'Toomas Valgast',
-    ownerNumber: '5694200'
+    ownerName: 'Toomas MockUser',
+    ownerNumber: '+372 4204201'
   };
   listing: ListingItem;
   backgroundColor = 'lightgreen';
