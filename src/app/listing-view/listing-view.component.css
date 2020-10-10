@@ -1,14 +1,15 @@
 .listing {
   min-width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   margin: auto;
+  max-width: 97%;
 }
 
 mat-card-header {
-  margin: auto;
-  margin-bottom: 5%;
+  margin: auto auto 5%;
+  text-align: center;
+  min-width: 100%;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 mat-card-title {
@@ -18,6 +19,7 @@ mat-card-title {
 .listing-header {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: auto;
   padding: 5px;
 }
@@ -26,72 +28,115 @@ mat-card-title {
   margin: auto;
   border: solid black 1px;
   padding: 5px;
-  background-color: lightgreen;
+  background-color: #ff9f2d;
+  max-width: 100px;
 }
 
 .listing-image {
-  margin: auto;
+  margin: 0 auto;
   padding: 10px;
-  max-width: 90%;
-  min-width: 85%;
+  max-width: 80%;
+  max-height: 80%;
 }
 
-.listing-attributes {
+.buttons {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 10px;
+  flex-direction: row-reverse;
+  margin: 10px auto;
 }
 
+.next-button {
+  margin-left: 5px;
+  background-color: deeppink;
+  color: white;
+}
 
-.listing-attributes .attribute {
+.previous-button {
+  margin-right: 5px;
+  background-color: deeppink;
+  color: white;
+}
+
+.next-button:hover {
+  left: .1em;
+  color: #3F51B5;
+}
+
+.previous-button:hover {
+  left: .1em;
+  color: #3F51B5;
+}
+
+.images-buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
   text-align: center;
-  min-width: 30%;
 }
 
-.listing-attributes .left-side {
-  align-self: flex-start;
-  margin-right: auto;
+h1 {
+  margin-bottom: 0;
+  font-weight: bold;
+  color: #3F51B5;
 }
 
-.listing-attributes .right-side {
-  align-self: flex-end;
-  margin-left: auto;
-}
-
-
-.listing-attributes .listing-info {
-  text-align: center;
-  min-width: 45%;
-  padding: 10px;
-}
-
-.listing-info .small-attribute {
-  min-width: 90%;
-  text-align: left;
-}
-
-mat-grid-tile {
-}
-
-mat-grid-list {
-}
 
 mat-grid-tile-header {
   background-color: ghostwhite;
 }
 
-.additional-attribute-list {
-  min-width: 95%;
-  min-height: 100%;
-  font-size: 1.2em;
+
+mat-grid-tile {
+  margin-top: 0;
+  border: 1px solid #cdcdcd;
+  border-radius: 2px;
+}
+
+mat-card {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.parameter {
+  font-weight: bold;
+}
+
+.leftTile {
+  background: whitesmoke;
+  display: block;
+  align-content: center;
+}
+
+.smallField {
+  max-width: 500px;
 }
 
 mat-card-header {
-  text-align: center;
-  min-width: 100%;
-  border-radius: 5px;
+  padding: 10px;
 }
+
+.imgView {
+  max-height: 200px;
+  max-width: 300px;
+}
+
+.page {
+
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  max-width: 90%;
+
+}
+
+.descriptionBox {
+  max-width: 90%;
+  margin: 5px auto;
+  background: whitesmoke;
+}
+
 
 

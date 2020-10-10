@@ -18,13 +18,23 @@ export class ListingItemService {
   }
 
   postListing(item: ListingItemNoId): Observable<any> {
-    const headers = { 'content-type': 'application/json'};
+    const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(item);
     // console.log(body);
     return this.http.post(this.listingUrl, body, {headers});
   }
 
-  getListing(id): Observable<ListingItem>{
+  putListing(item: ListingItem, id: string): Observable<any> {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify(item);
+    return this.http.put(this.listingUrl + '/' + id, body, {headers});
+  }
+
+  deleteListing(id: string): void {
+    this.http.delete(this.listingUrl + '/' + id).subscribe(response => console.log(response));
+  }
+
+  getListing(id): Observable<ListingItem> {
     return this.http.get<ListingItem>(this.listingUrl + '/' + id);
   }
 

@@ -12,6 +12,7 @@ mat-drawer-container {
   min-width: 1000px;
   height: 120px;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 mat-drawer-container:hover {

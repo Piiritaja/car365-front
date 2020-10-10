@@ -10,7 +10,8 @@ import {ListingItemService} from '../listingItem.service';
 export class FilterComponent implements OnInit {
   constructor(private listingItemService: ListingItemService) { }
 
-  listingParams: any[] = [];
+  listingParams: JSON[] = [];
+  stringList: string[] = [];
 
   getParamStrings(): void {
     this.listingItemService.getParams()
@@ -18,6 +19,16 @@ export class FilterComponent implements OnInit {
         data => {
       this.listingParams = data;
     });
+  }
+
+  listSizeOne(obj): string[] {
+    if (typeof obj === 'string') {
+      this.stringList = [];
+      this.stringList.push(obj);
+      return this.stringList;
+    } else {
+      return obj;
+    }
   }
 
   ngOnInit(): void {
