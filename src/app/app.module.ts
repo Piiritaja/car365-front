@@ -36,6 +36,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListingHeaderComponent } from './listing-header/listing-header.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ProfilePageComponent} from './profile-page/profile-page.component';
+import {ProfilePageListingsComponent} from './profile-page-listings/profile-page-listings.component';
+import {ProfilePageFavoritesComponent} from './profile-page-favorites/profile-page-favorites.component';
+import {ProfilePageSettingsComponent} from './profile-page-settings/profile-page-settings.component';
+
+
 
 
 @NgModule({
@@ -52,7 +58,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     PostNewListingComponent,
     RemoveDuplicatesPipe,
     SearchListingsComponent,
-    ListingHeaderComponent
+    ListingHeaderComponent,
+    ProfilePageComponent,
+    ProfilePageListingsComponent,
+    ProfilePageFavoritesComponent,
+    ProfilePageSettingsComponent
   ],
     imports: [
         HttpClientModule,

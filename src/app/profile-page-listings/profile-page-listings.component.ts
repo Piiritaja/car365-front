@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ListingItemService} from '../listingItem.service';
-import {ListingItem} from '../listingItem';
 
 @Component({
   selector: 'app-profile-page-listings',
@@ -8,21 +6,9 @@ import {ListingItem} from '../listingItem';
   styleUrls: ['./profile-page-listings.component.css']
 })
 export class ProfilePageListingsComponent implements OnInit {
-  constructor(private listingItemService: ListingItemService) {
-  }
-
-  listingItems: ListingItem[];
-
-  getListingItems(): void {
-    this.listingItemService.getListings().subscribe(listingItems => this.listingItems = listingItems);
-    console.log(this.listingItems);
-  }
-
-  logger(): void {
-    console.log('tere');
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.getListingItems();
   }
 }
