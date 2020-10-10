@@ -29,8 +29,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {PostNewListingComponent} from './post-new-listing/post-new-listing.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {RemoveDuplicatesPipe} from './removeDuplicates.pipe';
-import {SearchListingsComponent} from './search-listings/search-listings.component';
+import {ProfilePageComponent} from './profile-page/profile-page.component';
+import { ProfilePageListingsComponent } from './profile-page-listings/profile-page-listings.component';
+import { ProfilePageFavoritesComponent } from './profile-page-favorites/profile-page-favorites.component';
+import { ProfilePageSettingsComponent } from './profile-page-settings/profile-page-settings.component';
+import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {ListingHeaderComponent} from './listing-header/listing-header.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -53,6 +56,10 @@ import { AllCarsComponent } from './all-cars/all-cars.component';
     HomePageComponent,
     SignupComponent,
     PostNewListingComponent,
+    ProfilePageComponent,
+    ProfilePageListingsComponent,
+    ProfilePageFavoritesComponent,
+    ProfilePageSettingsComponent,
     RemoveDuplicatesPipe,
     SearchListingsComponent,
     ListingHeaderComponent,

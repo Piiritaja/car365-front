@@ -1,0 +1,19 @@
+<div style="display: inline-flex">
+  <div class="profile-menubar">
+    <div>
+      <a mat-button class="profile-menubar-button" (click)="btnClick(1)" style="margin-top: 25px">My listings</a>
+    </div>
+    <div>
+      <a mat-button class="profile-menubar-button" (click)="btnClick(2)">My favorites</a>
+    </div>
+    <div>
+      <a mat-button class="profile-menubar-button" (click)="btnClick(3)">My settings</a>
+    </div>
+  </div>
+  <app-profile-page-listings *ngIf="getBtnComponent() == 1"></app-profile-page-listings>
+  <app-profile-page-favorites *ngIf="getBtnComponent() == 2"></app-profile-page-favorites>
+  <app-profile-page-settings *ngIf="getBtnComponent() == 3"></app-profile-page-settings>
+</div>
+
+
+
