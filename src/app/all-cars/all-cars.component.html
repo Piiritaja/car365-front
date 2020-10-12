@@ -1,6 +1,6 @@
 <div>
 <app-listing-header></app-listing-header>
-<app-listing *ngFor="let listingItem of listingItems" [listingItem]="listingItem"></app-listing>
+<app-listing *ngFor="let listingItem of listingItems | slice:start:end" [listingItem]="listingItem"></app-listing>
   <span class="buttons">
       <button mat-raised-button (click)="nextPage()" class="nextButton">Next</button>
       <span class="headings">
