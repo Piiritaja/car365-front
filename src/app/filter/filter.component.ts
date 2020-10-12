@@ -49,7 +49,7 @@ export class FilterComponent implements OnInit {
     sessionStorage.setItem('color', this.selectedColor);
     sessionStorage.setItem('location', this.selectedLocation);
     sessionStorage.setItem('driveType', this.selectedDriveType);
-    sessionStorage.setItem('gearBoxType', this.selectedGearBoxType);
+    sessionStorage.setItem('gearboxType', this.selectedGearBoxType);
     sessionStorage.setItem('fuelType', this.selectedFuel);
     sessionStorage.setItem('model', this.selectedModel);
     sessionStorage.setItem('brand', this.selectedBrand);
