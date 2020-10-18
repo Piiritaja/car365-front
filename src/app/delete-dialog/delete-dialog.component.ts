@@ -23,7 +23,6 @@ export class DeleteDialogComponent implements OnInit {
 
   delete(): void {
     this.listingService.deleteListing(this.data.id);
-    this.router.navigate(['/home']);
   }
 
 }

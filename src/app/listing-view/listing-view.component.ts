@@ -71,7 +71,7 @@ export class ListingViewComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {data: {id: this.listing.id}});
     this.editService.addItem(this.listing);
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.router.navigate(['/home']);
     });
   }
 
