@@ -4,7 +4,8 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install
 COPY . /app
-RUN npm run build --prod
+RUN npm run build --env=prod
+
 
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
