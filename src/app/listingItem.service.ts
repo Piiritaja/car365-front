@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ListingItemNoId} from './ListingItemNoId';
 import {ListingItem} from './listingItem';
+import {environment} from '../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +62,9 @@ export class ListingItemService {
 
   getLatestListings(): Observable<ListingItem[]> {
     return this.http.get<ListingItem[]>(this.listingUrl + '/count');
+  }
+
+  getNumberOfListings(count): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl + '/count' + '?count=' + count);
   }
 }
