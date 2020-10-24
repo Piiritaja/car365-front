@@ -11,9 +11,7 @@ build car365-front:
     - docker build -t $DOCKER_IMAGE .
     - docker tag $DOCKER_IMAGE $DOCKER_USER/$DOCKER_IMAGE
     - docker push $DOCKER_USER/$DOCKER_IMAGE
-  only:
-    - develop
-    - main
+
   
 
 deploy car365-front:
@@ -24,7 +22,4 @@ deploy car365-front:
     - docker stop car-front
     - docker container rm car-front
     - docker run -d -p 80:80 --name car-front
-  only:
-    - develop
-    - main
 
