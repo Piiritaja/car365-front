@@ -26,6 +26,7 @@ export class FilterComponent implements OnInit {
   selectedPriceStart: string;
   listingParams: JSON[] = [];
   stringList: string[] = [];
+  tab = 1;
 
   getParamStrings(): void {
     this.listingItemService.getParams()

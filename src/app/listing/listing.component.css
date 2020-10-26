@@ -16,7 +16,6 @@ mat-drawer-container {
 }
 
 mat-drawer-container:hover {
-  left: .1em;
   cursor: pointer;
   color: deeppink;
   border: solid deeppink;
@@ -27,7 +26,6 @@ mat-drawer-container:hover {
 mat-drawer-content {
   align-items: center;
   background-color: lightgray;
-
 }
 
 mat-drawer {
@@ -44,10 +42,6 @@ span {
   padding-left: 1rem;
   padding-right: 10px;
   font-size: medium;
-}
-
-.make {
-  margin-left: 260px;
 }
 
 .name {

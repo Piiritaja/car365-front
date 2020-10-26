@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ListingItemService} from '../listingItem.service';
 import {ListingItem} from '../listingItem';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-all-cars',
@@ -9,42 +10,31 @@ import {ListingItem} from '../listingItem';
 })
 export class AllCarsComponent implements OnInit {
 
-  constructor(private listingItemService: ListingItemService) { }
+  constructor(private listingItemService: ListingItemService, private route: ActivatedRoute, private router: Router) {
+    // tslint:disable-next-line:only-arrow-functions
+    this.router.routeReuseStrategy.shouldReuseRoute = function(): boolean {
+      return false;
+    };
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.router.navigated = false;
+      }
+    });
+  }
 
   listingItems: ListingItem[] = [];
-  numberOfCars: number;
-  pageNr = 1;
-  start = 0;
-  end = 20;
+  pages: number[];
+  tab: any;
 
   getListingsItems(): void {
     this.listingItemService.getListings().subscribe(data => {
       this.listingItems = data;
-      this.numberOfCars = this.listingItems.length;
+      this.pages = Array(Math.ceil(this.listingItems.length / 20)).fill(0).map((x, i) => i + 1);
+      this.tab = this.route.snapshot.paramMap.get('i');
     });
   }
 
   ngOnInit(): void {
     this.getListingsItems();
-  }
-
-  nextPage(): void {
-    if (this.end < this.numberOfCars) {
-      this.end += 20;
-      this.start += 20;
-      this.pageNr += 1;
-    }
-  }
-
-  previousPage(): void {
-    if (this.start !== 0) {
-      this.start -= 20;
-      this.end -= 20;
-      this.pageNr -= 1;
-    }
-  }
-
-  smaller(): number {
-    return Math.min(this.end, this.numberOfCars);
   }
 }
