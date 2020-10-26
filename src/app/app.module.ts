@@ -45,6 +45,7 @@ import {EditListingComponent} from './edit-listing/edit-listing.component';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {AllCarsComponent} from './all-cars/all-cars.component';
 import { FooterComponent } from './footer/footer.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { FooterComponent } from './footer/footer.component';
     MatIconModule,
     MatMenuModule,
     MatRippleModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

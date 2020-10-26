@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(public signIn: MatDialog, public signUp: MatDialog) {}
 
+  tab = 1;
+
   openSignUp(): void {
     this.signUp.open(SignupComponent);
   }

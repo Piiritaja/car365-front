@@ -2,14 +2,10 @@
   <app-filter></app-filter>
   <span>
     <app-listing-header></app-listing-header>
-    <app-listing *ngFor="let listingItem of listingItems | slice:start:end" [listingItem]="listingItem"></app-listing>
-    <span class="buttons">
-      <button mat-raised-button (click)="nextPage()" class="nextButton">Next</button>
-      <span class="headings">
-        <h1>Page {{pageNr}}</h1>
-        <h4>Total: {{this.numberOfCars}} cars, displaying: {{start + 1}} - {{smaller()}}</h4>
-      </span>
-      <button mat-raised-button (click)="previousPage()" class="previousButton">Previous</button>
-    </span>
+    <app-listing class="listing" *ngFor="let listingItem of listingItems | slice:(this.tab - 1) * 20:this.tab * 20" [listingItem]="listingItem"></app-listing>
+    <nav mat-tab-nav-bar>
+        <a mat-tab-link *ngFor="let i of pages"
+           routerLink="/search/{{i}}">{{i}}</a>
+    </nav>
   </span>
 </div>
