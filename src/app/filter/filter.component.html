@@ -3,7 +3,7 @@
     <mat-label>Body type</mat-label>
     <mat-select [(ngModel)]='selectedBodyType'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let bodyType of listSizeOne(listingParams['bodyType']) | removeDuplicates"
+      <mat-option *ngFor="let bodyType of listSizeOne(listingParams.bodyType) | removeDuplicates"
                   value='{{bodyType}}'>{{bodyType}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -11,7 +11,7 @@
     <mat-label>Brand</mat-label>
     <mat-select [(ngModel)]='selectedBrand'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let brand of listSizeOne(listingParams['brand']) | removeDuplicates"
+      <mat-option *ngFor="let brand of listSizeOne(listingParams.brand) | removeDuplicates"
                   value='{{brand}}'>{{brand}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -19,7 +19,7 @@
     <mat-label>Model</mat-label>
     <mat-select [(ngModel)]='selectedModel'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let model of listSizeOne(listingParams['model']) | removeDuplicates"
+      <mat-option *ngFor="let model of listSizeOne(listingParams.model) | removeDuplicates"
                   value='{{model}}'>{{model}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -27,7 +27,7 @@
     <mat-label>Fuel</mat-label>
     <mat-select [(ngModel)]='selectedFuel'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let fuel of listSizeOne(listingParams['fuel']) | removeDuplicates"
+      <mat-option *ngFor="let fuel of listSizeOne(listingParams.fuel) | removeDuplicates"
                   value='{{fuel}}'>{{fuel}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -35,7 +35,7 @@
     <mat-label>Transmission</mat-label>
     <mat-select [(ngModel)]='selectedGearBoxType'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let gearBoxType of listSizeOne(listingParams['gearBoxType']) | removeDuplicates"
+      <mat-option *ngFor="let gearBoxType of listSizeOne(listingParams.gearBoxType) | removeDuplicates"
                   value='{{gearBoxType}}'>{{gearBoxType}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -43,7 +43,7 @@
     <mat-label>Drivetrain</mat-label>
     <mat-select [(ngModel)]='selectedDriveType'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let driveType of listSizeOne(listingParams['driveType']) | removeDuplicates"
+      <mat-option *ngFor="let driveType of listSizeOne(listingParams.driveType) | removeDuplicates"
                   value='{{driveType}}'>{{driveType}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -51,7 +51,7 @@
     <mat-label>Location</mat-label>
     <mat-select [(ngModel)]='selectedLocation'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let location of listSizeOne(listingParams['location']) | removeDuplicates"
+      <mat-option *ngFor="let location of listSizeOne(listingParams.location) | removeDuplicates"
                   value='{{location}}'>{{location}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -59,7 +59,7 @@
     <mat-label>Color</mat-label>
     <mat-select [(ngModel)]='selectedColor'>
       <mat-option>all</mat-option>
-      <mat-option *ngFor="let color of listSizeOne(listingParams['color']) | removeDuplicates"
+      <mat-option *ngFor="let color of listSizeOne(listingParams.color) | removeDuplicates"
                   value='{{color}}'>{{color}}</mat-option>
     </mat-select>
   </mat-form-field>
