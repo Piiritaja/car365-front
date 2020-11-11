@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ListingItemNoId} from './ListingItemNoId';
 import {ListingItem} from './listingItem';
-import {environment} from '../environments/environment.prod';
+import {ParamsDto} from './ParamsDto';
 
 @Injectable({
   providedIn: 'root'
@@ -43,8 +43,8 @@ export class ListingItemService {
     return this.http.get<string[]>(this.listingUrl + '/brands');
   }
 
-  getParams(): Observable<any> {
-    return this.http.get(this.listingUrl + '/params');
+  getParams(): Observable<ParamsDto> {
+    return this.http.get<ParamsDto>(this.listingUrl + '/params');
   }
 
   getFilter(): Observable<ListingItem[]> {

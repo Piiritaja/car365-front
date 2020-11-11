@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ListingItemService} from '../listingItem.service';
+import {ParamsDto} from '../ParamsDto';
 
 @Component({
   selector: 'app-filter',
@@ -24,7 +25,7 @@ export class FilterComponent implements OnInit {
   selectedPowerEnd: string;
   selectedPriceEnd: string;
   selectedPriceStart: string;
-  listingParams: JSON[] = [];
+  listingParams: ParamsDto;
   stringList: string[] = [];
   tab = 1;
 
