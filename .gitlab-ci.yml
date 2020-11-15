@@ -1,15 +1,31 @@
-image: node:latest
-pages:
+image: docker:19.03.12
+
+stages:
+  - build
+  - deploy
+
+build car365-front:
+  stage: build
+  script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - docker build -t $DOCKER_IMAGE .
+    - docker tag $DOCKER_IMAGE $DOCKER_USER/$DOCKER_IMAGE
+    - docker push $DOCKER_USER/$DOCKER_IMAGE
+  only:
+    - main
+    - develop
+
+  
+
+deploy car365-front:
   stage: deploy
   script:
-    - npm install -g @angular/cli
-    - npm  install
-    - ng  build --prod --base-href /car365-frontend/
-    - mkdir public
-    - mv ./dist/angular-car365-front/* public
-  artifacts:
-    paths:
-      - public
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - docker pull $DOCKER_USER/$DOCKER_IMAGE
+    - docker stop car-front
+    - docker container rm car-front
+    - docker run -d -p 80:80 --name car-front $DOCKER_USER/$DOCKER_IMAGE
   only:
+    - main
     - develop
 

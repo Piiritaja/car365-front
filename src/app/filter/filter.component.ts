@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ListingItemService} from '../listingItem.service';
+import {ParamsDto} from '../ParamsDto';
 
 @Component({
   selector: 'app-filter',
@@ -24,8 +25,9 @@ export class FilterComponent implements OnInit {
   selectedPowerEnd: string;
   selectedPriceEnd: string;
   selectedPriceStart: string;
-  listingParams: JSON[] = [];
+  listingParams: ParamsDto;
   stringList: string[] = [];
+  tab = 1;
 
   getParamStrings(): void {
     this.listingItemService.getParams()
@@ -49,7 +51,7 @@ export class FilterComponent implements OnInit {
     sessionStorage.setItem('color', this.selectedColor);
     sessionStorage.setItem('location', this.selectedLocation);
     sessionStorage.setItem('driveType', this.selectedDriveType);
-    sessionStorage.setItem('gearBoxType', this.selectedGearBoxType);
+    sessionStorage.setItem('gearboxType', this.selectedGearBoxType);
     sessionStorage.setItem('fuelType', this.selectedFuel);
     sessionStorage.setItem('model', this.selectedModel);
     sessionStorage.setItem('brand', this.selectedBrand);

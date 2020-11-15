@@ -1,49 +1,25 @@
-app-listing {
-  margin-top: 10px;
-}
-
 div {
-  width: 1100px;
-  margin: 10px auto;
-}
-
-.buttons {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  margin-left: 0;
+  flex-direction: column;
+  width: 1100px;
+  margin: 5px auto;
 }
 
-.nextButton {
-  background-color: deeppink;
-  width: 100px;
-  color: white;
-  height: 40px;
+nav {
+  align-self: center;
+  max-width: 1100px;
 }
 
-.previousButton {
-  background-color: deeppink;
-  width: 100px;
-  color: white;
-  height: 40px;
-}
-
-.nextButton:hover {
-  left: .1em;
+.mat-tab-link {
   color: #3F51B5;
 }
 
-.previousButton:hover {
-  left: .1em;
-  color: #3F51B5;
-}
-
-h1, h4 {
-  color: #3F51B5;
+a {
+  font-size: 20px;
   font-weight: bold;
 }
 
-.headings {
-  display: block;
-  text-align: center;
+a:hover {
+  color:deeppink;
+  left: .1em;
 }
