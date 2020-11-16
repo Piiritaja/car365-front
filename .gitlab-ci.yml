@@ -27,5 +27,3 @@ deploy car365-front:
     - docker run -d -p 80:80 --name car-front $DOCKER_USER/$DOCKER_IMAGE
   only:
     - main
-    - develop
-
