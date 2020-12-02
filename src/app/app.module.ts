@@ -23,7 +23,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomePageComponent} from './home-page/home-page.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {SignupComponent} from './signup/signup.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {PostNewListingComponent} from './post-new-listing/post-new-listing.component';
@@ -46,6 +46,8 @@ import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {AllCarsComponent} from './all-cars/all-cars.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import {JwtInterceptor} from './helpers/jwt.interceptor';
+import {ErrorInterceptor} from './helpers/error.interceptor';
 
 
 @NgModule({
@@ -102,7 +104,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatRippleModule,
     MatTabsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
