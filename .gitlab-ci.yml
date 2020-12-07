@@ -1,11 +1,15 @@
 image: docker:19.03.12
 
 stages:
-  - build
-  - deploy
+  - build_prod
+  - build_dev
+  - deploy_prod
+  - deploy_dev
 
-build car365-front:
-  stage: build
+build_prod car365-front:
+  stage: build_prod
+  tags:
+    - prod
   script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - docker build -t $DOCKER_IMAGE .
@@ -13,12 +17,11 @@ build car365-front:
     - docker push $DOCKER_USER/$DOCKER_IMAGE
   only:
     - main
-    - develop
 
-  
-
-deploy car365-front:
-  stage: deploy
+deploy_prod car365-front:
+  stage: deploy_prod
+  tags:
+    - prod
   script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - docker pull $DOCKER_USER/$DOCKER_IMAGE
@@ -27,3 +30,27 @@ deploy car365-front:
     - docker run -d -p 80:80 --name car-front $DOCKER_USER/$DOCKER_IMAGE
   only:
     - main
+
+build_dev car365-front:
+  stage: deploy_dev
+  tags:
+    - dev
+  script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - docker build -t $DOCKER_USER/car365_front_dev .
+    - docker push $DOCKER_USER/car365_front_dev
+  only:
+    - develop
+
+deploy_dev car365-front:
+  stage: deploy_dev
+  tags:
+    - dev
+  script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - docker pull $DOCKER_USER/car365_front_dev
+    - docker stop car_front_dev
+    - docker container rm car_front_dev
+    - docker run -d -p 80:80 --name car_front_dev $DOCKER_USER/car365_front_dev
+  only:
+    - develop
