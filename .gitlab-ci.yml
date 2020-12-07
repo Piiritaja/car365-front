@@ -37,7 +37,7 @@ build_dev car365-front:
     - dev
   script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - docker build -t $DOCKER_USER/car365_front_dev -f DockerFile_dev .
+    - docker build -t $DOCKER_USER/car365_front_dev -f Dockerfile_dev .
     - docker push $DOCKER_USER/car365_front_dev
   only:
     - develop
