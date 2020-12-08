@@ -18,10 +18,17 @@ export class ListingItemService {
     return this.http.get<ListingItem[]>(this.listingUrl);
   }
 
+  getOwnerListings(ownerId): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl + '/owner/' + ownerId);
+  }
+
+  getFavoriteListings(ownerId): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl + '/favorites/' + ownerId);
+  }
+
   postListing(item: ListingItemNoId): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(item);
-    // console.log(body);
     return this.http.post(this.listingUrl, body, {headers});
   }
 
