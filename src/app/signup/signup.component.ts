@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
       .subscribe(
         () => {
           console.log('Registration was successful');
-          console.log('Registration successful');
+          this.logIn.closeAll();
           this.logIn.open(LoginComponent);
         },
         error => {

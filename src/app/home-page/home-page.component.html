@@ -3,7 +3,7 @@
   <div *ngIf="listingItems" class="container">
     <div class="info">
       <h1>Recently added cars</h1>
-      <a routerLink="/post" mat-raised-button color="accent" class="button post">Post a listing</a>
+      <a *ngIf="!isLoggedIn()" routerLink="/post" mat-raised-button color="accent" class="button post">Post a listing</a>
     </div>
     <app-listing-header></app-listing-header>
     <app-listing *ngFor="let listingItem of listingItems" [listingItem]="listingItem"></app-listing>

@@ -18,6 +18,10 @@ export class NavbarComponent implements OnInit {
 
   tab = 1;
 
+  isLoggedIn(): boolean {
+    return localStorage.length === 0;
+  }
+
   logout(): void {
     this.authenticationService.logout();
   }

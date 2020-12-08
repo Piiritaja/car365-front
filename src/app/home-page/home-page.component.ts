@@ -14,6 +14,10 @@ export class HomePageComponent implements OnInit {
 
   listingItems: ListingItem[];
 
+  isLoggedIn(): boolean {
+    return localStorage.length === 0;
+  }
+
   getListingItems(): void {
     this.listingItemService.getLatestListings().subscribe(data => {
       this.listingItems = data;
