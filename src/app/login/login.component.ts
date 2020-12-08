@@ -5,7 +5,7 @@ import {FormBuilder} from '@angular/forms';
 import {UserService} from '../user.service';
 import {first} from 'rxjs/operators';
 import {AuthenticationService} from '../authentication.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         (user) => {
           console.log(user);
           console.log('Login successful');
+          this.signIn.closeAll();
         },
         error => {
           console.log('Login unsuccessful');

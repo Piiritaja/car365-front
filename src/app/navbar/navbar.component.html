@@ -4,12 +4,12 @@
     <nav>
       <a mat-button routerLink="/home" class="button colored">Home</a>
       <a mat-button routerLink="/allCars/{{tab}}" class="button colored">All cars</a>
-      <a mat-button class="button colored" (click)="openSignIn()">Sign in</a>
-      <a mat-raised-button color="accent" class="button signup" (click)="openSignUp()">Sign up</a>
+      <a *ngIf="isLoggedIn()" mat-button class="button colored" (click)="openSignIn()">Sign in</a>
+      <a *ngIf="isLoggedIn()" mat-raised-button color="accent" class="button signup" (click)="openSignUp()">Sign up</a>
     </nav>
   </div>
   <div>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button *ngIf="!isLoggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon class="icon">directions_car</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
