@@ -23,10 +23,17 @@ h1 {
 .next {
   display: flex;
   flex-direction: row;
+  width: 100vw;
 }
 
 .button {
   font-size: 1.2em;
   align-self: flex-end;
   margin: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .next {
+    flex-direction: column;
+  }
 }

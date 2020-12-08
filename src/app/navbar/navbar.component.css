@@ -3,6 +3,7 @@ mat-toolbar {
   max-height: 100px;
   margin-bottom: 10px;
   justify-content: space-between;
+  width: 100vw;
 }
 
 .button {

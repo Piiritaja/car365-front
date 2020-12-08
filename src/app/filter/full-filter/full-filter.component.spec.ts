@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FullFilterComponent } from './full-filter.component';
 
-import { FilterComponent } from './filter.component';
-
-describe('FilterComponent', () => {
-  let component: FilterComponent;
-  let fixture: ComponentFixture<FilterComponent>;
+describe('FullFilterComponent', () => {
+  let component: FullFilterComponent;
+  let fixture: ComponentFixture<FullFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterComponent ]
+      declarations: [ FullFilterComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FilterComponent);
+    fixture = TestBed.createComponent(FullFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

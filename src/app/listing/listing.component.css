@@ -3,9 +3,11 @@ mat-toolbar {
 }
 
 img {
-  margin-left: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10px;
-  margin-right:10px;
+  vertical-align: middle;
 }
 
 mat-drawer-container {
@@ -14,6 +16,7 @@ mat-drawer-container {
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
 
 mat-drawer-container:hover {
   cursor: pointer;
@@ -30,6 +33,12 @@ mat-drawer-content {
 
 mat-drawer {
   background-color: lightgray;
+}
+
+.mat-drawer-inner-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .info {
@@ -54,4 +63,55 @@ span {
 
 .price.ad {
   margin-right: 40px;
+}
+
+.small-view {
+  display: none;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .mat-drawer-container {
+    min-width: 10px;
+    width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .mat-drawer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .name {
+    margin: auto;
+    font-weight: bold;
+    font-size: medium;
+  }
+
+  .price {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .price.ad {
+    margin: auto;
+  }
+
+  span {
+    margin: auto;
+  }
+
+  .small-view {
+    display: block;
+  }
+
+  .full-view {
+    display: none;
+  }
 }
