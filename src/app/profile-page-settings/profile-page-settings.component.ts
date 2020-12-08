@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 @Component({
@@ -17,6 +17,8 @@ export class ProfilePageSettingsComponent implements OnInit {
   newPhone = '';
   nameForm = new FormControl();
   newName = '';
+
+  @Input() userId: string;
 
   constructor() {
   }

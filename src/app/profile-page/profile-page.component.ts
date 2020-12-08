@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,11 +8,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
   private componentId = 0;
+  private userId;
+  private userRole;
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
+    this.userRole = this.authenticationService.currentUserValue.role;
+    this.userId = this.authenticationService.currentUserValue.id;
   }
 
   btnClick(id): void {
@@ -20,5 +25,13 @@ export class ProfilePageComponent implements OnInit {
 
   getBtnComponent(): number {
     return this.componentId;
+  }
+
+  getUserRole(): string {
+    return this.userRole;
+  }
+
+  getUserId(): string {
+    return this.userId;
   }
 }

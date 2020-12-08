@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ListingItem} from '../listingItem';
 
 @Component({
   selector: 'app-profile-page-favorites',
@@ -7,9 +8,18 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProfilePageFavoritesComponent implements OnInit {
 
-  constructor() { }
+  @Input() userId: string;
+  @Input() userRole: string;
 
-  ngOnInit(): void {
+  constructor() {}
+
+  listingItems: ListingItem[];
+
+  getFavoritedListingItems(): void {
+    if (this.userRole === 'PREMIUM' || this.userRole === 'ADMIN') {}
   }
 
+  ngOnInit(): void {
+    this.getFavoritedListingItems();
+  }
 }

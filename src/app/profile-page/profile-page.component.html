@@ -10,9 +10,9 @@
       <a mat-button class="profile-menubar-button" (click)="btnClick(3)">My settings</a>
     </div>
   </div>
-  <app-profile-page-listings *ngIf="getBtnComponent() == 1"></app-profile-page-listings>
-  <app-profile-page-favorites *ngIf="getBtnComponent() == 2"></app-profile-page-favorites>
-  <app-profile-page-settings *ngIf="getBtnComponent() == 3"></app-profile-page-settings>
+  <app-profile-page-listings *ngIf="getBtnComponent() == 1" [userId]="getUserId()"></app-profile-page-listings>
+  <app-profile-page-favorites *ngIf="getBtnComponent() == 2" [userId]="getUserId()" [userRole]="getUserRole()"></app-profile-page-favorites>
+  <app-profile-page-settings *ngIf="getBtnComponent() == 3" [userId]="getUserId()"></app-profile-page-settings>
 </div>
 
 
