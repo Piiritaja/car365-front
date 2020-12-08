@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { SignupComponent } from '../signup/signup.component';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
+import {SignupComponent} from '../signup/signup.component';
+import {MatDialog} from '@angular/material/dialog';
+import {LoginComponent} from '../login/login.component';
 import {AuthenticationService} from '../authentication.service';
 
 @Component({
@@ -10,6 +10,8 @@ import {AuthenticationService} from '../authentication.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  private openMenu = false;
 
   constructor(public signIn: MatDialog,
               public signUp: MatDialog,
@@ -33,6 +35,15 @@ export class NavbarComponent implements OnInit {
   openSignIn(): void {
     this.signIn.open(LoginComponent);
   }
+
   ngOnInit(): void {
+  }
+
+ isOpenMenu(): boolean {
+    return this.openMenu;
+  }
+
+  setOpenMenu(value: boolean): void {
+    this.openMenu = value;
   }
 }
