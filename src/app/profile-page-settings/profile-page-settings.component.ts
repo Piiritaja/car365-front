@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {AuthenticationService} from '../authentication.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-profile-page-settings',
@@ -8,19 +10,29 @@ import {FormControl} from '@angular/forms';
 })
 export class ProfilePageSettingsComponent implements OnInit {
 
-  owner = {email: 'juku@taltech.ee', password: 'parool', phone: '54541010', name: 'JukuViljandist'};
+  owner = {email: null, password: null, phone: null, firstName: null, lastName: null, id: null, bookmarks: null};
   showPass = false;
   firstPassword = '';
   secondPassword = '';
   mailForm = new FormControl();
   newMail = '';
+  phoneForm = new FormControl();
   newPhone = '';
   nameForm = new FormControl();
-  newName = '';
+  newFirstName = '';
+  newLastName = '';
 
   @Input() userId: string;
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService, private http: HttpClient) {
+    this.http.get<any>('api/user/' + authenticationService.currentUserValue.id).subscribe(data => {
+      this.owner.id = data.id;
+      this.owner.firstName = data.firstName;
+      this.owner.lastName = data.lastName;
+      this.owner.email = data.email;
+      this.owner.phone = data.phone;
+      this.owner.bookmarks = data.bookmarks;
+    });
   }
 
   changePassword(value: string): void {
@@ -35,8 +47,13 @@ export class ProfilePageSettingsComponent implements OnInit {
     this.owner.phone = value;
   }
 
-  changeName(value: string): void {
-    this.owner.name = value;
+  changeName(fName: string, lName: string): void {
+    this.owner.firstName = fName;
+    this.owner.lastName = lName;
+  }
+
+  saveChanges(): void {
+    this.http.put<object>('api/user/' + this.authenticationService.currentUserValue.id, this.owner).subscribe();
   }
 
   isValidPasswordChange(firstPassword, secondPassword: string): boolean {
@@ -48,11 +65,11 @@ export class ProfilePageSettingsComponent implements OnInit {
   }
 
   isValidPhoneChange(newPhone: string): boolean {
-    return (newPhone.length < 3 || newPhone.length > 9 || newPhone === '');
+    return (this.phoneForm.invalid || newPhone === '');
   }
 
-  isValidNameChange(newName: string): boolean {
-    return (this.nameForm.invalid || newName === '');
+  isValidNameChange(fName: string, lName: string): boolean {
+    return (this.nameForm.invalid || fName === '' || lName === '');
   }
 
   ngOnInit(): void {

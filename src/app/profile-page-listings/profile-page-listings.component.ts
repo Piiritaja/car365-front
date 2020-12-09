@@ -19,6 +19,9 @@ export class ProfilePageListingsComponent implements OnInit {
     this.listingItemService.getOwnerListings(this.userId).subscribe(data => {
       this.listingItems = data;
     });
+    if (this.listingItems === undefined) {
+      document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have listings...';
+    }
   }
 
   ngOnInit(): void {
