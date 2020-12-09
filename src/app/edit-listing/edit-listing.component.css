@@ -1,3 +1,13 @@
+.edit {
+  width: 95vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.rightTile {
+  width: 70%;
+}
+
 .page {
   margin-left: auto;
   margin-right: auto;
@@ -26,6 +36,7 @@ mat-card {
 .leftTile {
   background: whitesmoke;
   display: block;
+  width: 25%;
 }
 
 .smallField {
@@ -39,4 +50,19 @@ mat-card-header {
 .imgView {
   max-height: 200px;
   max-width: 300px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .edit {
+    flex-direction: column;
+  }
+
+  .rightTile {
+    margin-top: 10px;
+    width: 95vw;
+  }
+
+  .leftTile {
+    width: 100vw;
+  }
 }

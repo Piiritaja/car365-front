@@ -81,4 +81,8 @@ mat-list-item a {
     max-height: none;
     height: auto;
   }
+
+  .menu-but {
+    display: none;
+  }
 }
