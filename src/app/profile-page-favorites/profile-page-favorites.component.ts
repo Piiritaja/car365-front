@@ -15,16 +15,16 @@ export class ProfilePageFavoritesComponent implements OnInit {
   constructor(private listingItemService: ListingItemService) {
   }
 
-  listingItems: ListingItem[];
+  bookmarkedListings: ListingItem[];
 
   getFavoritedListingItems(): void {
     if (this.userRole === 'PREMIUM' || this.userRole === 'ADMIN') {
       this.listingItemService.getFavoriteListings(this.userId).subscribe(data => {
-        this.listingItems = data;
+        this.bookmarkedListings = data;
       });
-    } else {
-      document.getElementsByClassName('profile-display')[0].innerHTML =
-        '<p id="empty-text">' + 'You don\'t have favorites (Make sure you have Premium account!)</p>';
+    }
+    if (this.bookmarkedListings === undefined) {
+      document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have favorites (Make sure you have Premium account!';
     }
   }
 
