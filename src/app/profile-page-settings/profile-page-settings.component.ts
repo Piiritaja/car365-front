@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ProfilePageSettingsComponent implements OnInit {
 
-  owner = {email: null, password: null, phone: null, firstName: null, lastName: null};
+  owner = {email: null, password: null, phone: null, firstName: null, lastName: null, id: null, bookmarks: null};
   showPass = false;
   firstPassword = '';
   secondPassword = '';
@@ -25,15 +25,13 @@ export class ProfilePageSettingsComponent implements OnInit {
   @Input() userId: string;
 
   constructor(private authenticationService: AuthenticationService, private http: HttpClient) {
-    this.http.get<object>('api/user/' + authenticationService.currentUserValue.id).subscribe(data => {
-      // @ts-ignore
+    this.http.get<any>('api/user/' + authenticationService.currentUserValue.id).subscribe(data => {
+      this.owner.id = data.id;
       this.owner.firstName = data.firstName;
-      // @ts-ignore
       this.owner.lastName = data.lastName;
-      // @ts-ignore
       this.owner.email = data.email;
-      // @ts-ignore
       this.owner.phone = data.phone;
+      this.owner.bookmarks = data.bookmarks;
     });
   }
 
@@ -52,6 +50,10 @@ export class ProfilePageSettingsComponent implements OnInit {
   changeName(fName: string, lName: string): void {
     this.owner.firstName = fName;
     this.owner.lastName = lName;
+  }
+
+  saveChanges(): void {
+    this.http.put<object>('api/user/' + this.authenticationService.currentUserValue.id, this.owner).subscribe();
   }
 
   isValidPasswordChange(firstPassword, secondPassword: string): boolean {
