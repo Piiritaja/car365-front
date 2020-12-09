@@ -1,3 +1,4 @@
-<h1 style="margin: 20px; color: deeppink; font-weight: bold">Your listings</h1>
-<app-listing *ngFor="let listingItem of listingItems" [listingItem]="listingItem"></app-listing>
-
+<h1 class="profile-display-title">Your listings</h1>
+<div class="profile-display">
+  <app-listing *ngFor="let listingItem of listingItems" [listingItem]="listingItem"></app-listing>
+</div>

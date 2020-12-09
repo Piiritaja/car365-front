@@ -1,52 +1,9 @@
-mat-toolbar {
-  margin-bottom: 10px;
+.profile-display {
+  margin-left: 25px
 }
 
-img {
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-right:10px;
-}
-
-mat-drawer-container {
-  min-width: 1000px;
-  height: 120px;
-  margin-bottom: 10px;
-}
-
-mat-drawer-content {
-  align-items: center;
-  background-color: lightgray;
-}
-
-mat-drawer {
-  background-color: lightgray;
-}
-
-.info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-span {
-  padding-left: 1rem;
-  padding-right: 10px;
-  font-size: medium;
-}
-
-.make {
-  margin-left: 260px;
-}
-
-.name {
-  margin-left: 60px;
-}
-
-.price {
-  margin-right: 30px;
-}
-
-.price.ad {
-  margin-right: 40px;
+.profile-display-title {
+  margin: 20px;
+  color: deeppink;
+  font-weight: bold
 }

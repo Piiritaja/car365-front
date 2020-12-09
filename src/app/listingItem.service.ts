@@ -23,7 +23,7 @@ export class ListingItemService {
   }
 
   getFavoriteListings(ownerId): Observable<ListingItem[]> {
-    return this.http.get<ListingItem[]>(this.listingUrl + '/favorites/' + ownerId);
+    return this.http.get<ListingItem[]>(this.listingUrl + '/owner/' + ownerId + '?favorites=true');
   }
 
   postListing(item: ListingItemNoId): Observable<any> {

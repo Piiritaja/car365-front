@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ListingItem} from '../listingItem';
+import {ListingItemService} from '../listingItem.service';
 
 @Component({
   selector: 'app-profile-page-favorites',
@@ -11,12 +12,20 @@ export class ProfilePageFavoritesComponent implements OnInit {
   @Input() userId: string;
   @Input() userRole: string;
 
-  constructor() {}
+  constructor(private listingItemService: ListingItemService) {
+  }
 
   listingItems: ListingItem[];
 
   getFavoritedListingItems(): void {
-    if (this.userRole === 'PREMIUM' || this.userRole === 'ADMIN') {}
+    if (this.userRole === 'PREMIUM' || this.userRole === 'ADMIN') {
+      this.listingItemService.getFavoriteListings(this.userId).subscribe(data => {
+        this.listingItems = data;
+      });
+    } else {
+      document.getElementsByClassName('profile-display')[0].innerHTML =
+        '<p id="empty-text">' + 'You don\'t have favorites (Make sure you have Premium account!)</p>';
+    }
   }
 
   ngOnInit(): void {
