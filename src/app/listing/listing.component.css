@@ -11,7 +11,7 @@ img {
 }
 
 mat-drawer-container {
-  min-width: 1000px;
+  min-width: 80vw;
   height: 120px;
   margin-bottom: 10px;
   border-radius: 5px;

@@ -80,18 +80,6 @@ h1 {
   color: #3F51B5;
 }
 
-
-mat-grid-tile-header {
-  background-color: ghostwhite;
-}
-
-
-mat-grid-tile {
-  margin-top: 0;
-  border: 1px solid #cdcdcd;
-  border-radius: 2px;
-}
-
 mat-card {
   padding: 10px;
   width: 100%;
@@ -106,6 +94,7 @@ mat-card {
   background: whitesmoke;
   display: block;
   align-content: center;
+  width: 25vw;
 }
 
 .smallField {
@@ -122,21 +111,57 @@ mat-card-header {
 }
 
 .page {
-
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  max-width: 90%;
+  width: 75vw;
+  margin-left: auto;
 
+}
+
+.listing-arrangement mat-list mat-list-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  min-height: 60px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .descriptionBox {
   max-width: 90%;
   margin: 5px auto;
   background: whitesmoke;
+  height: 400px;
 }
 
+.listing-arrangement {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 93vw;
+  margin: 10px;
+}
+
+@media only screen and (max-width: 1300px) {
+
+  .listing-arrangement {
+    flex-direction: column-reverse;
+  }
+
+  .listing-image {
+    max-width: 95%;
+  }
+
+  .leftTile {
+    width: 95vw;
+  }
+
+  .page {
+    width: 95vw;
+  }
+
+}
 
 

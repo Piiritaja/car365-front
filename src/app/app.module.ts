@@ -75,7 +75,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     AllCarsComponent,
     FooterComponent,
     FullFilterComponent,
-    FullFilterComponent
+    FullFilterComponent,
   ],
   imports: [
     HttpClientModule,

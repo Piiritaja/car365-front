@@ -1,90 +1,87 @@
 <ng-container *ngIf="listing" class="listing">
+  <div class="listing-desktop">
+    <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
+                     [style.box-shadow]="'0px 1px lightgrey'">
+      <mat-card-title>{{listing.title}}</mat-card-title>
+      <mat-card class="statusbox" [ngStyle]="{'backgroundColor': backgroundColor}">
+        {{listing.status}}</mat-card>
+      <div>
+        <button mat-icon-button aria-label="Menu button"
+                [matMenuTriggerFor]="menu">
+          <mat-icon>settings</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="changeStatus()">
+              <mat-icon>check_circle</mat-icon>
+              Change status
+            </button>
+            <button mat-menu-item (click)="editListing()">
+              <mat-icon>edit</mat-icon>
+              Edit
+            </button>
+            <button mat-menu-item (click)="openDialog()">
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+          </mat-menu>
+        </button>
+      </div>
+    </mat-card-header>
 
-  <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
-                   [style.box-shadow]="'0px 1px lightgrey'">
-    <mat-card-title>{{listing.title}}</mat-card-title>
-    <mat-card class="statusbox" [ngStyle]="{'backgroundColor': backgroundColor}">
-      {{listing.status}}</mat-card>
-    <div>
-      <button mat-icon-button aria-label="Menu button"
-              [matMenuTriggerFor]="menu">
-        <mat-icon>settings</mat-icon>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="changeStatus()">
-            <mat-icon>check_circle</mat-icon>
-            Change status
-          </button>
-          <button mat-menu-item (click)="editListing()">
-            <mat-icon>edit</mat-icon>
-            Edit
-          </button>
-          <button mat-menu-item (click)="openDialog()">
-            <mat-icon>delete</mat-icon>
-            Delete
-          </button>
-        </mat-menu>
-      </button>
-    </div>
-  </mat-card-header>
+    <div class="listing-arrangement">
+      <div class="leftTile">
+        <mat-list [style.width]="'100%'" [style.height]="'100%'">
+          <mat-list-item><span class="parameter">Brand: &nbsp;</span> {{listing.brand}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Model: &nbsp;</span> {{listing.model}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Year: &nbsp;</span>{{listing.releaseYear}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Mileage: &nbsp;</span> {{listing.mileage}} km</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Engine size: &nbsp;</span> {{listing.engineSize}} l</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Engine power: &nbsp;</span> {{listing.enginePower}} kw</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Fuel type: &nbsp;</span> {{listing.fuelType}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Color: &nbsp;</span> {{listing.color}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">DriveType: &nbsp;</span> {{listing.driveType}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Gearbox: &nbsp;</span> {{listing.gearboxType}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Body type: &nbsp;</span> {{listing.bodyType}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Location: &nbsp;</span> {{listing.location}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Price: &nbsp;</span> {{listing.price}} €</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">Seller: &nbsp;</span> {{listingMock.ownerName}}
+            {{listingMock.ownerNumber}}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item><span class="parameter">
+              Additional Information:  </span>
+              {{listing.description}}</mat-list-item>
 
-  <mat-grid-list cols="4" rowHeight="950px">
-    <mat-grid-tile class="leftTile">
-      <mat-list [style.width]="'100%'" [style.height]="'100%'">
-        <mat-list-item><span class="parameter">Brand: &nbsp;</span> {{listing.brand}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Model: &nbsp;</span> {{listing.model}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Year: &nbsp;</span>{{listing.releaseYear}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Mileage: &nbsp;</span> {{listing.mileage}} km</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Engine size: &nbsp;</span> {{listing.engineSize}} l</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Engine power: &nbsp;</span> {{listing.enginePower}} kw</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Fuel type: &nbsp;</span> {{listing.fuelType}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Color: &nbsp;</span> {{listing.color}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">DriveType: &nbsp;</span> {{listing.driveType}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Gearbox: &nbsp;</span> {{listing.gearboxType}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Body type: &nbsp;</span> {{listing.bodyType}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Location: &nbsp;</span> {{listing.location}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Price: &nbsp;</span> {{listing.price}} €</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item><span class="parameter">Seller: &nbsp;</span> {{listingMock.ownerName}}
-          {{listingMock.ownerNumber}}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-card class="descriptionBox">
-          <mat-card-title>
-            Additional Information:
-          </mat-card-title>
-          <mat-card-content>
-            {{listing.description}}
-          </mat-card-content>
-        </mat-card>
 
           <!-- price -->
 
-      </mat-list>
-    </mat-grid-tile>
+        </mat-list>
+      </div>
 
-    <mat-grid-tile colspan="3">
-      <mat-card class="page">
-        <div class="images-buttons">
-          <img *ngFor="let image of listing.images | slice:start:end" src="{{image}}" alt="e36" class="listing-image">
-          <h1>{{nrOfImages}} Pictures </h1>
-          <span class="buttons">
+      <div>
+        <mat-card class="page">
+          <div class="images-buttons">
+            <img *ngFor="let image of listing.images | slice:start:end" src="{{image}}" alt="e36" class="listing-image">
+            <h1>{{nrOfImages}} Pictures </h1>
+            <span class="buttons">
         <button mat-raised-button (click)="nextPicture()" class="next-button">></button>
         <button mat-raised-button (click)="previousPicture()" class="previous-button"><</button>
       </span>
-        </div>
+          </div>
 
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </ng-container>
