@@ -1,0 +1,62 @@
+div {
+  width: fit-content;
+  height: fit-content;
+  border: solid 4px #3F51B5;
+  background-color: #3F51B5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+mat-form-field {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+mat-form-field:hover {
+  background-color: #3F58BB;
+  border-radius: 10px;
+  left: .1em;
+}
+
+button {
+  background-color: deeppink;
+}
+
+button:hover {
+  left: .1em;
+}
+
+a:hover {
+  color: #3F51B5;
+}
+
+mat-label {
+  color: white;
+}
+
+mat-option:hover {
+  color:deeppink;
+}
+
+a {
+  color: white;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    width: 100%;
+  }
+  .mat-form-field {
+    margin: auto;
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .mat-form-field {
+    width: 95%;
+  }
+}

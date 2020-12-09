@@ -1,14 +1,40 @@
 <mat-toolbar color="primary" class="mat-elevation-z6">
   <div>
     <a mat-button routerLink="/home" class="logo">Cars<a class="logoNumber">365</a></a>
-    <nav>
+    <nav class="nav-full">
       <a mat-button routerLink="/home" class="button colored">Home</a>
       <a mat-button routerLink="/allCars/{{tab}}" class="button colored">All cars</a>
       <a *ngIf="isLoggedIn()" mat-button class="button colored" (click)="openSignIn()">Sign in</a>
-      <a *ngIf="isLoggedIn()" mat-raised-button color="accent" class="button signup" (click)="openSignUp()">Sign up</a>
+      <a *ngIf="isLoggedIn()" mat-raised-button color="accent" class="button signup" (click)="openSignUp()">Sign
+        up</a>
+    </nav>
+    <nav class="nav-but">
+      <mat-expansion-panel class="mobile-menu">
+        <mat-expansion-panel-header>
+          <mat-panel-description [style.margin-left]="'auto'">
+            <mat-icon [style.color]="'white'">reorder</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item><a mat-button routerLink="/home" class="button colored">Home</a></mat-list-item>
+          <mat-list-item><a mat-button routerLink="/allCars/{{tab}}" class="button colored">All cars</a></mat-list-item>
+          <mat-list-item *ngIf="isLoggedIn()"><a mat-button class="button colored" (click)="openSignIn()">Sign in</a></mat-list-item>
+          <mat-list-item *ngIf="isLoggedIn()"><a mat-raised-button color="accent" class="button signup" (click)="openSignUp()">Sign
+            up</a></mat-list-item>
+          <mat-list-item *ngIf="!isLoggedIn()">
+            <a mat-button routerLink="/profile">My Profile</a>
+          </mat-list-item>
+            <mat-list-item *ngIf="!isLoggedIn()">
+              <a mat-button>Settings</a>
+            </mat-list-item>
+              <mat-list-item *ngIf="!isLoggedIn()" (click)="logout()">
+                <a mat-button>Log Out</a>
+              </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
     </nav>
   </div>
-  <div>
+  <div class="menu-but">
     <button *ngIf="!isLoggedIn()" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon class="icon">directions_car</mat-icon>
     </button>
@@ -28,3 +54,7 @@
     </mat-menu>
   </div>
 </mat-toolbar>
+
+<!--
+[ngStyle]="{'display': isOpenMenu() == true ? 'block' : 'none' }"
+-->

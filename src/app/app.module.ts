@@ -48,6 +48,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {ErrorInterceptor} from './helpers/error.interceptor';
+import { FullFilterComponent } from './filter/full-filter/full-filter.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
     EditListingComponent,
     DeleteDialogComponent,
     AllCarsComponent,
-    FooterComponent
+    FooterComponent,
+    FullFilterComponent,
+    FullFilterComponent,
   ],
   imports: [
     HttpClientModule,
@@ -102,7 +106,8 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
     MatIconModule,
     MatMenuModule,
     MatRippleModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

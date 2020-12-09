@@ -1,2 +1,5 @@
-<h1 style="margin: 20px; color: deeppink; font-weight: bold">Your favorites</h1>
-<p style="margin: 50px">You don't have favorites (Make sure you have Premium account!)</p>
+<h1 class="profile-display-title">Your favorites</h1>
+<div class="profile-display">
+  <app-listing *ngFor="let listingItem of bookmarkedListings" [listingItem]="listingItem"></app-listing>
+</div>
+

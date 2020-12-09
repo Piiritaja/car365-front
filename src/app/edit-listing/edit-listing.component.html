@@ -2,8 +2,8 @@
 hind, pildid, asukoht, kirjeldus
 -->
 
-<mat-grid-list cols="5" rowHeight="1000px">
-  <mat-grid-tile class="leftTile">
+<div class="edit">
+  <div class="leftTile">
     <mat-list [style.width]="'100%'" [style.height]="'100%'">
       <mat-list-item><span class="parameter">Brand:</span> {{listing.brand}}</mat-list-item>
       <mat-divider></mat-divider>
@@ -27,9 +27,9 @@ hind, pildid, asukoht, kirjeldus
       <mat-divider></mat-divider>
 
     </mat-list>
-  </mat-grid-tile>
-  <form [formGroup]="formGroup">
-    <mat-grid-tile colspan="4">
+  </div>
+  <div class="rightTile">
+    <form [formGroup]="formGroup">
       <mat-card class="page">
         <mat-card-header>
           <mat-card-title>Edit listing</mat-card-title>
@@ -53,7 +53,6 @@ hind, pildid, asukoht, kirjeldus
         </mat-form-field>
 
 
-        <mat-card>
           <mat-form-field appearance="outline" [style.min-width]="'80%'">
             <mat-label>Image URL</mat-label>
             <input [formControl]="img1" matInput required type="url" placeholder="Ex. images.com/image.jpg">
@@ -78,9 +77,8 @@ hind, pildid, asukoht, kirjeldus
             <button mat-button (click)="onSubmit()" [style.background]="'whitesmoke'">Save</button>
             <div *ngIf="invalidInputs" [style.color]="'red'">Some required fields are empty or invalid</div>
           </mat-action-list>
-        </mat-card>
 
       </mat-card>
-    </mat-grid-tile>
-  </form>
-</mat-grid-list>
+    </form>
+  </div>
+</div>

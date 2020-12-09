@@ -23,3 +23,11 @@ a:hover {
   color:deeppink;
   left: .1em;
 }
+
+@media only screen and (max-width: 1000px) {
+  div {
+    width: 90vw;
+    margin: 0 0 0 14px;
+    justify-content: center;
+  }
+}

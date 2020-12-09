@@ -17,8 +17,10 @@
   margin: 5%;
 }
 
-app-profile-page-listings {
-  margin-left: 10px;
+@media only screen and (max-width: 1000px) {
+  .profile-page {
+    flex-direction: column;
+  }
 }
 
 
