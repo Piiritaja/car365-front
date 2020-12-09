@@ -32,4 +32,10 @@ button.change:disabled {
   background: whitesmoke;
 }
 
+@media only screen and (max-width: 1000px) {
+  .profile-display {
+    margin-left: 0;
+  }
+}
+
 

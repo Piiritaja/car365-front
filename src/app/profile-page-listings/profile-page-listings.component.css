@@ -7,3 +7,9 @@
   color: deeppink;
   font-weight: bold
 }
+
+@media only screen and (max-width: 1000px) {
+  .profile-display {
+    margin-left: 0;
+  }
+}

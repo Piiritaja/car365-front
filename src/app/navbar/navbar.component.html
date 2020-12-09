@@ -27,7 +27,7 @@
             <mat-list-item *ngIf="!isLoggedIn()">
               <a mat-button>Settings</a>
             </mat-list-item>
-              <mat-list-item *ngIf="!isLoggedIn()">
+              <mat-list-item *ngIf="!isLoggedIn()" (click)="logout()">
                 <a mat-button>Log Out</a>
               </mat-list-item>
         </mat-list>
