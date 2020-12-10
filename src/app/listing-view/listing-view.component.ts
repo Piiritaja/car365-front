@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Listing} from '../listingProperties/Listing';
 import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditService} from '../edit.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
+import {UserService} from '../user.service';
 
 export interface DialogData {
   id: string;
@@ -17,27 +17,7 @@ export interface DialogData {
   styleUrls: ['./listing-view.component.css']
 })
 export class ListingViewComponent implements OnInit {
-  listingMock: Listing = {
-    id: '1',
-    title: 'Bmw 320i 2.0 110kw',
-    description: 'this is additional inf',
-    status: 'available',
-    price: 4000,
-    location: 'valga',
-    bodyType: 'sedan',
-    brand: 'BMW',
-    model: '320i',
-    color: 'green',
-    gearbox: 'manual',
-    fuelType: 'petrol',
-    driveType: 'rear-wheel',
-    enginePower: 110,
-    engineSize: '2.0',
-    mileage: 269420,
-    year: 1996,
-    ownerName: 'Toomas MockUser',
-    ownerNumber: '+372 4204201'
-  };
+  owner = {id: null, firstName: null, lastName: null, email: null, phone: null, bookmarks: null};
   listing: ListingItem;
   backgroundColor = 'lightgreen';
   start = 0;
@@ -46,10 +26,11 @@ export class ListingViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private listingItemService: ListingItemService,
     private router: Router,
+    private listingItemService: ListingItemService,
+    private userService: UserService,
     private editService: EditService,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {
   }
 
@@ -57,14 +38,25 @@ export class ListingViewComponent implements OnInit {
     this.getListing();
   }
 
-  getListing(): ListingItem {
+  getListing(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.listingItemService.getListing(id).subscribe(listing => {
       this.listing = listing;
       this.nrOfImages = this.listing.images.length;
       this.updateStatusColor();
+      this.getOwner(listing.owner);
     });
-    return this.listing;
+  }
+
+  getOwner(userId): void {
+    this.userService.getUser(userId).subscribe(data => {
+      this.owner.id = data.id;
+      this.owner.firstName = data.firstName;
+      this.owner.lastName = data.lastName;
+      this.owner.email = data.email;
+      this.owner.phone = data.phone;
+      this.owner.bookmarks = data.bookmarks;
+    });
   }
 
   openDialog(): void {

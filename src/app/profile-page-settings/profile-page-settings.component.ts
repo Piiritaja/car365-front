@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {UserService} from '../user.service';
 import {AuthenticationService} from '../authentication.service';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-profile-page-settings',
@@ -24,15 +24,7 @@ export class ProfilePageSettingsComponent implements OnInit {
 
   @Input() userId: string;
 
-  constructor(private authenticationService: AuthenticationService, private http: HttpClient) {
-    this.http.get<any>('api/user/' + authenticationService.currentUserValue.id).subscribe(data => {
-      this.owner.id = data.id;
-      this.owner.firstName = data.firstName;
-      this.owner.lastName = data.lastName;
-      this.owner.email = data.email;
-      this.owner.phone = data.phone;
-      this.owner.bookmarks = data.bookmarks;
-    });
+  constructor(private authService: AuthenticationService, private userService: UserService) {
   }
 
   changePassword(value: string): void {
@@ -53,7 +45,7 @@ export class ProfilePageSettingsComponent implements OnInit {
   }
 
   saveChanges(): void {
-    this.http.put<object>('api/user/' + this.authenticationService.currentUserValue.id, this.owner).subscribe();
+    this.userService.updateUser(this.authService.currentUserValue.id, this.owner);
   }
 
   isValidPasswordChange(firstPassword, secondPassword: string): boolean {
@@ -73,6 +65,14 @@ export class ProfilePageSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.getUser(this.authService.currentUserValue.id).subscribe(data => {
+      this.owner.id = data.id;
+      this.owner.firstName = data.firstName;
+      this.owner.lastName = data.lastName;
+      this.owner.email = data.email;
+      this.owner.phone = data.phone;
+      this.owner.bookmarks = data.bookmarks;
+    });
   }
 
 }

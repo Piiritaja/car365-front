@@ -1,14 +1,14 @@
 <mat-drawer-container routerLink="/listings/{{listingItem.id}}">
-  <mat-drawer class="image" mode="side" opened [style.width]="'180px'">
+  <mat-drawer class="image" mode="side" opened [style.width]="'180px'" [class.premium]="isPremium()">
     <img src="{{listingItem.images[0]}}" style="max-width:85%;max-height:85%;" alt="listing.images[0]">
   </mat-drawer>
-  <mat-drawer-content class="info">
-    <div class="name">{{listingItem.title}}</div>
+  <mat-drawer-content class="info" [class.premium]="isPremium()">
+    <div class="name" [class.premium]="isPremium()">{{listingItem.title}}</div>
     <div class="price ad">
       <span class="full-view">{{listingItem.price}}€</span>
       <span class="full-view">{{listingItem.releaseYear}}</span>
-      <span class="small-view"><b>Year:</b> {{listingItem.releaseYear}}</span>
-      <span class="small-view"><b>Price:</b> {{listingItem.price}}€</span>
+      <span class="small-view"><strong>Year:</strong> {{listingItem.releaseYear}}</span>
+      <span class="small-view"><strong>Price:</strong> {{listingItem.price}}€</span>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
