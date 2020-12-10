@@ -6,6 +6,7 @@ import {EditService} from '../edit.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {UserService} from '../user.service';
+import {AuthenticationService} from '../authentication.service';
 
 export interface DialogData {
   id: string;
@@ -30,12 +31,20 @@ export class ListingViewComponent implements OnInit {
     private listingItemService: ListingItemService,
     private userService: UserService,
     private editService: EditService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: AuthenticationService
   ) {
   }
 
   ngOnInit(): void {
     this.getListing();
+  }
+
+  isCurrentUserListing(): boolean {
+    console.log('==============');
+    console.log(this.owner.id);
+    console.log(this.authService.currentUserValue.id);
+    return this.owner.id === this.authService.currentUserValue.id;
   }
 
   getListing(): void {
@@ -67,8 +76,7 @@ export class ListingViewComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
-  delay(ms: number) {
+  delay(ms: number): Promise<any> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 

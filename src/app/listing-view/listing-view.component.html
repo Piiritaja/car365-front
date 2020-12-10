@@ -7,7 +7,7 @@
         {{listing.status}}</mat-card>
       <div>
         <button mat-icon-button aria-label="Menu button"
-                [matMenuTriggerFor]="menu">
+                [matMenuTriggerFor]="menu" [disabled]="isCurrentUserListing()">
           <mat-icon>settings</mat-icon>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="changeStatus()">
@@ -61,7 +61,7 @@
           <mat-divider></mat-divider>
           <mat-list-item><span class="parameter">
               Additional Information:  </span>
-              {{listing.description}}</mat-list-item>
+            {{listing.description}}</mat-list-item>
 
 
           <!-- price -->
