@@ -51,11 +51,14 @@ export class ListingViewComponent implements OnInit {
   }
 
   currentUserBookmarks(): void {
-    this.listingItemService.getFavoriteListings(this.authService.getUserId).subscribe(data => data.forEach(l => {
-      if (l.id === this.listing.id) {
-        this.bookmarked = true;
-      }
-    }));
+    this.listingItemService.getFavoriteListings(this.authService.getUserId).subscribe(data => {
+      this.bookmarked = false;
+      data.forEach(l => {
+        if (l.id === this.listing.id) {
+          this.bookmarked = true;
+        }
+      });
+    });
   }
 
   bookmarkListing(): void {
