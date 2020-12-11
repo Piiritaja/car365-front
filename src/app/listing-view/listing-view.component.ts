@@ -47,27 +47,22 @@ export class ListingViewComponent implements OnInit {
   }
 
   isCurrentUserListing(): boolean {
-    if (this.loggedIn) {
-      return (this.owner.id === this.authService.getUserId || this.authService.currentUserValue.role === 'ADMIN');
-    } else {
-      return false;
-    }
+    return (this.loggedIn && (this.owner.id === this.authService.getUserId || this.authService.currentUserValue.role === 'ADMIN'));
   }
 
   currentUserBookmarks(): void {
-    this.listingItemService.getFavoriteListings(this.authService.getUserId)
-      .subscribe(data => data.forEach(bookmark => {
-        console.log(bookmark.id.valueOf());
-        console.log(this.listing.id.valueOf());
-        // TODO working boolean for whether listing is in bookmarks
-        console.log(this.listing.id === bookmark.id); // see on true kui on võrdsed
-        console.log('bool' + this.listing.id === bookmark.id);
-        // see ei ole true sest 'bool' + this.listing.id liidab need kokku ja võrdleb bookmark.id-ga
-        console.log(typeof this.listing.id, typeof bookmark.id);
-        console.log('____________________________');
-        this.bookmarked = false;
-        this.bookmarked = (bookmark.id === this.listing.id);
-      }));
+    this.listingItemService.getFavoriteListings(this.authService.getUserId).subscribe(data => data.forEach(l => {
+      if (l.id === this.listing.id) {
+        this.bookmarked = true;
+      }
+    }));
+  }
+
+  bookmarkListing(): void {
+    this.userService.getUser(this.authService.getUserId).subscribe(user => {
+      this.userService.bookmarkListing(this.authService.getUserId, this.listing.id, user)
+        .subscribe(() => this.currentUserBookmarks());
+    });
   }
 
   getListing(): void {
@@ -94,7 +89,7 @@ export class ListingViewComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {data: {id: this.listing.id}});
     this.editService.addItem(this.listing);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/home']);
     });
   }
@@ -142,29 +137,11 @@ export class ListingViewComponent implements OnInit {
       this.listing.status = 'Available';
     }
     this.updateStatusColor();
-    this.listingItemService.putListing(this.listing, this.listing.id).subscribe(listing => this.listing);
+    this.listingItemService.putListing(this.listing, this.listing.id).subscribe(() => this.listing);
   }
 
   editListing(): void {
     this.editService.addItem(this.listing);
     this.router.navigate(['listings/edit/' + this.listing.id]);
-  }
-
-  bookmarkListing(): void {
-    this.userService.getUser(this.authService.getUserId)
-      .subscribe(user => {
-        console.log(this.bookmarked);
-        if (this.bookmarked) {
-          (user.bookmarks as object[]).splice(user.bookmarks.indexOf(this.listing), 1);
-        } else {
-          (user.bookmarks as object[]).push(this.listing);
-        }
-        console.log('listings: ');
-        console.log(user.bookmarks);
-        user.bookmarks.forEach(d => console.log(d));
-        this.userService.updateUser(this.authService.getUserId, user).subscribe(result => {
-          this.currentUserBookmarks();
-        });
-      });
   }
 }

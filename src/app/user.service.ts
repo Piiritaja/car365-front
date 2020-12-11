@@ -32,4 +32,8 @@ export class UserService {
   updateUser(userId, owner): Observable<any> {
     return this.http.put<object>(this.usersUrl + '/' + userId, owner);
   }
+
+  bookmarkListing(userId, listingId, owner): Observable<any> {
+    return this.http.put<object>(this.usersUrl + '/' + userId + '?bookmark=' + listingId, owner);
+  }
 }
