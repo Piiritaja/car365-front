@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./profile-page-listings.component.css']
 })
 export class ProfilePageListingsComponent implements OnInit {
-
+  waiting = true;
   @Input() userId: string;
 
   constructor(private listingItemService: ListingItemService) { }
@@ -16,12 +16,15 @@ export class ProfilePageListingsComponent implements OnInit {
   listingItems: ListingItem[];
 
   getListingItems(): void {
+    this.waiting = true;
     this.listingItemService.getOwnerListings(this.userId).subscribe(data => {
       this.listingItems = data;
+      console.log(data);
+      if (data === undefined) {
+        document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have listings...';
+      }
+      this.waiting = false;
     });
-    if (this.listingItems === undefined) {
-      document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have listings...';
-    }
   }
 
   ngOnInit(): void {

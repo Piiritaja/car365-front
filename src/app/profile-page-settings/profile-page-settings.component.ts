@@ -43,7 +43,9 @@ export class ProfilePageSettingsComponent implements OnInit {
 
   upgradeToPremium(): void {
     this.owner.role = 'PREMIUM';
-    this.userService.updateUser(this.authService.getUserId, this.owner);
+    this.userService.updateUser(this.authService.getUserId, this.owner).subscribe(owner => {
+      this.owner = owner;
+    });
   }
 
   saveChanges(): void {

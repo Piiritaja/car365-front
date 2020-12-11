@@ -1,5 +1,6 @@
 <div class="next">
   <app-filter></app-filter>
+  <mat-spinner *ngIf="!listingItems" class="waiting-anim"></mat-spinner>
   <div *ngIf="listingItems" class="container">
     <div class="info">
       <h1>Recently added cars</h1>

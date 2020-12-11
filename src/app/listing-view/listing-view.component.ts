@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 import {UserService} from '../user.service';
 import {AuthenticationService} from '../authentication.service';
+import {LoginDetails} from "../loginDetails";
 
 export interface DialogData {
   id: string;
@@ -26,6 +27,8 @@ export class ListingViewComponent implements OnInit {
   nrOfImages: number;
   bookmarked = false;
   loggedIn = false;
+  currentUser: LoginDetails;
+  allowedMenu = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,8 +43,12 @@ export class ListingViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListing();
-    if (this.authService.currentUserValue) {
+    this.currentUser = this.authService.currentUserValue;
+    if (this.currentUser) {
       this.loggedIn = true;
+      if (this.currentUser.role === 'PREMIUM' || this.currentUser.role === 'ADMIN') {
+        this.allowedMenu = true;
+      }
       this.currentUserBookmarks();
     }
   }
@@ -62,10 +69,8 @@ export class ListingViewComponent implements OnInit {
   }
 
   bookmarkListing(): void {
-    this.userService.getUser(this.authService.getUserId).subscribe(user => {
-      this.userService.bookmarkListing(this.authService.getUserId, this.listing.id, user)
-        .subscribe(() => this.currentUserBookmarks());
-    });
+    this.userService.bookmarkListing(this.listing.id)
+      .subscribe(() => this.currentUserBookmarks());
   }
 
   getListing(): void {

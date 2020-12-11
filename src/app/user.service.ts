@@ -33,7 +33,7 @@ export class UserService {
     return this.http.put<object>(this.usersUrl + '/' + userId, owner);
   }
 
-  bookmarkListing(userId, listingId, owner): Observable<any> {
-    return this.http.put<object>(this.usersUrl + '/' + userId + '?bookmark=' + listingId, owner);
+  bookmarkListing(listingId): Observable<any> {
+    return this.http.put<object>(this.usersUrl + '/bookmark/' + listingId, null);
   }
 }

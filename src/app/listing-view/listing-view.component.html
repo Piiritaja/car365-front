@@ -1,3 +1,4 @@
+<mat-spinner *ngIf="!listing" class="waiting-anim"></mat-spinner>
 <ng-container *ngIf="listing" class="listing">
   <div class="listing-desktop">
     <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
@@ -7,7 +8,7 @@
         {{listing.status}}</mat-card>
       <div>
         <button mat-icon-button aria-label="Menu button"
-                [matMenuTriggerFor]="menu" *ngIf="loggedIn">
+                [matMenuTriggerFor]="menu" *ngIf="isCurrentUserListing() || allowedMenu">
           <mat-icon>settings</mat-icon>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="changeStatus()" *ngIf="isCurrentUserListing()">

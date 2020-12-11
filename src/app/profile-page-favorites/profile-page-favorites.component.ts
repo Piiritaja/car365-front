@@ -8,7 +8,7 @@ import {ListingItemService} from '../listingItem.service';
   styleUrls: ['./profile-page-favorites.component.css']
 })
 export class ProfilePageFavoritesComponent implements OnInit {
-
+  waiting = true;
   @Input() userId: string;
   @Input() userRole: string;
 
@@ -18,9 +18,11 @@ export class ProfilePageFavoritesComponent implements OnInit {
   bookmarkedListings: ListingItem[];
 
   getFavoritedListingItems(): void {
+    this.waiting = true;
     if (this.userRole === 'PREMIUM' || this.userRole === 'ADMIN') {
       this.listingItemService.getFavoriteListings(this.userId).subscribe(data => {
         this.bookmarkedListings = data;
+        this.waiting = false;
       });
     }
   }
