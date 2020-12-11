@@ -49,7 +49,9 @@ export class ProfilePageSettingsComponent implements OnInit {
   }
 
   saveChanges(): void {
-    this.userService.updateUser(this.authService.getUserId, this.owner);
+    this.userService.updateUser(this.authService.getUserId, this.owner).subscribe(owner => {
+      this.owner = owner;
+    });
   }
 
   isValidPasswordChange(firstPassword, secondPassword: string): boolean {

@@ -22,10 +22,10 @@
           <mat-list-item *ngIf="isLoggedIn()"><a mat-raised-button color="accent" class="button signup" (click)="openSignUp()">Sign
             up</a></mat-list-item>
           <mat-list-item *ngIf="!isLoggedIn()">
-            <a mat-button routerLink="/profile">My Profile</a>
+            <a mat-button routerLink="/profile/listings">My Profile</a>
           </mat-list-item>
               <mat-list-item *ngIf="!isLoggedIn()" (click)="logout()">
-                <a mat-button>Log Out</a>
+                <a routerLink="/home" mat-button>Log Out</a>
               </mat-list-item>
         </mat-list>
       </mat-expansion-panel>
@@ -36,11 +36,11 @@
       <mat-icon class="icon">directions_car</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button routerLink="/profile" mat-menu-item>
+      <button routerLink="/profile/listings" mat-menu-item>
         <mat-icon class="icon">face</mat-icon>
         <span>My Profile</span>
       </button>
-      <button (click)="logout()" mat-menu-item>
+      <button (click)="logout()" routerLink="/home" mat-menu-item>
         <mat-icon class="icon">power_settings_new</mat-icon>
         <span>Log Out</span>
       </button>

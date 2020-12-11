@@ -1,6 +1,12 @@
-<h1 class="profile-display-title">Your favorites</h1>
-<div class="profile-display">
-  <div *ngIf="noListingsToShow()">You don't have favorites (Make sure you have Premium account!</div>
-  <app-listing *ngFor="let listingItem of bookmarkedListings" [listingItem]="listingItem"></app-listing>
+<div class="profile-row">
+  <app-profile-page></app-profile-page>
+  <div>
+    <h1 class="profile-display-title">Your favorites</h1>
+    <div class="profile-display">
+      <div *ngIf="noListingsToShow()">You don't have favorites (Make sure you have Premium account!)</div>
+      <mat-spinner *ngIf="waiting" class="waiting-anim"></mat-spinner>
+      <app-listing *ngFor="let listingItem of bookmarkedListings" [listingItem]="listingItem"></app-listing>
+    </div>
+  </div>
 </div>
 

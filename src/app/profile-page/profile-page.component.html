@@ -1,19 +1,11 @@
-<div class="profile-page">
-  <div class="profile-menubar">
-    <div>
-      <a mat-button class="profile-menubar-button" (click)="btnClick(1)" style="margin-top: 25px">My listings</a>
-    </div>
-    <div>
-      <a mat-button class="profile-menubar-button" (click)="btnClick(2)">My favorites</a>
-    </div>
-    <div>
-      <a mat-button class="profile-menubar-button" (click)="btnClick(3)">My settings</a>
-    </div>
+<div class="profile-menubar">
+  <div>
+    <a mat-button class="profile-menubar-button" routerLink="/profile/listings" style="margin-top: 25px">My listings</a>
   </div>
-  <app-profile-page-listings *ngIf="getBtnComponent() == 1" [userId]="getUserId()"></app-profile-page-listings>
-  <app-profile-page-favorites *ngIf="getBtnComponent() == 2" [userId]="getUserId()" [userRole]="getUserRole()"></app-profile-page-favorites>
-  <app-profile-page-settings *ngIf="getBtnComponent() == 3" [userId]="getUserId()"></app-profile-page-settings>
+  <div>
+    <a mat-button class="profile-menubar-button" routerLink="/profile/favorites">My favorites</a>
+  </div>
+  <div>
+    <a mat-button class="profile-menubar-button" routerLink="/profile/settings">My settings</a>
+  </div>
 </div>
-
-
-
