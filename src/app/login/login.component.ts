@@ -5,7 +5,6 @@ import {FormBuilder} from '@angular/forms';
 import {UserService} from '../user.service';
 import {first} from 'rxjs/operators';
 import {AuthenticationService} from '../authentication.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +14,13 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   checkoutForm;
+  errorMessage: string;
 
   constructor(
     private signIn: MatDialog,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private authenticationService: AuthenticationService,
-    private router: Router
+    private authenticationService: AuthenticationService
   ) {
     this.checkoutForm = this.formBuilder.group({
       email: '',
@@ -38,17 +37,23 @@ export class LoginComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmit(userPassword) {
-    console.log(userPassword);
-    this.authenticationService.login(userPassword)
-      .pipe(first())
-      .subscribe(
-        (user) => {
-          console.log(user);
-          console.log('Login successful');
-          this.signIn.closeAll();
-        },
-        error => {
-          console.log('Login unsuccessful');
-        });
+    if (this.checkoutForm.controls.email.value === '' || this.checkoutForm.controls.password.value === '') {
+      this.errorMessage = 'Fill all input fields';
+    } else {
+      this.authenticationService.login(userPassword)
+        .pipe(first())
+        .subscribe(
+          (user) => {
+            this.errorMessage = 'Login successful';
+            this.signIn.closeAll();
+          },
+          error => {
+            if (error === 'Unauthorized') {
+              this.errorMessage = 'Wrong e-mail or password';
+            } else {
+              this.errorMessage = 'Login unsuccessful';
+            }
+          });
+     }
   }
 }

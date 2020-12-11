@@ -30,6 +30,11 @@ strong {
   margin-left: 10px;
 }
 
+.errorMessage {
+  color: deeppink;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 800px) {
   mat-card {
     width: 90%;
