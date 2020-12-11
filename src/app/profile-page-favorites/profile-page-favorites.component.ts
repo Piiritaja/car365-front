@@ -28,7 +28,7 @@ export class ProfilePageFavoritesComponent implements OnInit {
   }
 
   noListingsToShow(): boolean {
-    return this.bookmarkedListings === undefined || this.userRole === 'USER';
+    return this.bookmarkedListings === undefined || this.bookmarkedListings.length === 0 || this.userRole === 'USER';
   }
 
   ngOnInit(): void {
