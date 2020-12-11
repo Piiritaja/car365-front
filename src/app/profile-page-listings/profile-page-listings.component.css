@@ -8,6 +8,11 @@
   font-weight: bold
 }
 
+.profile-row {
+  display: flex;
+  flex-direction: row;
+}
+
 @media only screen and (max-width: 1000px) {
   .profile-display {
     margin-left: 0;

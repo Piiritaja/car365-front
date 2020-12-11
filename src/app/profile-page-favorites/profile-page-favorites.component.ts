@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-profile-page-favorites',
@@ -12,7 +13,8 @@ export class ProfilePageFavoritesComponent implements OnInit {
   @Input() userId: string;
   @Input() userRole: string;
 
-  constructor(private listingItemService: ListingItemService) {
+  constructor(private listingItemService: ListingItemService,
+              private authenticationService: AuthenticationService) {
   }
 
   bookmarkedListings: ListingItem[];
@@ -32,6 +34,8 @@ export class ProfilePageFavoritesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userRole = this.authenticationService.currentUserValue.role;
+    this.userId = this.authenticationService.currentUserValue.id;
     this.getFavoritedListingItems();
   }
 }

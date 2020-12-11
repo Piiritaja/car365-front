@@ -1,6 +1,7 @@
 import {ListingItemService} from '../listingItem.service';
 import {ListingItem} from '../listingItem';
 import {Component, Input, OnInit} from '@angular/core';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-profile-page-listings',
@@ -9,9 +10,10 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ProfilePageListingsComponent implements OnInit {
   waiting = true;
-  @Input() userId: string;
+  userId: string;
 
-  constructor(private listingItemService: ListingItemService) { }
+  constructor(private listingItemService: ListingItemService,
+              private authenticationService: AuthenticationService) { }
 
   listingItems: ListingItem[];
 
@@ -28,6 +30,7 @@ export class ProfilePageListingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userId = this.authenticationService.currentUserValue.id;
     this.getListingItems();
   }
 }

@@ -1,3 +1,8 @@
+.profile-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .profile-display {
   margin-left: 25px
 }
