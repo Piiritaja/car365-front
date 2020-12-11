@@ -36,6 +36,8 @@ export class PostNewListingComponent implements OnInit {
   img2 = new FormControl();
   img3 = new FormControl();
   img4 = new FormControl();
+  imgLocal = new FormControl();
+  srcResult;
 
   options: string[] = ['BMW', 'Audi', 'Mercedes', 'Toyota'];
   brandsList: string[] = [];
@@ -178,6 +180,24 @@ export class PostNewListingComponent implements OnInit {
       console.log('invalid', this.listingItem);
       this.invalidInputs = true;
       this.posting = false;
+    }
+  }
+
+  onFileSelected(): void {
+    const inputNode: any = document.querySelector('#file');
+
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.srcResult = e.target.result;
+        console.log(this.srcResult);
+      };
+      const xhr = new XMLHttpRequest();
+      const formData = new FormData();
+      formData.append('file', inputNode.files[0]);
+      xhr.open('POST', '/api/listings/image', true);
+      xhr.send(formData);
     }
   }
 
