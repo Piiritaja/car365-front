@@ -9,7 +9,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
   styleUrls: ['./all-cars.component.css']
 })
 export class AllCarsComponent implements OnInit {
-
+  waiting = true;
   constructor(private listingItemService: ListingItemService, private route: ActivatedRoute, private router: Router) {
     // tslint:disable-next-line:only-arrow-functions
     this.router.routeReuseStrategy.shouldReuseRoute = function(): boolean {
@@ -27,10 +27,12 @@ export class AllCarsComponent implements OnInit {
   tab: any;
 
   getListingsItems(): void {
+    this.waiting = true;
     this.listingItemService.getListings().subscribe(data => {
       this.listingItems = data;
       this.pages = Array(Math.ceil(this.listingItems.length / 20)).fill(0).map((x, i) => i + 1);
       this.tab = this.route.snapshot.paramMap.get('i');
+      this.waiting = false;
     });
   }
 

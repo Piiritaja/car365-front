@@ -3,6 +3,7 @@ export interface Listing {
   title: string;
   description: string;
   status: string;
+  premium: boolean;
   price: number;
   location: string;
   bodyType: string;

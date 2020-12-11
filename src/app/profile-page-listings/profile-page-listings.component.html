@@ -1,4 +1,5 @@
 <h1 class="profile-display-title">Your listings</h1>
 <div class="profile-display">
+  <mat-spinner *ngIf="waiting" class="waiting-anim"></mat-spinner>
   <app-listing *ngFor="let listingItem of listingItems" [listingItem]="listingItem"></app-listing>
 </div>

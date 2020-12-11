@@ -1,25 +1,5 @@
 <h1 class="profile-display-title">Your settings</h1>
 <div class="profile-display">
-  <!--Password section-->
-  <div>
-    <mat-form-field class="input">
-      <label>
-        <input [(ngModel)]="firstPassword" matInput placeholder="New password"
-               [type]="showPass ? 'text' : 'password'">
-      </label>
-      <mat-icon matSuffix (mousedown)="showPass = true" (mouseleave)="showPass = false">
-        {{showPass ? 'visibility' : 'visibility_off'}}
-      </mat-icon>
-    </mat-form-field>
-    <mat-form-field class="input">
-      <label>
-        <input [(ngModel)]="secondPassword" matInput placeholder="Confirm new password" [type]="'password'">
-      </label>
-    </mat-form-field>
-    <button mat-raised-button class="change" [disabled]="isValidPasswordChange(firstPassword, secondPassword)"
-            (click)="changePassword(firstPassword)">Change
-    </button>
-  </div>
   <!--Name section-->
   <div>
     <div>
@@ -76,4 +56,6 @@
     </button>
   </div>
   <button mat-raised-button class="change" (click)="saveChanges()">Save Changes</button>
+  <button mat-raised-button class="premium" (click)="upgradeToPremium()" [disabled]="!canUpgrade()">Get Premium</button>
+
 </div>

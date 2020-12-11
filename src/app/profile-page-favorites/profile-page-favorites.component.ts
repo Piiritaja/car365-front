@@ -8,7 +8,7 @@ import {ListingItemService} from '../listingItem.service';
   styleUrls: ['./profile-page-favorites.component.css']
 })
 export class ProfilePageFavoritesComponent implements OnInit {
-
+  waiting = true;
   @Input() userId: string;
   @Input() userRole: string;
 
@@ -18,14 +18,17 @@ export class ProfilePageFavoritesComponent implements OnInit {
   bookmarkedListings: ListingItem[];
 
   getFavoritedListingItems(): void {
+    this.waiting = true;
     if (this.userRole === 'PREMIUM' || this.userRole === 'ADMIN') {
       this.listingItemService.getFavoriteListings(this.userId).subscribe(data => {
         this.bookmarkedListings = data;
+        this.waiting = false;
       });
     }
-    if (this.bookmarkedListings === undefined) {
-      document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have favorites (Make sure you have Premium account!';
-    }
+  }
+
+  noListingsToShow(): boolean {
+    return this.bookmarkedListings === undefined || this.userRole === 'USER';
   }
 
   ngOnInit(): void {
