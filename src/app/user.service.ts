@@ -29,7 +29,7 @@ export class UserService {
     return this.http.get<any>(this.usersUrl + '/' + id);
   }
 
-  updateUser(userId, owner): void {
-    this.http.put<object>(this.usersUrl + '/' + userId, owner).subscribe();
+  updateUser(userId, owner): Observable<any> {
+    return this.http.put<object>(this.usersUrl + '/' + userId, owner);
   }
 }

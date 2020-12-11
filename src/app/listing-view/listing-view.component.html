@@ -7,7 +7,7 @@
         {{listing.status}}</mat-card>
       <div>
         <button mat-icon-button aria-label="Menu button"
-                [matMenuTriggerFor]="menu" >
+                [matMenuTriggerFor]="menu" *ngIf="loggedIn" >
           <mat-icon>settings</mat-icon>
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="changeStatus()" *ngIf="isCurrentUserListing()">

@@ -25,6 +25,7 @@ export class ListingViewComponent implements OnInit {
   end = 1;
   nrOfImages: number;
   bookmarked = false;
+  loggedIn = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,22 +40,33 @@ export class ListingViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListing();
-    this.currentUserBookmarks();
+    if (this.authService.currentUserValue) {
+      this.loggedIn = true;
+      this.currentUserBookmarks();
+    }
   }
 
   isCurrentUserListing(): boolean {
-    return (this.owner.id === this.authService.getUserId || this.authService.currentUserValue.role === 'ADMIN');
+    if (this.loggedIn) {
+      return (this.owner.id === this.authService.getUserId || this.authService.currentUserValue.role === 'ADMIN');
+    } else {
+      return false;
+    }
   }
 
   currentUserBookmarks(): void {
     this.listingItemService.getFavoriteListings(this.authService.getUserId)
       .subscribe(data => data.forEach(bookmark => {
-        console.log(bookmark.id);
-        console.log(this.listing.id);
+        console.log(bookmark.id.valueOf());
+        console.log(this.listing.id.valueOf());
         // TODO working boolean for whether listing is in bookmarks
-        console.log('bool ' + this.listing.id === bookmark.id);
+        console.log(this.listing.id === bookmark.id); // see on true kui on võrdsed
+        console.log('bool' + this.listing.id === bookmark.id);
+        // see ei ole true sest 'bool' + this.listing.id liidab need kokku ja võrdleb bookmark.id-ga
+        console.log(typeof this.listing.id, typeof bookmark.id);
         console.log('____________________________');
-        this.bookmarked = (bookmark.id === this.listing.id) ? true : this.bookmarked;
+        this.bookmarked = false;
+        this.bookmarked = (bookmark.id === this.listing.id);
       }));
   }
 
@@ -150,7 +162,9 @@ export class ListingViewComponent implements OnInit {
         console.log('listings: ');
         console.log(user.bookmarks);
         user.bookmarks.forEach(d => console.log(d));
-        this.userService.updateUser(this.authService.getUserId, user);
+        this.userService.updateUser(this.authService.getUserId, user).subscribe(result => {
+          this.currentUserBookmarks();
+        });
       });
   }
 }
