@@ -23,9 +23,10 @@ export class ProfilePageFavoritesComponent implements OnInit {
         this.bookmarkedListings = data;
       });
     }
-    if (this.bookmarkedListings === undefined) {
-      document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have favorites (Make sure you have Premium account!';
-    }
+  }
+
+  noListingsToShow(): boolean {
+    return this.bookmarkedListings === undefined || this.userRole === 'USER';
   }
 
   ngOnInit(): void {

@@ -7,20 +7,25 @@
         {{listing.status}}</mat-card>
       <div>
         <button mat-icon-button aria-label="Menu button"
-                [matMenuTriggerFor]="menu" [disabled]="isCurrentUserListing()">
+                [matMenuTriggerFor]="menu" >
           <mat-icon>settings</mat-icon>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="changeStatus()">
+            <button mat-menu-item (click)="changeStatus()" *ngIf="isCurrentUserListing()">
               <mat-icon>check_circle</mat-icon>
               Change status
             </button>
-            <button mat-menu-item (click)="editListing()">
+            <button mat-menu-item (click)="editListing()" *ngIf="isCurrentUserListing()">
               <mat-icon>edit</mat-icon>
               Edit
             </button>
-            <button mat-menu-item (click)="openDialog()">
+            <button mat-menu-item (click)="openDialog()" *ngIf="isCurrentUserListing()">
               <mat-icon>delete</mat-icon>
               Delete
+            </button>
+            <button mat-menu-item (click)="bookmarkListing()" *ngIf="!isCurrentUserListing()">
+              <mat-icon *ngIf="!bookmarked">bookmark_border_icon</mat-icon>
+              <mat-icon *ngIf="bookmarked">bookmark</mat-icon>
+              Bookmark {{bookmarked}}
             </button>
           </mat-menu>
         </button>

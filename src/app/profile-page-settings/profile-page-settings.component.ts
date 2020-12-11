@@ -10,10 +10,7 @@ import {AuthenticationService} from '../authentication.service';
 })
 export class ProfilePageSettingsComponent implements OnInit {
 
-  owner = {email: null, password: null, phone: null, firstName: null, lastName: null, id: null, bookmarks: null};
-  showPass = false;
-  firstPassword = '';
-  secondPassword = '';
+  owner = {email: null, role: null, phone: null, firstName: null, lastName: null, id: null, bookmarks: null};
   mailForm = new FormControl();
   newMail = '';
   phoneForm = new FormControl();
@@ -25,10 +22,6 @@ export class ProfilePageSettingsComponent implements OnInit {
   @Input() userId: string;
 
   constructor(private authService: AuthenticationService, private userService: UserService) {
-  }
-
-  changePassword(value: string): void {
-    this.owner.password = value;
   }
 
   changeMail(value: string): void {
@@ -44,8 +37,17 @@ export class ProfilePageSettingsComponent implements OnInit {
     this.owner.lastName = lName;
   }
 
+  canUpgrade(): boolean {
+    return this.owner.role === 'USER';
+  }
+
+  upgradeToPremium(): void {
+    this.owner.role = 'PREMIUM';
+    this.userService.updateUser(this.authService.getUserId, this.owner);
+  }
+
   saveChanges(): void {
-    this.userService.updateUser(this.authService.currentUserValue.id, this.owner);
+    this.userService.updateUser(this.authService.getUserId, this.owner);
   }
 
   isValidPasswordChange(firstPassword, secondPassword: string): boolean {
@@ -65,8 +67,9 @@ export class ProfilePageSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUser(this.authService.currentUserValue.id).subscribe(data => {
+    this.userService.getUser(this.authService.getUserId).subscribe(data => {
       this.owner.id = data.id;
+      this.owner.role = data.role;
       this.owner.firstName = data.firstName;
       this.owner.lastName = data.lastName;
       this.owner.email = data.email;
@@ -74,5 +77,4 @@ export class ProfilePageSettingsComponent implements OnInit {
       this.owner.bookmarks = data.bookmarks;
     });
   }
-
 }

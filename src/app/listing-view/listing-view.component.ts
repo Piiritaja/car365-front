@@ -24,6 +24,7 @@ export class ListingViewComponent implements OnInit {
   start = 0;
   end = 1;
   nrOfImages: number;
+  bookmarked = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,13 +39,23 @@ export class ListingViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListing();
+    this.currentUserBookmarks();
   }
 
   isCurrentUserListing(): boolean {
-    console.log('==============');
-    console.log(this.owner.id);
-    console.log(this.authService.currentUserValue.id);
-    return this.owner.id === this.authService.currentUserValue.id;
+    return (this.owner.id === this.authService.getUserId || this.authService.currentUserValue.role === 'ADMIN');
+  }
+
+  currentUserBookmarks(): void {
+    this.listingItemService.getFavoriteListings(this.authService.getUserId)
+      .subscribe(data => data.forEach(bookmark => {
+        console.log(bookmark.id);
+        console.log(this.listing.id);
+        // TODO working boolean for whether listing is in bookmarks
+        console.log('bool ' + this.listing.id === bookmark.id);
+        console.log('____________________________');
+        this.bookmarked = (bookmark.id === this.listing.id) ? true : this.bookmarked;
+      }));
   }
 
   getListing(): void {
@@ -127,4 +138,19 @@ export class ListingViewComponent implements OnInit {
     this.router.navigate(['listings/edit/' + this.listing.id]);
   }
 
+  bookmarkListing(): void {
+    this.userService.getUser(this.authService.getUserId)
+      .subscribe(user => {
+        console.log(this.bookmarked);
+        if (this.bookmarked) {
+          (user.bookmarks as object[]).splice(user.bookmarks.indexOf(this.listing), 1);
+        } else {
+          (user.bookmarks as object[]).push(this.listing);
+        }
+        console.log('listings: ');
+        console.log(user.bookmarks);
+        user.bookmarks.forEach(d => console.log(d));
+        this.userService.updateUser(this.authService.getUserId, user);
+      });
+  }
 }

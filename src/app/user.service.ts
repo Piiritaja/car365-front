@@ -30,6 +30,6 @@ export class UserService {
   }
 
   updateUser(userId, owner): void {
-    this.http.put<object>('api/user/' + userId, owner).subscribe();
+    this.http.put<object>(this.usersUrl + '/' + userId, owner).subscribe();
   }
 }
