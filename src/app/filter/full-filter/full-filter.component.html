@@ -1,4 +1,4 @@
-<div class="container mat-elevation-z6">
+<div class="container mat-elevation-z6" *ngIf="listingParams">
   <mat-form-field>
     <mat-label>Body type</mat-label>
     <mat-select [(ngModel)]='selectedBodyType'>

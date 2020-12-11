@@ -4,12 +4,13 @@
     <mat-card-content>
       <mat-form-field>
         <label>
-          <input formControlName="email" placeholder="E-mail" matInput>
+          <input formControlName="email" placeholder="E-mail" matInput [required]="true">
         </label>
       </mat-form-field>
       <mat-form-field>
-        <input formControlName="password" type="password" placeholder="password" matInput>
+          <input formControlName="password" type="password" placeholder="password" matInput [required]="true">
       </mat-form-field>
+      <mat-label *ngIf="errorMessage" class="errorMessage">{{this.errorMessage}}</mat-label>
       <span>
         <button mat-raised-button color="primary" type="submit">login</button>
         <strong>

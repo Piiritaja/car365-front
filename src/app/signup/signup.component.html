@@ -4,19 +4,19 @@
   <mat-card-content>
     <mat-form-field>
       <mat-label>First name</mat-label>
-      <input formControlName="firstName" matInput>
+      <input formControlName="firstName" matInput [required]="true">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Last name</mat-label>
-      <input formControlName="lastName" matInput>
+      <input formControlName="lastName" matInput [required]="true">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Phone number</mat-label>
-      <input formControlName="phone" matInput>
+      <input formControlName="phone" matInput [required]="true">
     </mat-form-field>
     <mat-form-field>
       <mat-label>E-mail</mat-label>
-      <input formControlName="email" type="email" placeholder="Ex. pat@example.com" matInput>
+      <input formControlName="email" type="email" placeholder="Ex. pat@example.com" matInput [required]="true">
       <!--input formControlName="email" type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Please enter a valid email address
@@ -27,12 +27,13 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input formControlName="password" type="password" matInput>
+      <input formControlName="password" type="password" matInput [required]="true">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password confirmation</mat-label>
-      <input type="password" matInput>
+      <input formControlName="passwordConfirm" type="password" matInput [required]="true">
     </mat-form-field>
+    <mat-label *ngIf="passwordCheck() || errorMessage" class="errorMessage">{{this.errorMessage}}</mat-label>
     <mat-checkbox><a>I agree to the Terms Of <br> Service and Privacy Policy</a></mat-checkbox>
     <br>
     <button mat-raised-button type="submit" color="accent">Register</button>
