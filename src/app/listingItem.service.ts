@@ -30,12 +30,10 @@ export class ListingItemService {
   postListing(item: ListingData): Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(item.listingItem);
-    console.log(item);
     return this.http.post(this.listingUrl, body, {headers});
   }
 
   postListingImage(item: File, id: string): Observable<any> {
-    console.log('sending image with id: ' + id);
     const data = new FormData();
     data.append('file', item, id + '.' + item.name.split('.')[1]);
     return this.http.post(this.listingUrl + '/' + id + '/' + 'image', data);
@@ -48,7 +46,7 @@ export class ListingItemService {
   }
 
   deleteListing(id: string): void {
-    this.http.delete(this.listingUrl + '/' + id).subscribe(response => console.log(response));
+    this.http.delete(this.listingUrl + '/' + id).subscribe();
   }
 
   getListing(id): Observable<ListingItem> {

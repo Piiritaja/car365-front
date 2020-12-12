@@ -14,7 +14,6 @@ export class ListingComponent implements OnInit {
   }
 
   logger(): void {
-    console.log('tere');
   }
 
   ngOnInit(): void {

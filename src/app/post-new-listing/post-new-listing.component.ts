@@ -115,12 +115,10 @@ export class PostNewListingComponent implements OnInit {
   }
 
   postListing(): void {
-    // console.log(this.listingItem);
     this.listingData = {
       file: this.localfile,
       listingItem: this.listingItem
     };
-    console.log(this.listingData);
     this.listingItemService.postListing(this.listingData)
       .subscribe(listingItem => {
         this.retrievedListingItem = listingItem;
@@ -135,7 +133,6 @@ export class PostNewListingComponent implements OnInit {
   getBrands(): void {
     this.listingItemService.getBrands().subscribe(brands => {
       this.brandsList = brands;
-      console.log(this.brandsList);
       this.brandsFinished();
     });
   }
@@ -152,7 +149,6 @@ export class PostNewListingComponent implements OnInit {
         this.options.push(brand1);
       }
     }
-    console.log(this.options);
   }
 
   updateBrand(): void {
@@ -191,7 +187,6 @@ export class PostNewListingComponent implements OnInit {
       this.invalidInputs = false;
       this.postListing();
     } else {
-      console.log('invalid', this.listingItem);
       this.invalidInputs = true;
       this.posting = false;
     }
@@ -205,7 +200,6 @@ export class PostNewListingComponent implements OnInit {
 
       reader.onload = (e: any) => {
         this.srcResult = e.target.result;
-        console.log(this.srcResult);
       };
       this.localfile = inputNode.files[0];
     }
