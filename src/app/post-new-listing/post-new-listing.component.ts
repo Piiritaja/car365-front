@@ -8,6 +8,7 @@ import {ListingItem} from '../listingItem';
 import {NewListingValidator} from './new-listing-validator';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../authentication.service';
+import {ListingData} from '../listingData';
 
 @Component({
   selector: 'app-post-new-listing',
@@ -122,8 +123,12 @@ export class PostNewListingComponent implements OnInit {
     this.listingItemService.postListing(this.listingData)
       .subscribe(listingItem => {
         this.retrievedListingItem = listingItem;
+        if (this.listingData.file !== undefined) {
+          this.listingItemService.postListingImage(this.listingData.file, this.retrievedListingItem.id).subscribe();
+        }
         this.router.navigate(['/listings/' + this.retrievedListingItem.id]);
       });
+
   }
 
   getBrands(): void {
