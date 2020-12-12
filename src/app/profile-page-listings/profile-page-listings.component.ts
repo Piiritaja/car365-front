@@ -21,7 +21,6 @@ export class ProfilePageListingsComponent implements OnInit {
     this.waiting = true;
     this.listingItemService.getOwnerListings(this.userId).subscribe(data => {
       this.listingItems = data;
-      console.log(data);
       if (data === undefined) {
         document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have listings...';
       }

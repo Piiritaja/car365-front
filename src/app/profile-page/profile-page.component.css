@@ -1,3 +1,7 @@
+a {
+  font-size: 18px;
+}
+
 .profile-menubar {
   background: #3F51B5;
   height: 200px;
@@ -12,10 +16,30 @@
   margin: 5%;
 }
 
-@media only screen and (max-width: 1000px) {
-  .profile-page {
-    flex-direction: column;
-  }
+.mat-expansion-panel {
+  background-color: #3F51B5;
+  color: white;
 }
 
+::ng-deep h3 {
+  margin: auto !important;
+}
 
+.profileMenu {
+  display: none;
+  align-content: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .full {
+    display: none;
+  }
+
+  .mat-expansion-panel {
+    width: 100vw;
+  }
+
+  .profileMenu {
+    display: block;
+  }
+}
