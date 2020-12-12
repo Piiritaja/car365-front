@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import {ListingItem} from '../listingItem';
 import {NewListingValidator} from './new-listing-validator';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ListingData} from '../listingData';
 
 @Component({
   selector: 'app-post-new-listing',
@@ -38,6 +39,7 @@ export class PostNewListingComponent implements OnInit {
   img4 = new FormControl();
   imgLocal = new FormControl();
   srcResult;
+  localfile;
 
   options: string[] = ['BMW', 'Audi', 'Mercedes', 'Toyota'];
   brandsList: string[] = [];
@@ -52,6 +54,7 @@ export class PostNewListingComponent implements OnInit {
   informationGroup: FormGroup;
   listingItem: ListingItemNoId;
   retrievedListingItem: ListingItem;
+  listingData: ListingData;
   listingValidator = new NewListingValidator();
   invalidInputs = false;
   posting = false;
@@ -112,7 +115,12 @@ export class PostNewListingComponent implements OnInit {
 
   postListing(): void {
     // console.log(this.listingItem);
-    this.listingItemService.postListing(this.listingItem)
+    this.listingData = {
+      file: this.localfile,
+      listingItem: this.listingItem
+    };
+    console.log(this.listingData);
+    this.listingItemService.postListing(this.listingData)
       .subscribe(listingItem => {
         this.retrievedListingItem = listingItem;
         this.router.navigate(['/listings/' + this.retrievedListingItem.id]);
@@ -193,11 +201,7 @@ export class PostNewListingComponent implements OnInit {
         this.srcResult = e.target.result;
         console.log(this.srcResult);
       };
-      const xhr = new XMLHttpRequest();
-      const formData = new FormData();
-      formData.append('file', inputNode.files[0]);
-      xhr.open('POST', '/api/listings/image', true);
-      xhr.send(formData);
+      this.localfile = inputNode.files[0];
     }
   }
 
