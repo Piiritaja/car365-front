@@ -26,6 +26,8 @@ export class ProfilePageFavoritesComponent implements OnInit {
         this.bookmarkedListings = data;
         this.waiting = false;
       });
+    } else {
+      this.waiting = false;
     }
   }
 
