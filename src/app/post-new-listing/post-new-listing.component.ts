@@ -90,6 +90,7 @@ export class PostNewListingComponent implements OnInit {
       title: '',
       description: '',
       status: '',
+      premium: false,
       owner: '',
       price: 0,
       location: '',
@@ -162,6 +163,7 @@ export class PostNewListingComponent implements OnInit {
         ' kw';
       this.listingItem.description = this.description.value;
       this.listingItem.status = 'Available';
+      this.listingItem.premium = this.authService.currentUserValue.role !== 'USER';
       this.listingItem.owner = this.authService.getUserId;
       this.listingItem.price = this.price.value;
       this.listingItem.location = this.location.value;

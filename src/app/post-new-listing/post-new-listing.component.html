@@ -121,16 +121,6 @@
     <mat-step [stepControl]="informationGroup">
       <form [formGroup]="informationGroup">
         <ng-template matStepLabel>Additional information</ng-template>
-        <mat-form-field appearance="outline">
-          <mat-label>Sellers name</mat-label>
-          <input [formControl]="ownerName" matInput required placeholder="Ex. Thomas" maxlength="15">
-          <mat-hint>Name of the seller</mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Sellers phone number</mat-label>
-          <input [formControl]="ownerPhone" matInput required placeholder="Ex. 5678912">
-          <mat-hint>Phone number of the seller</mat-hint>
-        </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Location</mat-label>
