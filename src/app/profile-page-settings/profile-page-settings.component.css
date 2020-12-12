@@ -38,8 +38,10 @@ button.change:disabled {
 }
 
 @media only screen and (max-width: 1000px) {
-  .profile-display {
+  .profile-row {
     margin-left: 0;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
