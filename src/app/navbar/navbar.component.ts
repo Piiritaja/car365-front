@@ -3,6 +3,7 @@ import {SignupComponent} from '../signup/signup.component';
 import {MatDialog} from '@angular/material/dialog';
 import {LoginComponent} from '../login/login.component';
 import {AuthenticationService} from '../authentication.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -15,8 +16,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(public signIn: MatDialog,
               public signUp: MatDialog,
-              private authenticationService: AuthenticationService) {
-  }
+              private authenticationService: AuthenticationService) {}
 
   tab = 1;
 

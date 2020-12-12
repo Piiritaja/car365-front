@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {UserService} from '../user.service';
 import {AuthenticationService} from '../authentication.service';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-profile-page-settings',
@@ -10,10 +10,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ProfilePageSettingsComponent implements OnInit {
 
-  owner = {email: null, password: null, phone: null, firstName: null, lastName: null, id: null, bookmarks: null};
-  showPass = false;
-  firstPassword = '';
-  secondPassword = '';
+  owner = {email: null, role: null, phone: null, firstName: null, lastName: null, id: null, bookmarks: null};
   mailForm = new FormControl();
   newMail = '';
   phoneForm = new FormControl();
@@ -24,19 +21,7 @@ export class ProfilePageSettingsComponent implements OnInit {
 
   @Input() userId: string;
 
-  constructor(private authenticationService: AuthenticationService, private http: HttpClient) {
-    this.http.get<any>('api/user/' + authenticationService.currentUserValue.id).subscribe(data => {
-      this.owner.id = data.id;
-      this.owner.firstName = data.firstName;
-      this.owner.lastName = data.lastName;
-      this.owner.email = data.email;
-      this.owner.phone = data.phone;
-      this.owner.bookmarks = data.bookmarks;
-    });
-  }
-
-  changePassword(value: string): void {
-    this.owner.password = value;
+  constructor(private authService: AuthenticationService, private userService: UserService) {
   }
 
   changeMail(value: string): void {
@@ -52,8 +37,21 @@ export class ProfilePageSettingsComponent implements OnInit {
     this.owner.lastName = lName;
   }
 
+  canUpgrade(): boolean {
+    return this.owner.role === 'USER';
+  }
+
+  upgradeToPremium(): void {
+    this.owner.role = 'PREMIUM';
+    this.userService.updateUser(this.authService.getUserId, this.owner).subscribe(owner => {
+      this.owner = owner;
+    });
+  }
+
   saveChanges(): void {
-    this.http.put<object>('api/user/' + this.authenticationService.currentUserValue.id, this.owner).subscribe();
+    this.userService.updateUser(this.authService.getUserId, this.owner).subscribe(owner => {
+      this.owner = owner;
+    });
   }
 
   isValidPasswordChange(firstPassword, secondPassword: string): boolean {
@@ -73,6 +71,14 @@ export class ProfilePageSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.getUser(this.authService.getUserId).subscribe(data => {
+      this.owner.id = data.id;
+      this.owner.role = data.role;
+      this.owner.firstName = data.firstName;
+      this.owner.lastName = data.lastName;
+      this.owner.email = data.email;
+      this.owner.phone = data.phone;
+      this.owner.bookmarks = data.bookmarks;
+    });
   }
-
 }

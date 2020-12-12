@@ -1,3 +1,4 @@
+<mat-spinner *ngIf="!listing" class="waiting-anim"></mat-spinner>
 <ng-container *ngIf="listing" class="listing">
   <div class="listing-desktop">
     <mat-card-header class="listing-header" [style.border]="'1px solid whitesmoke'" [style.border-radius]="'5px'"
@@ -7,20 +8,30 @@
         {{listing.status}}</mat-card>
       <div>
         <button mat-icon-button aria-label="Menu button"
-                [matMenuTriggerFor]="menu">
+                [matMenuTriggerFor]="menu" *ngIf="isCurrentUserListing() || allowedMenu">
           <mat-icon>settings</mat-icon>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="changeStatus()">
+            <button mat-menu-item (click)="changeStatus()" *ngIf="isCurrentUserListing()">
               <mat-icon>check_circle</mat-icon>
               Change status
             </button>
-            <button mat-menu-item (click)="editListing()">
+            <button mat-menu-item (click)="editListing()" *ngIf="isCurrentUserListing()">
               <mat-icon>edit</mat-icon>
               Edit
             </button>
-            <button mat-menu-item (click)="openDialog()">
+            <button mat-menu-item (click)="openDialog()" *ngIf="isCurrentUserListing()">
               <mat-icon>delete</mat-icon>
               Delete
+            </button>
+            <button mat-menu-item (click)="bookmarkListing()" *ngIf="!isCurrentUserListing()">
+              <div *ngIf="!bookmarked">
+                <mat-icon>bookmark_border_icon</mat-icon>
+                Bookmark
+              </div>
+              <div *ngIf="bookmarked">
+                <mat-icon>bookmark</mat-icon>
+                Unbookmark
+              </div>
             </button>
           </mat-menu>
         </button>
@@ -56,12 +67,12 @@
           <mat-divider></mat-divider>
           <mat-list-item><span class="parameter">Price: &nbsp;</span> {{listing.price}} €</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item><span class="parameter">Seller: &nbsp;</span> {{listingMock.ownerName}}
-            {{listingMock.ownerNumber}}</mat-list-item>
+          <mat-list-item><span class="parameter">Seller: &nbsp;</span> {{owner.firstName}} {{owner.lastName}}
+            {{owner.phone}}</mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item><span class="parameter">
               Additional Information:  </span>
-              {{listing.description}}</mat-list-item>
+            {{listing.description}}</mat-list-item>
 
 
           <!-- price -->

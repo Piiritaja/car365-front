@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {Listing} from '../listingProperties/Listing';
 import {ListingItem} from '../listingItem';
 import {ListingItemService} from '../listingItem.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditService} from '../edit.service';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
+import {UserService} from '../user.service';
+import {AuthenticationService} from '../authentication.service';
+import {LoginDetails} from "../loginDetails";
 
 export interface DialogData {
   id: string;
@@ -17,66 +19,90 @@ export interface DialogData {
   styleUrls: ['./listing-view.component.css']
 })
 export class ListingViewComponent implements OnInit {
-  listingMock: Listing = {
-    id: '1',
-    title: 'Bmw 320i 2.0 110kw',
-    description: 'this is additional inf',
-    status: 'available',
-    price: 4000,
-    location: 'valga',
-    bodyType: 'sedan',
-    brand: 'BMW',
-    model: '320i',
-    color: 'green',
-    gearbox: 'manual',
-    fuelType: 'petrol',
-    driveType: 'rear-wheel',
-    enginePower: 110,
-    engineSize: '2.0',
-    mileage: 269420,
-    year: 1996,
-    ownerName: 'Toomas MockUser',
-    ownerNumber: '+372 4204201'
-  };
+  owner = {id: null, firstName: null, lastName: null, email: null, phone: null, bookmarks: null};
   listing: ListingItem;
   backgroundColor = 'lightgreen';
   start = 0;
   end = 1;
   nrOfImages: number;
+  bookmarked = false;
+  loggedIn = false;
+  currentUser: LoginDetails;
+  allowedMenu = false;
 
   constructor(
     private route: ActivatedRoute,
-    private listingItemService: ListingItemService,
     private router: Router,
+    private listingItemService: ListingItemService,
+    private userService: UserService,
     private editService: EditService,
     public dialog: MatDialog,
+    private authService: AuthenticationService
   ) {
   }
 
   ngOnInit(): void {
     this.getListing();
+    this.currentUser = this.authService.currentUserValue;
+    if (this.currentUser) {
+      this.loggedIn = true;
+      if (this.currentUser.role === 'PREMIUM' || this.currentUser.role === 'ADMIN') {
+        this.allowedMenu = true;
+      }
+      this.currentUserBookmarks();
+    }
   }
 
-  getListing(): ListingItem {
+  isCurrentUserListing(): boolean {
+    return (this.loggedIn && (this.owner.id === this.authService.getUserId || this.authService.currentUserValue.role === 'ADMIN'));
+  }
+
+  currentUserBookmarks(): void {
+    this.listingItemService.getFavoriteListings(this.authService.getUserId).subscribe(data => {
+      this.bookmarked = false;
+      data.forEach(l => {
+        if (l.id === this.listing.id) {
+          this.bookmarked = true;
+        }
+      });
+    });
+  }
+
+  bookmarkListing(): void {
+    this.userService.bookmarkListing(this.listing.id)
+      .subscribe(() => this.currentUserBookmarks());
+  }
+
+  getListing(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.listingItemService.getListing(id).subscribe(listing => {
       this.listing = listing;
       this.nrOfImages = this.listing.images.length;
       this.updateStatusColor();
+      this.getOwner(listing.owner);
     });
-    return this.listing;
+  }
+
+  getOwner(userId): void {
+    this.userService.getUser(userId).subscribe(data => {
+      this.owner.id = data.id;
+      this.owner.firstName = data.firstName;
+      this.owner.lastName = data.lastName;
+      this.owner.email = data.email;
+      this.owner.phone = data.phone;
+      this.owner.bookmarks = data.bookmarks;
+    });
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {data: {id: this.listing.id}});
     this.editService.addItem(this.listing);
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/home']);
     });
   }
 
-  // tslint:disable-next-line:typedef
-  delay(ms: number) {
+  delay(ms: number): Promise<any> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
@@ -119,12 +145,11 @@ export class ListingViewComponent implements OnInit {
       this.listing.status = 'Available';
     }
     this.updateStatusColor();
-    this.listingItemService.putListing(this.listing, this.listing.id).subscribe(listing => this.listing);
+    this.listingItemService.putListing(this.listing, this.listing.id).subscribe(() => this.listing);
   }
 
   editListing(): void {
     this.editService.addItem(this.listing);
     this.router.navigate(['listings/edit/' + this.listing.id]);
   }
-
 }

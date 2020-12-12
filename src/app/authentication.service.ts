@@ -16,6 +16,10 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
+  public get getUserId(): string {
+    return this.currentUserValue.id;
+  }
+
   public get currentUserValue(): LoginDetails {
     return this.currentUserSubject ? this.currentUserSubject.value : undefined;
   }

@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 import {ListingItem} from '../listingItem';
 import {NewListingValidator} from './new-listing-validator';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ListingData} from '../listingData';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-post-new-listing',
@@ -60,8 +60,7 @@ export class PostNewListingComponent implements OnInit {
   posting = false;
 
   constructor(private formBuilder: FormBuilder, private listingItemService: ListingItemService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute, private router: Router, private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -173,7 +172,7 @@ export class PostNewListingComponent implements OnInit {
         ' kw';
       this.listingItem.description = this.description.value;
       this.listingItem.status = 'Available';
-      this.listingItem.owner = '';
+      this.listingItem.owner = this.authService.getUserId;
       this.listingItem.price = this.price.value;
       this.listingItem.location = this.location.value;
       this.listingItem.images = [this.img1.value, this.img2.value, this.img3.value, this.img4.value];

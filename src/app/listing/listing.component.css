@@ -10,6 +10,15 @@ img {
   vertical-align: middle;
 }
 
+.info.premium, .image.premium {
+  background: rgba(20, 60, 255, 0.6);
+}
+
+.name.premium {
+  font-size: medium;
+  font-weight: bold;
+}
+
 mat-drawer-container {
   min-width: 80vw;
   height: 120px;

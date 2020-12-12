@@ -51,7 +51,6 @@ import {ErrorInterceptor} from './helpers/error.interceptor';
 import { FullFilterComponent } from './filter/full-filter/full-filter.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 
-
 @NgModule({
   declarations: [
     AppComponent,

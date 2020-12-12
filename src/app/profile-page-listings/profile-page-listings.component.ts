@@ -1,6 +1,7 @@
 import {ListingItemService} from '../listingItem.service';
 import {ListingItem} from '../listingItem';
 import {Component, Input, OnInit} from '@angular/core';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-profile-page-listings',
@@ -8,23 +9,28 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./profile-page-listings.component.css']
 })
 export class ProfilePageListingsComponent implements OnInit {
+  waiting = true;
+  userId: string;
 
-  @Input() userId: string;
-
-  constructor(private listingItemService: ListingItemService) { }
+  constructor(private listingItemService: ListingItemService,
+              private authenticationService: AuthenticationService) { }
 
   listingItems: ListingItem[];
 
   getListingItems(): void {
+    this.waiting = true;
     this.listingItemService.getOwnerListings(this.userId).subscribe(data => {
       this.listingItems = data;
+      console.log(data);
+      if (data === undefined) {
+        document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have listings...';
+      }
+      this.waiting = false;
     });
-    if (this.listingItems === undefined) {
-      document.getElementsByClassName('profile-display')[0].innerHTML = 'You don\'t have listings...';
-    }
   }
 
   ngOnInit(): void {
+    this.userId = this.authenticationService.currentUserValue.id;
     this.getListingItems();
   }
 }
