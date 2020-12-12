@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -6,19 +7,10 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit {
-  private componentId = 0;
 
   constructor() {
   }
 
   ngOnInit(): void {
-  }
-
-  btnClick(id): void {
-    this.componentId = id;
-  }
-
-  getBtnComponent(): number {
-    return this.componentId;
   }
 }

@@ -2,9 +2,12 @@
   <app-filter [style.float]="'left'"></app-filter>
   <app-listing-view [style.float]="'center'"></app-listing-view>
 </span-->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <div id="page-container">
+  <app-navbar></app-navbar>
   <div id="content-wrap">
-    <app-navbar></app-navbar>
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>

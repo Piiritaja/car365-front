@@ -8,16 +8,18 @@ import {ListingItem} from '../listingItem';
 })
 export class ListingComponent implements OnInit {
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('listingItem') listingItem: ListingItem;
+  @Input() listingItem: ListingItem;
 
   constructor() {
   }
 
   logger(): void {
-    console.log('tere');
   }
 
   ngOnInit(): void {
+  }
+
+  isPremium(): boolean {
+    return this.listingItem.premium;
   }
 }

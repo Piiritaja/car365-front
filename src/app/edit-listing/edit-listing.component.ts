@@ -76,6 +76,5 @@ export class EditListingComponent implements OnInit {
   }
 
   consoleLog(): void {
-    console.log(this.description, this.description.value, this.formGroup, this.formGroup.value);
   }
 }

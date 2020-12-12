@@ -1,8 +1,10 @@
 <div class="next">
   <app-filter></app-filter>
-  <span>
+  <span [style.margin-top]="'5px'">
     <app-listing-header></app-listing-header>
-    <app-listing class="listing" *ngFor="let listingItem of listingItems | slice:(this.tab - 1) * 20:this.tab * 20" [listingItem]="listingItem"></app-listing>
+    <mat-spinner *ngIf="!listingItems" class="waiting-anim"></mat-spinner>
+    <app-listing class="listing" *ngFor="let listingItem of listingItems | slice:(this.tab - 1) * 20:this.tab * 20"
+                 [listingItem]="listingItem"></app-listing>
     <nav mat-tab-nav-bar>
         <a mat-tab-link *ngFor="let i of pages"
            routerLink="/search/{{i}}">{{i}}</a>

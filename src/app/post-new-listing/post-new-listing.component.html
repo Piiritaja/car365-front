@@ -121,16 +121,6 @@
     <mat-step [stepControl]="informationGroup">
       <form [formGroup]="informationGroup">
         <ng-template matStepLabel>Additional information</ng-template>
-        <mat-form-field appearance="outline">
-          <mat-label>Sellers name</mat-label>
-          <input [formControl]="ownerName" matInput required placeholder="Ex. Thomas" maxlength="15">
-          <mat-hint>Name of the seller</mat-hint>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Sellers phone number</mat-label>
-          <input [formControl]="ownerPhone" matInput required placeholder="Ex. 5678912">
-          <mat-hint>Phone number of the seller</mat-hint>
-        </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
           <mat-label>Location</mat-label>
@@ -151,6 +141,8 @@
     <mat-step [stepControl]="imageGroup">
       <form [formGroup]="imageGroup">
         <ng-template matStepLabel>Images</ng-template>
+          <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+          <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
         <mat-form-field appearance="outline">
           <mat-label>Image URL</mat-label>
           <input [formControl]="img1" matInput required type="url" placeholder="Ex. images.com/image.jpg">

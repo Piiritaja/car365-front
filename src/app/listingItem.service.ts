@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ListingItemNoId} from './ListingItemNoId';
 import {ListingItem} from './listingItem';
 import {ParamsDto} from './ParamsDto';
+import {ListingData} from './listingData';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,24 @@ export class ListingItemService {
     return this.http.get<ListingItem[]>(this.listingUrl);
   }
 
-  postListing(item: ListingItemNoId): Observable<any> {
+  getOwnerListings(ownerId): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl + '/owner/' + ownerId);
+  }
+
+  getFavoriteListings(ownerId): Observable<ListingItem[]> {
+    return this.http.get<ListingItem[]>(this.listingUrl + '/owner/' + ownerId + '?favorites=true');
+  }
+
+  postListing(item: ListingData): Observable<any> {
     const headers = {'content-type': 'application/json'};
-    const body = JSON.stringify(item);
-    // console.log(body);
+    const body = JSON.stringify(item.listingItem);
     return this.http.post(this.listingUrl, body, {headers});
+  }
+
+  postListingImage(item: File, id: string): Observable<any> {
+    const data = new FormData();
+    data.append('file', item, id + '.' + item.name.split('.')[1]);
+    return this.http.post(this.listingUrl + '/' + id + '/' + 'image', data);
   }
 
   putListing(item: ListingItem, id: string): Observable<any> {
@@ -32,7 +46,7 @@ export class ListingItemService {
   }
 
   deleteListing(id: string): void {
-    this.http.delete(this.listingUrl + '/' + id).subscribe(response => console.log(response));
+    this.http.delete(this.listingUrl + '/' + id).subscribe();
   }
 
   getListing(id): Observable<ListingItem> {

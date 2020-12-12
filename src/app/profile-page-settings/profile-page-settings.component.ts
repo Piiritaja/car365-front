@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {UserService} from '../user.service';
+import {AuthenticationService} from '../authentication.service';
 
 @Component({
   selector: 'app-profile-page-settings',
@@ -8,21 +10,18 @@ import {FormControl} from '@angular/forms';
 })
 export class ProfilePageSettingsComponent implements OnInit {
 
-  owner = {email: 'juku@taltech.ee', password: 'parool', phone: '54541010', name: 'JukuViljandist'};
-  showPass = false;
-  firstPassword = '';
-  secondPassword = '';
+  owner = {email: null, role: null, phone: null, firstName: null, lastName: null, id: null, bookmarks: null};
   mailForm = new FormControl();
   newMail = '';
+  phoneForm = new FormControl();
   newPhone = '';
   nameForm = new FormControl();
-  newName = '';
+  newFirstName = '';
+  newLastName = '';
 
-  constructor() {
-  }
+  @Input() userId: string;
 
-  changePassword(value: string): void {
-    this.owner.password = value;
+  constructor(private authService: AuthenticationService, private userService: UserService) {
   }
 
   changeMail(value: string): void {
@@ -33,8 +32,26 @@ export class ProfilePageSettingsComponent implements OnInit {
     this.owner.phone = value;
   }
 
-  changeName(value: string): void {
-    this.owner.name = value;
+  changeName(fName: string, lName: string): void {
+    this.owner.firstName = fName;
+    this.owner.lastName = lName;
+  }
+
+  canUpgrade(): boolean {
+    return this.owner.role === 'USER';
+  }
+
+  upgradeToPremium(): void {
+    this.owner.role = 'PREMIUM';
+    this.userService.updateUser(this.authService.getUserId, this.owner).subscribe(owner => {
+      this.owner = owner;
+    });
+  }
+
+  saveChanges(): void {
+    this.userService.updateUser(this.authService.getUserId, this.owner).subscribe(owner => {
+      this.owner = owner;
+    });
   }
 
   isValidPasswordChange(firstPassword, secondPassword: string): boolean {
@@ -46,14 +63,22 @@ export class ProfilePageSettingsComponent implements OnInit {
   }
 
   isValidPhoneChange(newPhone: string): boolean {
-    return (newPhone.length < 3 || newPhone.length > 9 || newPhone === '');
+    return (this.phoneForm.invalid || newPhone === '');
   }
 
-  isValidNameChange(newName: string): boolean {
-    return (this.nameForm.invalid || newName === '');
+  isValidNameChange(fName: string, lName: string): boolean {
+    return (this.nameForm.invalid || fName === '' || lName === '');
   }
 
   ngOnInit(): void {
+    this.userService.getUser(this.authService.getUserId).subscribe(data => {
+      this.owner.id = data.id;
+      this.owner.role = data.role;
+      this.owner.firstName = data.firstName;
+      this.owner.lastName = data.lastName;
+      this.owner.email = data.email;
+      this.owner.phone = data.phone;
+      this.owner.bookmarks = data.bookmarks;
+    });
   }
-
 }

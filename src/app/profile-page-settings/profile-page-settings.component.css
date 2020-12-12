@@ -1,3 +1,18 @@
+.profile-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-display {
+  margin-left: 25px
+}
+
+.profile-display-title {
+  margin: 20px;
+  color: deeppink;
+  font-weight: bold
+}
+
 mat-form-field.input, mat-label.current {
   margin: 20px;
   width: 200px;
@@ -7,7 +22,7 @@ mat-form-field.mail {
   width: 440px;
 }
 
-button.change{
+button.change {
   height: 40px;
   background: deeppink;
   color: white;
@@ -20,6 +35,14 @@ button.change:hover {
 button.change:disabled {
   opacity: 50%;
   background: whitesmoke;
+}
+
+@media only screen and (max-width: 1000px) {
+  .profile-row {
+    margin-left: 0;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 

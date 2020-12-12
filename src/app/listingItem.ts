@@ -3,6 +3,7 @@ export interface ListingItem {
   title: string;
   description: string;
   status: string;
+  premium: boolean;
   owner: string;
   price: number;
   location: string;

@@ -10,7 +10,7 @@ describe('FilterComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ FilterComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

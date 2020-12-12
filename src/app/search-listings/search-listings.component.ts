@@ -40,6 +40,5 @@ export class SearchListingsComponent implements OnInit {
   ngOnInit(): void {
     this.getListingItems();
     this.dom.documentElement.scrollIntoView();
-    console.log('Started search Page....');
   }
 }

@@ -7,6 +7,8 @@ import {Observable} from 'rxjs';
 import {ListingItem} from '../listingItem';
 import {NewListingValidator} from './new-listing-validator';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthenticationService} from '../authentication.service';
+import {ListingData} from '../listingData';
 
 @Component({
   selector: 'app-post-new-listing',
@@ -36,6 +38,9 @@ export class PostNewListingComponent implements OnInit {
   img2 = new FormControl();
   img3 = new FormControl();
   img4 = new FormControl();
+  imgLocal = new FormControl();
+  srcResult;
+  localfile;
 
   options: string[] = ['BMW', 'Audi', 'Mercedes', 'Toyota'];
   brandsList: string[] = [];
@@ -50,13 +55,13 @@ export class PostNewListingComponent implements OnInit {
   informationGroup: FormGroup;
   listingItem: ListingItemNoId;
   retrievedListingItem: ListingItem;
+  listingData: ListingData;
   listingValidator = new NewListingValidator();
   invalidInputs = false;
   posting = false;
 
   constructor(private formBuilder: FormBuilder, private listingItemService: ListingItemService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute, private router: Router, private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -90,6 +95,7 @@ export class PostNewListingComponent implements OnInit {
       title: '',
       description: '',
       status: '',
+      premium: false,
       owner: '',
       price: 0,
       location: '',
@@ -109,18 +115,24 @@ export class PostNewListingComponent implements OnInit {
   }
 
   postListing(): void {
-    // console.log(this.listingItem);
-    this.listingItemService.postListing(this.listingItem)
+    this.listingData = {
+      file: this.localfile,
+      listingItem: this.listingItem
+    };
+    this.listingItemService.postListing(this.listingData)
       .subscribe(listingItem => {
         this.retrievedListingItem = listingItem;
+        if (this.listingData.file !== undefined) {
+          this.listingItemService.postListingImage(this.listingData.file, this.retrievedListingItem.id).subscribe();
+        }
         this.router.navigate(['/listings/' + this.retrievedListingItem.id]);
       });
+
   }
 
   getBrands(): void {
     this.listingItemService.getBrands().subscribe(brands => {
       this.brandsList = brands;
-      console.log(this.brandsList);
       this.brandsFinished();
     });
   }
@@ -137,7 +149,6 @@ export class PostNewListingComponent implements OnInit {
         this.options.push(brand1);
       }
     }
-    console.log(this.options);
   }
 
   updateBrand(): void {
@@ -163,7 +174,8 @@ export class PostNewListingComponent implements OnInit {
         ' kw';
       this.listingItem.description = this.description.value;
       this.listingItem.status = 'Available';
-      this.listingItem.owner = '';
+      this.listingItem.premium = this.authService.currentUserValue.role !== 'USER';
+      this.listingItem.owner = this.authService.getUserId;
       this.listingItem.price = this.price.value;
       this.listingItem.location = this.location.value;
       this.listingItem.images = [this.img1.value, this.img2.value, this.img3.value, this.img4.value];
@@ -175,9 +187,21 @@ export class PostNewListingComponent implements OnInit {
       this.invalidInputs = false;
       this.postListing();
     } else {
-      console.log('invalid', this.listingItem);
       this.invalidInputs = true;
       this.posting = false;
+    }
+  }
+
+  onFileSelected(): void {
+    const inputNode: any = document.querySelector('#file');
+
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.srcResult = e.target.result;
+      };
+      this.localfile = inputNode.files[0];
     }
   }
 
