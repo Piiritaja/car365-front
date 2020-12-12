@@ -1,11 +1,13 @@
-<div class="profile-menubar">
-  <div>
+<mat-expansion-panel class="profileMenu">
+  <mat-expansion-panel-header>
+    <h3>Menu</h3>
+  </mat-expansion-panel-header>
     <a mat-button class="profile-menubar-button" routerLink="/profile/listings" style="margin-top: 25px">My listings</a>
-  </div>
-  <div>
     <a mat-button class="profile-menubar-button" routerLink="/profile/favorites">My favorites</a>
-  </div>
-  <div>
     <a mat-button class="profile-menubar-button" routerLink="/profile/settings">My settings</a>
-  </div>
+</mat-expansion-panel>
+<div class="profile-menubar full">
+    <a mat-button class="profile-menubar-button" routerLink="/profile/listings" style="margin-top: 25px">My listings</a>
+    <a mat-button class="profile-menubar-button" routerLink="/profile/favorites">My favorites</a>
+    <a mat-button class="profile-menubar-button" routerLink="/profile/settings">My settings</a>
 </div>
