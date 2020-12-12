@@ -141,6 +141,8 @@
     <mat-step [stepControl]="imageGroup">
       <form [formGroup]="imageGroup">
         <ng-template matStepLabel>Images</ng-template>
+          <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+          <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
         <mat-form-field appearance="outline">
           <mat-label>Image URL</mat-label>
           <input [formControl]="img1" matInput required type="url" placeholder="Ex. images.com/image.jpg">

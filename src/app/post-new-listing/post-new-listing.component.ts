@@ -8,6 +8,7 @@ import {ListingItem} from '../listingItem';
 import {NewListingValidator} from './new-listing-validator';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../authentication.service';
+import {ListingData} from '../listingData';
 
 @Component({
   selector: 'app-post-new-listing',
@@ -37,6 +38,9 @@ export class PostNewListingComponent implements OnInit {
   img2 = new FormControl();
   img3 = new FormControl();
   img4 = new FormControl();
+  imgLocal = new FormControl();
+  srcResult;
+  localfile;
 
   options: string[] = ['BMW', 'Audi', 'Mercedes', 'Toyota'];
   brandsList: string[] = [];
@@ -51,6 +55,7 @@ export class PostNewListingComponent implements OnInit {
   informationGroup: FormGroup;
   listingItem: ListingItemNoId;
   retrievedListingItem: ListingItem;
+  listingData: ListingData;
   listingValidator = new NewListingValidator();
   invalidInputs = false;
   posting = false;
@@ -110,11 +115,21 @@ export class PostNewListingComponent implements OnInit {
   }
 
   postListing(): void {
-    this.listingItemService.postListing(this.listingItem)
+    // console.log(this.listingItem);
+    this.listingData = {
+      file: this.localfile,
+      listingItem: this.listingItem
+    };
+    console.log(this.listingData);
+    this.listingItemService.postListing(this.listingData)
       .subscribe(listingItem => {
         this.retrievedListingItem = listingItem;
+        if (this.listingData.file !== undefined) {
+          this.listingItemService.postListingImage(this.listingData.file, this.retrievedListingItem.id).subscribe();
+        }
         this.router.navigate(['/listings/' + this.retrievedListingItem.id]);
       });
+
   }
 
   getBrands(): void {
@@ -179,6 +194,20 @@ export class PostNewListingComponent implements OnInit {
       console.log('invalid', this.listingItem);
       this.invalidInputs = true;
       this.posting = false;
+    }
+  }
+
+  onFileSelected(): void {
+    const inputNode: any = document.querySelector('#file');
+
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.srcResult = e.target.result;
+        console.log(this.srcResult);
+      };
+      this.localfile = inputNode.files[0];
     }
   }
 
